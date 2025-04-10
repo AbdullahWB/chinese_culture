@@ -20,4 +20,7 @@ mkdir mandarin_language
 
 
 python manage.py tailwind start
- python manage.py runserver
+python manage.py runserver
+python manage.py migrate
+python manage.py makemigrations
+python manage.py createsuperuser
