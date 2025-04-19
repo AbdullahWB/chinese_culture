@@ -1,10 +1,805 @@
 {% extends 'partials/base.html' %}
+{% load static %} <!-- Load the static tag at the top -->
 
 {% block content %}
-    <h1 class="text-amber-300">Welcome to Chinese Culture</h1>
-    <button
-  class="inline-block cursor-pointer rounded-md bg-gray-800 px-4 py-3 text-center text-sm font-semibold uppercase text-white transition duration-200 ease-in-out hover:bg-gray-900">
-  Button
-</button>
-    <p>Explore the rich cultural heritage of China.</p>
-{% endblock %}                                                                                                                                                  
+<div class="banner w-full h-[100vh] " style="background-image: url('{% static 'asset/image/bg_img-1.png' %}'); background-size: cover; background-position: center;">
+    <div class="flex flex-col items-center pt-52 h-full text-center">
+      <h1 class="text-5xl font-bold font-serif text-nav-blue md:text-7xl">Discover Chinese Culture</h1>
+      <p class="text-xl text-nav-blue mt-4 max-w-2xl md:text-2xl">Unveil the Timeless Beauty of History, Art, and Tradition</p>
+
+       <a
+        href="#"
+        class=" mt-6 text-[#4e708d] cursor-pointer text-lg font-sans font-bold py-3 px-6 rounded-lg border-2 border-[#4e708d] hover:bg-[#4e708d] hover:text-[#f2eedf] shadow-sm transition-colors duration-300"
+      >
+        Explore More...
+      </a>
+    </div>
+  </div>
+
+  <!-- Add padding to push content below banner -->
+  <!-- <div class="relative pt-[500px]"> -->
+      <!-- Placeholder for additional content -->
+      <!-- <section class="py-8">
+          <div class="max-w-screen-xl mx-auto px-4">
+              <h2 class="text-3xl font-semibold text-nav-blue">Welcome</h2>
+              <p class="mt-4 text-nav-blue">Explore the rich heritage of China through our curated sections on philosophy, art, festivals, and more.</p>
+            </div>
+        </section> -->
+    </div>
+    
+    <section class="py-[150px]">
+        <div class="max-w-screen-xl mx-auto px-4">
+          <!-- Headline and Button -->
+          <div class="text-center mb-10">
+            <h2 class="text-3xl md:text-4xl font-bold text-[#4E708D] font-sans capitalize leading-tight">
+              Inspired by the vibrant traditions of Chinese festivals, our journey celebrates cultural heritage.
+            </h2>
+            <a
+              href="/festivalsAndTraditions/"
+              class="inline-block mt-6 bg-[#4E708D] text-white font-medium py-2 px-4 rounded-full hover:bg-[rgba(78,112,141,0.52)] transition-colors duration-300"
+            >
+              Read More
+            </a>
+          </div>
+          <!-- Grid of Cultural Highlights -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Highlight 1 -->
+            <div class="text-center">
+              <img
+                src="{% static 'asset/image/cultural_img (2).png' %}"
+                alt="Dragon Dance"
+                class="w-full h-48 object-cover rounded-lg"
+              />
+              <p class="mt-4 text-sm font-semibold text-[#4E708D] uppercase">Dragon Dances</p>
+              <p class="text-2xl font-bold text-gray-800">150+</p>
+            </div>
+            <!-- Highlight 2 -->
+            <div class="text-center">
+              <img
+                src="{% static 'asset/image/cultural_img (3).png' %}"
+                alt="Calligraphy Workshop"
+                class="w-full h-48 object-cover rounded-lg"
+              />
+              <p class="mt-4 text-sm font-semibold text-[#4E708D] uppercase">Calligraphy Workshops</p>
+              <p class="text-2xl font-bold text-gray-800">120+</p>
+            </div>
+            <!-- Highlight 3 -->
+            <div class="text-center">
+              <img
+                src="{% static 'asset/image/cultural_img (1).png' %}"
+                alt="Chinese Cuisine"
+                class="w-full h-48 object-cover rounded-lg"
+              />
+              <p class="mt-4 text-sm font-semibold text-[#4E708D] uppercase">Chinese Cuisine</p>
+              <p class="text-2xl font-bold text-gray-800">80+</p>
+            </div>
+            <!-- Highlight 4 -->
+            <div class="text-center">
+              <img
+                src="{% static 'asset/image/cultural_img (4).png' %}"
+                alt="Traditional Costumes"
+                class="w-full h-48 object-cover rounded-lg"
+              />
+              <p class="mt-4 text-sm font-semibold text-[#4E708D] uppercase">Traditional Costumes</p>
+              <p class="text-2xl font-bold text-gray-800">50+</p>
+            </div>
+          </div>
+        </div>
+    </section>
+
+    <section class="py-[150px] bg-white">
+        <div class="max-w-screen-xl mx-auto px-4">
+          <!-- Headline -->
+          <div class="text-center mb-10">
+            <h2 class="text-3xl md:text-4xl font-bold text-[#4E708D] font-sans capitalize leading-tight">
+              Celebrate the richness of Chinese culture with a day of immersive experiences.
+            </h2>
+          </div>
+          <!-- Grid of Events -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Event 1 -->
+            <div class="relative">
+              <div class="relative">
+                <img
+                  src="{% static 'asset/image/celebrate (6).png' %}"
+                  alt="Lion Dance Performance"
+                  class="w-full h-48 object-cover rounded-lg"
+                />
+                <div class="absolute bottom-0 left-0 right-0 bg-[rgba(0,0,0,0.5)] bg-opacity-50 text-white font-bold text-lg p-2 rounded-b-lg">
+                  舞狮表演
+                </div>
+              </div>
+              <div class="mt-4">
+                <h3 class="text-lg font-semibold text-gray-800">Lion Dance Performance</h3>
+                <p class="text-sm text-gray-600 flex items-center mt-1">
+                  <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                  </svg>
+                  Harmony Hall, 123 Culture Street, 1500 Participants
+                </p>
+                <a
+                  href="#"
+                  class="inline-block mt-6 bg-[#4E708D] text-white font-medium py-2 px-4 rounded-full hover:bg-[rgba(78,112,141,0.52)] transition-colors duration-300"
+                >
+                  Buy Ticket
+                </a>
+              </div>
+            </div>
+            <!-- Event 2 -->
+            <div class="relative">
+              <div class="relative">
+                <img
+                  src="{% static 'asset/image/celebrate (3).png' %}"
+                  alt="Chinese Cuisine Tasting"
+                  class="w-full h-48 object-cover rounded-lg"
+                />
+                <div class="absolute bottom-0 left-0 right-0 bg-[rgba(0,0,0,0.5)] bg-opacity-50 text-white font-bold text-lg p-2 rounded-b-lg">
+                  中式美食品尝
+                </div>
+              </div>
+              <div class="mt-4">
+                <h3 class="text-lg font-semibold text-gray-800">Chinese Cuisine Tasting</h3>
+                <p class="text-sm text-gray-600 flex items-center mt-1">
+                  <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                  </svg>
+                  Gourmet Hall, 456 Flavor Street, 1300 Participants
+                </p>
+                <a
+                  href="#"
+                  class="inline-block mt-6 bg-[#4E708D] text-white font-medium py-2 px-4 rounded-full hover:bg-[rgba(78,112,141,0.52)] transition-colors duration-300"
+                >
+                  Buy Ticket
+                </a>
+              </div>
+            </div>
+            <!-- Event 3 -->
+            <div class="relative">
+              <div class="relative">
+                <img
+                  src="{% static 'asset/image/celebrate (5).png' %}"
+                  alt="Calligraphy Workshop"
+                  class="w-full h-48 object-cover rounded-lg"
+                />
+                <div class="absolute bottom-0 left-0 right-0 bg-[rgba(0,0,0,0.5)] bg-opacity-50 text-white font-bold text-lg p-2 rounded-b-lg">
+                  书法工作坊
+                </div>
+              </div>
+              <div class="mt-4">
+                <h3 class="text-lg font-semibold text-gray-800">Calligraphy Workshop</h3>
+                <p class="text-sm text-gray-600 flex items-center mt-1">
+                  <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                  </svg>
+                  Art Center, 789 Ink Way, 900 Participants
+                </p>
+                <a
+                  href="#"
+                  class="inline-block mt-6 bg-[#4E708D] text-white font-medium py-2 px-4 rounded-full hover:bg-[rgba(78,112,141,0.52)] transition-colors duration-300"
+                >
+                  Buy Ticket
+                </a>
+              </div>
+            </div>
+            <!-- Event 4 -->
+            <div class="relative">
+              <div class="relative">
+                <img
+                  src="{% static 'asset/image/celebrate (4).png' %}"
+                  alt="Flower Arrangement"
+                  class="w-full h-48 object-cover rounded-lg"
+                />
+                <div class="absolute bottom-0 left-0 right-0 bg-[rgba(0,0,0,0.5)] bg-opacity-50 text-white font-bold text-lg p-2 rounded-b-lg">
+                  插花艺术
+                </div>
+              </div>
+              <div class="mt-4">
+                <h3 class="text-lg font-semibold text-gray-800">Flower Arrangement Workshop</h3>
+                <p class="text-sm text-gray-600 flex items-center mt-1">
+                  <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                  </svg>
+                  Zen Garden, 321 Sakura Lane, 700 Participants
+                </p>
+                <a
+                  href="#"
+                  class="inline-block mt-6 bg-[#4E708D] text-white font-medium py-2 px-4 rounded-full hover:bg-[rgba(78,112,141,0.52)] transition-colors duration-300"
+                >
+                  Buy Ticket
+                </a>
+              </div>
+            </div>
+            <!-- Event 5 -->
+            <div class="relative">
+              <div class="relative">
+                <img
+                  src="{% static 'asset/image/celebrate (2).png' %}"
+                  alt="Tea Ceremony"
+                  class="w-full h-48 object-cover rounded-lg"
+                />
+                <div class="absolute bottom-0 left-0 right-0 bg-[rgba(0,0,0,0.5)] bg-opacity-50 text-white font-bold text-lg p-2 rounded-b-lg">
+                  茶道体验
+                </div>
+              </div>
+              <div class="mt-4">
+                <h3 class="text-lg font-semibold text-gray-800">Tea Ceremony Experience</h3>
+                <p class="text-sm text-gray-600 flex items-center mt-1">
+                  <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                  </svg>
+                  Serenity Hall, 654 Matcha Lane, 600 Participants
+                </p>
+                <a
+                  href="#"
+                  class="inline-block mt-6 bg-[#4E708D] text-white font-medium py-2 px-4 rounded-full hover:bg-[rgba(78,112,141,0.52)] transition-colors duration-300"
+                >
+                  Buy Ticket
+                </a>
+              </div>
+            </div>
+            <!-- Event 6 -->
+            <div class="relative">
+              <div class="relative">
+                <img
+                  src="{% static 'asset/image/celebrate (1).png' %}"
+                  alt="Paper Folding Class"
+                  class="w-full h-48 object-cover rounded-lg"
+                />
+                <div class="absolute bottom-0 left-0 right-0 bg-[rgba(0,0,0,0.5)] bg-opacity-50 text-white font-bold text-lg p-2 rounded-b-lg">
+                  折纸课程
+                </div>
+              </div>
+              <div class="mt-4">
+                <h3 class="text-lg font-semibold text-gray-800">Paper Folding Class</h3>
+                <p class="text-sm text-gray-600 flex items-center mt-1">
+                  <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                  </svg>
+                  Creative Studio, 987 Crane Avenue, 500 Participants
+                </p>
+                <a
+                  href="#"
+                  class="inline-block mt-6 bg-[#4E708D] text-white font-medium py-2 px-4 rounded-full hover:bg-[rgba(78,112,141,0.52)] transition-colors duration-300"
+                >
+                  Buy Ticket
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="py-[150px] relative">
+        <div class="max-w-screen-xl mx-auto px-4">
+          <!-- Decorative Icons -->
+          <!-- <div class="absolute top-4 left-4 text-gray-400">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12h2m0 0h2m-2 0v-2m0 2v2m-6-6h2m0 0h2m-2 0v-2m0 2v2m-6 6h2m0 0h2m-2 0v-2m0 2v2m6-6h2m0 0h2m-2 0v-2m0 2v2"></path>
+            </svg>
+          </div>
+          <div class="absolute top-4 right-4 text-gray-400">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a5 5 0 00-10 0v2m-2 0h12a2 2 0 012 2v7a2 2 0 01-2 2H5a2 2 0 01-2-2v-7a2 2 0 012-2zm-5 0V7a3 3 0 016 0v2"></path>
+            </svg>
+          </div> -->
+          <!-- Headline -->
+          <div class="text-center mb-10">
+            <p class="text-sm font-semibold text-[#A6BE82] uppercase">Our Sponsors</p>
+            <h2 class="text-3xl md:text-4xl font-bold text-[#4E708D] capitalize font-sans leading-tight">
+              Thank you for making the festival possible!
+            </h2>
+          </div>
+          <!-- Grid of Sponsors -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Sponsor 1 -->
+            <div class="relative bg-white p-2 rounded-lg shadow-sm flex items-center justify-center group">
+              <img src="{% static 'asset/image/thank_logo (1).png' %}" alt="China Cultural Center" class="w-auto h-auto rounded">
+              <div class="absolute inset-0 bg-[rgba(0,0,0,0.5)] scale-[90%] bg-opacity-50 rounded-lg  flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-400">
+                <p class="text-[#F2EEDF] text-2xl font-bold text-center">China Cultural Center</p>
+              </div>
+            </div>
+            <!-- Sponsor 2 -->
+            <div class="relative bg-white p-2 rounded-lg shadow-sm flex items-center justify-center group">
+              <img src="{% static 'asset/image/thank_logo (2).png' %}" alt="Confucius Institute" class="w-auto h-auto rounded">
+              <div class="absolute inset-0 bg-[rgba(0,0,0,0.5)] scale-[90%] bg-opacity-50 rounded-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <p class="text-[#F2EEDF] text-2xl font-bold text-center">Confucius Institute</p>
+              </div>
+            </div>
+            <!-- Sponsor 3 -->
+            <div class="relative bg-white p-2 rounded-lg shadow-sm flex items-center justify-center group">
+              <img src="{% static 'asset/image/thank_logo (3).png' %}" alt="Shanghai Museum" class="w-auto h-auto rounded">
+              <div class="absolute inset-0 bg-[rgba(0,0,0,0.5)] scale-[90%] bg-opacity-50 rounded-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <p class="text-[#F2EEDF] text-2xl font-bold text-center">Shanghai Museum</p>
+              </div>
+            </div>
+            <!-- Sponsor 4 -->
+            <div class="relative bg-white p-2 rounded-lg shadow-sm flex items-center justify-center group">
+              <img src="{% static 'asset/image/thank_logo (4).png' %}" alt="China Airlines" class="w-auto h-auto rounded">
+              <div class="absolute inset-0 bg-[rgba(0,0,0,0.5)] scale-[90%] bg-opacity-50 rounded-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <p class="text-[#F2EEDF] text-2xl font-bold text-center">China Airlines</p>
+              </div>
+            </div>
+            <!-- Sponsor 5 -->
+            <div class="relative bg-white p-2 rounded-lg shadow-sm flex items-center justify-center group">
+              <img src="{% static 'asset/image/thank_logo (5).png' %}" alt="Beijing Opera House" class="w-auto h-auto rounded">
+              <div class="absolute inset-0 bg-[rgba(0,0,0,0.5)] scale-[90%] bg-opacity-50 rounded-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <p class="text-[#F2EEDF] text-2xl font-bold text-center">Beijing Opera House</p>
+              </div>
+            </div>
+            <!-- Sponsor 6 -->
+            <div class="relative bg-white p-2 rounded-lg shadow-sm flex items-center justify-center group">
+              <img src="{% static 'asset/image/thank_logo (6).png' %}" alt="Silk Road Fund" class="w-auto h-auto rounded">
+              <div class="absolute inset-0 bg-[rgba(0,0,0,0.5)] scale-[90%] bg-opacity-50 rounded-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <p class="text-[#F2EEDF] text-2xl font-bold text-center">Silk Road Fund</p>
+              </div>
+            </div>
+            <!-- Sponsor 7 -->
+            <div class="relative bg-white p-2 rounded-lg shadow-sm flex items-center justify-center group">
+              <img src="{% static 'asset/image/thank_logo (7).png' %}" alt="Great Wall Travel" class="w-auto h-auto rounded">
+              <div class="absolute inset-0 bg-[rgba(0,0,0,0.5)] scale-[90%] bg-opacity-50 rounded-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <p class="text-[#F2EEDF] text-2xl font-bold text-center">Great Wall Travel</p>
+              </div>
+            </div>
+            <!-- Sponsor 8 -->
+            <div class="relative bg-white p-2 rounded-lg shadow-sm flex items-center justify-center group">
+              <img src="{% static 'asset/image/thank_logo (8).png' %}" alt="Dragon Gate Media" class="w-auto h-auto rounded">
+              <div class="absolute inset-0 bg-[rgba(0,0,0,0.5)] scale-[90%] bg-opacity-50 rounded-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <p class="text-[#F2EEDF] text-2xl font-bold text-center">Dragon Gate Media</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="relative py-12 bg-gray-200 bg-cover bg-center rounded-lg flex items-center justify-center" style="background-image: url('{% static 'asset/image/banner_video.png' %}')">
+        <div class="max-w-screen-xl mx-auto px-4" >
+          <div
+            class=" h-[400px] bg-cover bg-center rounded-lg flex items-center justify-center"
+            
+          >
+            <!-- Overlay for readability -->
+            <div class="absolute inset-0 bg-[rgba(0,0,0,0.5)] bg-opacity-30 rounded-lg"></div>
+            <!-- Text and Play Button -->
+            <div class="relative z-10 text-center text-white">
+              <h2 class="text-3xl md:text-5xl font-bold leading-tight">
+                Voices that celebrate Chinese culture
+              </h2>
+              <p class="text-lg md:text-xl mt-4 max-w-2xl mx-auto">
+                Experience testimonials of those who have discovered the richness of Chinese traditions. Watch now!
+              </p>
+              <a
+                href="#"
+                class="inline-block mt-6 bg-[#4E708D] text-white rounded-full p-2 hover:bg-[rgba(78,112,141,0.55)] transition-colors duration-300"
+              >
+                <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M8 5v14l11-7z"></path>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="py-[150px] bg-white">
+        <div class="max-w-screen-xl mx-auto px-4">
+          <!-- Headline and Button -->
+          <div class="flex justify-between items-center mb-10">
+            <div>
+              <p class="text-sm font-semibold text-[#A6BE82] uppercase">Explore</p>
+              <h2 class="text-3xl md:text-4xl font-bold text-[#4E708D] leading-tight">
+                Explore Chinese society
+              </h2>
+            </div>
+            <a
+              href="/explore/"
+              class="inline-block mt-6 bg-[#4E708D] text-white font-medium py-2 px-4 rounded-full hover:bg-[rgba(78,112,141,0.52)] transition-colors duration-300"
+            >
+              Explore More
+            </a>
+          </div>
+          <!-- Grid of Categories -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Category 1 -->
+            <div>
+              <a href="/explore/traditional-arts/">
+                <img
+                  src="{% static 'asset/image/society (4).png' %}"
+                  alt="Traditional Arts"
+                  class="w-full h-48 object-cover rounded-lg"
+                />
+                <p class="mt-4 text-lg font-medium text-[#4E708D]">Traditional Arts</p>
+              </a>
+            </div>
+            <!-- Category 2 -->
+            <div>
+              <a href="/explore/festivals-events/">
+                <img
+                  src="{% static 'asset/image/society (6).png' %}"
+                  alt="Festivals and Events"
+                  class="w-full h-48 object-cover rounded-lg"
+                />
+                <p class="mt-4 text-lg font-medium text-[#4E708D]">Festivals & Events</p>
+              </a>
+            </div>
+            <!-- Category 3 -->
+            <div>
+              <a href="/explore/chinese-cuisine/">
+                <img
+                  src="{% static 'asset/image/society (5).png' %}"
+                  alt="Chinese Cuisine"
+                  class="w-full h-48 object-cover rounded-lg"
+                />
+                <p class="mt-4 text-lg font-medium text-[#4E708D]">Chinese Cuisine</p>
+              </a>
+            </div>
+            <!-- Category 4 -->
+            <div>
+              <a href="/explore/history-heritage/">
+                <img
+                  src="{% static 'asset/image/society (1).png' %}"
+                  alt="History and Heritage"
+                  class="w-full h-48 object-cover rounded-lg"
+                />
+                <p class="mt-4 text-lg font-medium text-[#4E708D]">History & Heritage</p>
+                </a>
+            </div>
+            <!-- Category 5 -->
+            <div>
+              <a href="/explore/family-traditions/">
+                <img
+                  src="{% static 'asset/image/society (3).png' %}"
+                  alt="Family Traditions"
+                  class="w-full h-48 object-cover rounded-lg"
+                />
+                <p class="mt-4 text-lg font-medium text-[#4E708D]">Family Traditions</p>
+              </a>
+            </div>
+            <!-- Category 6 -->
+            <div>
+              <a href="/explore/language-calligraphy/">
+                <img
+                  src="{% static 'asset/image/society (2).png' %}"
+                  alt="Language and Calligraphy"
+                  class="w-full h-48 object-cover rounded-lg"
+                />
+                <p class="mt-4 text-lg font-medium text-[#4E708D]">Language & Calligraphy</p>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="py-[150px] relative">
+        <div class="max-w-screen-xl mx-auto px-4">
+          <!-- Decorative Icons -->
+          <!-- <div class="absolute top-2 left-4 text-gray-400">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-3-3v6m-5 5h10a2 2 0 002-2V6a2 2 0 00-2-2H7a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+            </svg>
+          </div>
+          <div class="absolute top-2 right-4 text-gray-400">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path>
+            </svg>
+          </div> -->
+          <!-- Headline -->
+          <div class="text-center mb-10">
+            <p class="text-sm font-semibold text-[#A6BE82] uppercase">Gallery</p>
+            <h2 class="text-3xl md:text-4xl font-bold text-[#4E708D] font-sans leading-tight">
+              Follow us on Instagram
+            </h2>
+            <p class="text-lg font-medium text-gray-800 mt-2">@chineseculturefest</p>
+          </div>
+          <!-- Grid of Instagram Images -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Image 1 -->
+            <div>
+              <a href="https://www.instagram.com/chineseculturefest/" target="_blank">
+                <img
+                  src="{% static 'asset/image/Instagram (1).png' %}"
+                  alt="Chinese Festival Gate"
+                  class="w-full h-48 object-cover rounded-lg"
+                />
+              </a>
+            </div>
+            <!-- Image 2 -->
+            <div>
+              <a href="https://www.instagram.com/chineseculturefest/" target="_blank">
+                <img
+                  src="{% static 'asset/image/Instagram (2).png' %}"
+                  alt="Traditional Attire"
+                  class="w-full h-48 object-cover rounded-lg"
+                />
+              </a>
+            </div>
+            <!-- Image 3 -->
+            <div>
+              <a href="https://www.instagram.com/chineseculturefest/" target="_blank">
+                <img
+                  src="{% static 'asset/image/Instagram (3).png' %}"
+                  alt="Opera Performance"
+                  class="w-full h-48 object-cover rounded-lg"
+                />
+              </a>
+            </div>
+            <!-- Image 4 -->
+            <div>
+              <a href="https://www.instagram.com/chineseculturefest/" target="_blank">
+                <img
+                  src="{% static 'asset/image/Instagram (4).png' %}"
+                  alt="Red Lanterns"
+                  class="w-full h-48 object-cover rounded-lg"
+                />
+              </a>
+            </div>
+            <!-- Image 5 -->
+            <div>
+              <a href="https://www.instagram.com/chineseculturefest/" target="_blank">
+                <img
+                  src="{% static 'asset/image/Instagram (5).png' %}"
+                  alt="Cultural Parade"
+                  class="w-full h-48 object-cover rounded-lg"
+                />
+              </a>
+            </div>
+            <!-- Image 6 -->
+            <div>
+              <a href="https://www.instagram.com/chineseculturefest/" target="_blank">
+                <img
+                  src="{% static 'asset/image/Instagram (6).png' %}"
+                  alt="Lantern Festival"
+                  class="w-full h-48 object-cover rounded-lg"
+                />
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="py-[150px] bg-white">
+        <div class="max-w-screen-xl mx-auto px-4">
+          <!-- Headline and Button -->
+          <div class="flex justify-between items-center mb-10">
+            <div>
+              <p class="text-sm font-semibold text-[#A6BE82] uppercase">Have Questions?</p>
+              <h2 class="text-3xl md:text-4xl font-bold text-[#4E708D] leading-tight">
+                Frequently asked questions
+              </h2>
+            </div>
+            <a
+              href="/faq/"
+              class="inline-block mt-6 bg-[#4E708D] text-white font-medium py-2 px-4 rounded-full hover:bg-[rgba(78,112,141,0.52)] transition-colors duration-300"
+            >
+              All Questions
+            </a>
+          </div>
+          <!-- Grid of FAQs -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- FAQ 1 -->
+            <div class="faq-item bg-white rounded-lg shadow-sm">
+              <button class="faq-question w-full text-left p-2 flex justify-between items-center text-gray-800 font-medium">
+                What is the Chinese Culture Festival?
+                <span class="faq-toggle text-2xl">+</span>
+              </button>
+              <div class="faq-answer hidden p-2 bg-gray-100 text-gray-600">
+                It’s an annual event celebrating Chinese heritage, featuring traditional arts, performances, cuisine, and community activities.
+              </div>
+            </div>
+            <!-- FAQ 2 -->
+            <div class="faq-item bg-white rounded-lg shadow-sm">
+              <button class="faq-question w-full text-left p-2 flex justify-between items-center text-gray-800 font-medium">
+                Is there a dress code for the festival?
+                <span class="faq-toggle text-2xl">+</span>
+              </button>
+              <div class="faq-answer hidden p-2 bg-gray-100 text-gray-600">
+                While there’s no strict dress code, guests are encouraged to wear traditional Chinese attire like qipao or hanfu for a more immersive experience.
+              </div>
+            </div>
+            <!-- FAQ 3 -->
+            <div class="faq-item bg-white rounded-lg shadow-sm">
+              <button class="faq-question w-full text-left p-2 flex justify-between items-center text-gray-800 font-medium">
+                When is the Chinese Culture Festival celebrated?
+                <span class="faq-toggle text-2xl">+</span>
+              </button>
+              <div class="faq-answer hidden p-2 bg-gray-100 text-gray-600">
+                The festival typically takes place in the spring, often around the time of the Lunar New Year or other significant cultural dates.
+              </div>
+            </div>
+            <!-- FAQ 4 -->
+            <div class="faq-item bg-white rounded-lg shadow-sm">
+              <button class="faq-question w-full text-left p-2 flex justify-between items-center text-gray-800 font-medium">
+                Are food and drinks available at the festival?
+                <span class="faq-toggle text-2xl">+</span>
+              </button>
+              <div class="faq-answer hidden p-2 bg-gray-100 text-gray-600">
+                Yes, there will be a variety of traditional Chinese foods and drinks available, including dumplings, tea, and more.
+              </div>
+            </div>
+            <!-- FAQ 5 -->
+            <div class="faq-item bg-white rounded-lg shadow-sm">
+              <button class="faq-question w-full text-left p-2 flex justify-between items-center text-gray-800 font-medium">
+                What kind of events take place at the festival?
+                <span class="faq-toggle text-2xl">+</span>
+              </button>
+              <div class="faq-answer hidden p-2 bg-gray-100 text-gray-600">
+                The festival includes lion dances, calligraphy workshops, tea ceremonies, cultural performances, and interactive exhibits.
+              </div>
+            </div>
+            <!-- FAQ 6 -->
+            <div class="faq-item bg-white rounded-lg shadow-sm">
+              <button class="faq-question w-full text-left p-2 flex justify-between items-center text-gray-800 font-medium">
+                Are there activities for children at the festival?
+                <span class="faq-toggle text-2xl">+</span>
+              </button>
+              <div class="faq-answer hidden p-2 bg-gray-100 text-gray-600">
+                Yes, there are plenty of child-friendly activities, such as paper folding classes, lantern making, and storytelling sessions.
+              </div>
+            </div>
+            <!-- FAQ 7 -->
+            <div class="faq-item bg-white rounded-lg shadow-sm">
+              <button class="faq-question w-full text-left p-2 flex justify-between items-center text-gray-800 font-medium">
+                Are there any free activities for the public?
+                <span class="faq-toggle text-2xl">+</span>
+              </button>
+              <div class="faq-answer hidden p-2 bg-gray-100 text-gray-600">
+                Yes, many activities like cultural performances and exhibits are free, though some workshops may require a ticket.
+              </div>
+            </div>
+            <!-- FAQ 8 -->
+            <div class="faq-item bg-white rounded-lg shadow-sm">
+              <button class="faq-question w-full text-left p-2 flex justify-between items-center text-gray-800 font-medium">
+                Do I need to buy tickets in advance?
+                <span class="faq-toggle text-2xl">+</span>
+              </button>
+              <div class="faq-answer hidden p-2 bg-gray-100 text-gray-600">
+                It’s recommended to buy tickets in advance for specific events, but some activities allow on-site registration.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- url('{% static 'asset/image/banner_video.png' %}' -->
+
+      <section class="py-36 rounded-lg relative bg-gray-200 bg-cover bg-center flex items-center justify-center" style="background-image: url('{% static 'asset/image/banner_2.png' %}'); background-size: cover; background-position: center;">
+        <!-- Overlay for readability -->
+        <div class="absolute inset-0 bg-[rgba(0,0,0,0.5)] bg-opacity-30 rounded-lg z-0"></div>
+        <div class="max-w-screen-xl mx-auto px-4 text-center relative z-10">
+          <!-- Community Avatars -->
+          <div class="flex justify-center mb-6">
+            <div class="flex -space-x-4">
+              <img src="{% static 'asset/image/user (2).jpg' %}" alt="Community Member 1" class="w-12 h-12 rounded-full border-2 border-white">
+              <img src="{% static 'asset/image/user (3).jpg' %}" alt="Community Member 2" class="w-12 h-12 rounded-full border-2 border-white">
+              <img src="{% static 'asset/image/user (1).jpg' %}" alt="Community Member 3" class="w-12 h-12 rounded-full border-2 border-white">
+              <div class="w-12 h-12 rounded-full border-2 border-white bg-gray-300 flex items-center justify-center text-gray-800 font-bold">
+                +
+              </div>
+            </div>
+          </div>
+          <!-- Headline -->
+          <h2 class="text-3xl md:text-5xl font-bold text-white leading-tight">
+            Join a community that celebrates China!
+          </h2>
+          <!-- Subheading -->
+          <p class="text-lg md:text-xl text-white mt-4 max-w-2xl mx-auto">
+            Connect with fellow enthusiasts who share a passion for Chinese culture, traditions, and artistry. Join us today!
+          </p>
+          <!-- Buttons -->
+          <div class="mt-6 flex justify-center space-x-4">
+            <a
+              href="/community/"
+              class="bg-white text-gray-800 font-medium py-2 px-6 rounded-full hover:bg-gray-100 transition-all duration-300"
+            >
+              Join a Community
+            </a>
+            <a
+              href="/explore/"
+              class="bg-[#4E708D] text-white font-medium py-2 px-6 rounded-full hover:bg-[rgba(78,112,141,0.5)] transition-all duration-300"
+            >
+              Explore More
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="py-[150px] bg-white relative">
+        <div class="max-w-screen-xl mx-auto px-4">
+          <!-- Decorative Icons -->
+          <!-- <div class="absolute top-4 left-4 text-gray-400">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <div class="absolute top-4 right-4 text-gray-400">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+            </svg>
+          </div> -->
+          <!-- Headline -->
+          <div class="text-center mb-10">
+            <p class="text-sm font-semibold text-[#A6BE82] uppercase">Any Questions?</p>
+            <h2 class="text-3xl md:text-4xl font-bold capitalize font-sans text-[#4E708D] leading-tight">
+              Have Any Questions? Contact Us!
+            </h2>
+          </div>
+          <!-- Contact Grid -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Left: Contact Info -->
+            <div class="bg-[#f2eedf] text-white p-6 rounded-lg shadow-lg">
+              <div class="flex items-center mb-4">
+                <img src="https://placehold.co/50x50?text=Logo" alt="Chinese Culture Festival Logo" class="w-12 h-12 mr-4">
+                <h3 class="text-2xl text-[#4E708D] font-bold">Chinese Culture Festival</h3>
+              </div>
+              <p class="mb-2 text-[#A6BE82] "><span class="font-semibold">Phone number:</span> 123-456-7890</p>
+              <p class="mb-4 text-[#A6BE82]"><span class="font-semibold">Email:</span> contact@chineseculturefest.com</p>
+              <div class="relative">
+                <img src="{% static 'asset/image/location.png' %}" alt="Map Location" class="w-full h-48 object-cover rounded-lg">
+                <a href="https://maps.google.com" target="_blank" class="absolute top-2 left-2 bg-white text-gray-800 text-sm font-medium py-1 px-2 rounded hover:bg-gray-100 transition-colors duration-300">
+                  View larger map
+                </a>
+              </div>
+            </div>
+            <!-- Right: Contact Form -->
+            <div>
+              <div class="space-y-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label for="full-name" class="block text-sm font-medium text-gray-700">Full Name</label>
+                    <input type="text" id="full-name" placeholder="e.g. John Doe" class="mt-1 block w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-[#4E708D] focus:border-[#4E708D]">
+                  </div>
+                  <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                    <input type="email" id="email" placeholder="e.g. hello@chineseculturefest.com" class="mt-1 block w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-[#4E708D] focus:border-[#4E708D]">
+                  </div>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label for="phone" class="block text-sm font-medium text-gray-700">Phone</label>
+                    <input type="tel" id="phone" placeholder="e.g. +1 123 456 7890" class="mt-1 block w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-[#4E708D] focus:border-[#4E708D]">
+                  </div>
+                  <div>
+                    <label for="website" class="block text-sm font-medium text-gray-700">What is your website?</label>
+                    <input type="url" id="website" placeholder="e.g. www.chineseculturefest.com" class="mt-1 block w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-[#4E708D] focus:border-[#4E708D]">
+                  </div>
+                </div>
+                <div>
+                  <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
+                  <textarea id="message" rows="4" placeholder="Write your message or questions here" class="mt-1 block w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-[#4E708D] focus:border-[#4E708D]"></textarea>
+                </div>
+                <div class="flex items-center">
+                  <input type="checkbox" id="terms" class="h-4 w-4 text-[#4E708D] focus:ring-[#4E708D] border-gray-300 rounded">
+                  <label for="terms" class="ml-2 block text-sm text-gray-700">
+                    I have read and accepted <a href="/terms/" class="text-[#4E708D] hover:underline">terms and privacy</a>
+                  </label>
+                </div>
+                <div>
+                  <button class="bg-[#4E708D] text-white font-medium py-2 px-6 rounded-full hover:bg-[rgba(78,112,141,0.5)] transition-colors duration-300">
+                    Submit Now (Disabled due to sandbox restrictions)
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <script>
+        document.querySelectorAll('.faq-question').forEach(button => {
+          button.addEventListener('click', () => {
+            const faqItem = button.parentElement;
+            const answer = faqItem.querySelector('.faq-answer');
+            const toggle = faqItem.querySelector('.faq-toggle');
+            
+            // Toggle the answer visibility
+            answer.classList.toggle('hidden');
+            
+            // Switch the toggle icon between + and -
+            toggle.textContent = answer.classList.contains('hidden') ? '+' : '-';
+          });
+        });
+        </script>
+{% endblock %}

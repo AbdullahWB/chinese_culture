@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "daisyui": "^5.0.16"
+    "daisyui": "^5.0.16",
+    "flowbite": "^3.1.2"
   }
 }
