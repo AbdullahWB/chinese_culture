@@ -1,7 +1,7 @@
 {% extends 'partials/base.html' %}
-
+{% load static %}
 {% block content %}
-<div class="bg-stone-100 py-12 relative">
+<div class="bg-stone-100 py-[100px] relative">
     <!-- Back to Top Button -->
     <button id="backToTop" class="fixed bottom-8 right-8 bg-[#4E708D] text-white p-3 rounded-full shadow-lg hover:bg-[#3E5A73] transition-all duration-300 opacity-0 invisible">
         <i class="fas fa-arrow-up"></i>
@@ -9,9 +9,9 @@
 
     <div class="container mx-auto px-4 max-w-7xl">
         <!-- Magazine Header with Background Image -->
-        <div class="relative text-center mb-16 animate-fadeIn bg-cover bg-center rounded-lg py-16" style="background-image: url('https://images.unsplash.com/photo-1519817650390-64a93db51149?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');">
-            <div class="absolute inset-0 bg-black bg-opacity-50 rounded-lg"></div>
-            <div class="relative z-10">
+        <div class="relative text-center mb-16 animate-fadeIn bg-cover bg-center rounded-lg py-38" style="background-image: url('{% static 'asset/image/fastival/fasimg (1).png' %}'); background-size: cover; background-position: center;">
+            <div class="absolute inset-0 bg-[rgba(0,0,0,0.3)] bg-opacity-50 rounded-lg"></div>
+            <div class="relative z-1">
                 <h1 class="text-6xl font-bold mb-4 tracking-tight text-[#4E708D] drop-shadow-lg">HERITAGE CHRONICLES</h1>
                 <div class="w-48 h-1 bg-gradient-to-r from-[#4E708D] to-amber-500 mx-auto mb-4"></div>
                 <p class="text-xl text-white italic drop-shadow-lg">Discover the Timeless Magic of Chinese Festivals</p>
@@ -36,7 +36,7 @@
             <div class="lg:w-3/4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Spring Festival -->
                 <div id="spring" class="magazine-article relative overflow-hidden rounded-lg">
-                    <div class="article-image relative" style="background-image: url('https://images.unsplash.com/photo-1547981609-4b6bfe67ca0b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');">
+                    <div class="article-image h-40 relative" style="background-image: url('{% static 'asset/image/fastival/fasimg (2).png' %}'); background-size: cover; background-position: center;">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                     </div>
                     <div class="p-6">
@@ -56,12 +56,12 @@
 
                 <!-- Lantern Festival -->
                 <div id="lantern" class="magazine-article relative overflow-hidden rounded-lg">
-                    <div class="article-image relative" style="background-image: url('https://images.unsplash.com/photo-1513889961551-628c1e5e2ee9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');">
+                    <div class="article-image h-40 relative" style="background-image: url('{% static 'asset/image/fastival/fasimg (3).png' %}'); background-size: cover; background-position: center;">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                     </div>
                     <div class="p-6">
                         <span class="text-xs font-semibold text-stone-400 tracking-wider">LIGHT FESTIVALS</span>
-                        <h2 class="text-2xl font-bold mt-2 chinese-font text-[#4E708D]">元宵节 Lantern Festival</h2>
+                        <h2 class="text-[21px] font-bold mt-2 chinese-font text-[#4E708D]">元宵节 Lantern Festival</h2>
                         <div class="author-line py-2 my-3">
                             <span class="text-xs font-medium text-stone-600">By Zhang Min • February 2023</span>
                         </div>
@@ -76,7 +76,7 @@
 
                 <!-- Dragon Boat -->
                 <div id="dragon" class="magazine-article relative overflow-hidden rounded-lg">
-                    <div class="article-image relative" style="background-image: url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');">
+                    <div class="article-image h-40 relative" style="background-image: url('{% static 'asset/image/fastival/fasimg (4).png' %}'); background-size: cover; background-position: center;">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                     </div>
                     <div class="p-6">
@@ -96,7 +96,7 @@
 
                 <!-- Mid-Autumn -->
                 <div id="midautumn" class="magazine-article relative overflow-hidden rounded-lg">
-                    <div class="article-image relative" style="background-image: url('https://images.unsplash.com/photo-1506025064161-8f9b9d0a64c1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');">
+                    <div class="article-image h-40 relative" style="background-image: url('{% static 'asset/image/fastival/fasimg (5).png' %}'); background-size: cover; background-position: center;">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                     </div>
                     <div class="p-6">
@@ -116,7 +116,7 @@
 
                 <!-- Qingming -->
                 <div id="qingming" class="magazine-article relative overflow-hidden rounded-lg">
-                    <div class="article-image relative" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/4/4e/Qingming_Festival_Hong_Kong.jpg');">
+                    <div class="article-image h-40 relative" style="background-image: url('{% static 'asset/image/fastival/fasimg (6).png' %}'); background-size: cover; background-position: center;">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                     </div>
                     <div class="p-6">
@@ -136,7 +136,7 @@
 
                 <!-- Double Ninth -->
                 <div id="doubleninth" class="magazine-article relative overflow-hidden rounded-lg">
-                    <div class="article-image relative" style="background-image: url('https://images.unsplash.com/photo-1508804185872-d7badad00f7d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');">
+                    <div class="article-image h-40 relative" style="background-image: url('{% static 'asset/image/fastival/fasimg (7).png' %}'); background-size: cover; background-position: center;">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                     </div>
                     <div class="p-6">
@@ -157,11 +157,11 @@
         </div>
 
         <!-- Cover Story -->
-        <div class="magazine-article mt-12 cover-story text-white rounded-lg">
-            <div class="p-8 bg-black bg-opacity-40">
+        <div class="magazine-article mt-12  cover-story text-white rounded-lg" style="background-image: url('{% static 'asset/image/fastival/fasimg (2).png' %}'); background-size: cover; background-position: center;">
+            <div class="p-8 bg-[rgba(0,0,0,0.51)] bg-opacity-40" >
                 <div class="mb-6 max-w-2xl">
                     <span class="text-xs font-semibold tracking-wider text-white text-opacity-80">COVER STORY</span>
-                    <h2 class="text-3xl font-bold mt-2 chinese-font text-[#4E708D]">The Complete History of Chinese Festivals</h2>
+                    <h2 class="text-3xl font-bold mt-2 chinese-font text-[#f2eedf]">The Complete History of Chinese Festivals</h2>
                     <div class="author-line py-3 my-4 border-white border-opacity-20">
                         <span class="text-sm font-medium">By Professor Zhang Wei • Photography by Li Chen</span>
                     </div>
@@ -176,7 +176,7 @@
                         </button>
                     </div>
                     <div class="flex items-center justify-center">
-                        <div class="text-center p-6 bg-white bg-opacity-10 rounded-lg">
+                        <div class="text-center p-6 bg-[#4E708D] bg-opacity-10 rounded-lg">
                             <i class="fas fa-quote-left text-3xl text-white text-opacity-30 mb-4"></i>
                             <p class="italic text-white text-opacity-90 mb-4">
                                 "Each festival is a thread in the tapestry of Chinese heritage, weaving stories of unity and tradition."
@@ -189,62 +189,9 @@
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="bg-stone-900 text-white mt-20 py-12">
-        <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div>
-                    <h3 class="text-lg font-bold mb-4 chinese-font text-[#4E708D]">传统节日</h3>
-                    <p class="text-sm text-stone-400 mb-4">Dive deep into China's festival heritage with curated stories and insights.</p>
-                    <div class="flex space-x-4 text-stone-400">
-                        <a href="https://weixin.qq.com" class="hover:text-[#4E708D] transition-colors duration-300" aria-label="Weixin">
-                            <i class="fab fa-weixin text-xl"></i>
-                        </a>
-                        <a href="https://weibo.com" class="hover:text-[#4E708D] transition-colors duration-300" aria-label="Weibo">
-                            <i class="fab fa-weibo text-xl"></i>
-                        </a>
-                        <a href="https://instagram.com" class="hover:text-[#4E708D] transition-colors duration-300" aria-label="Instagram">
-                            <i class="fab fa-instagram text-xl"></i>
-                        </a>
-                    </div>
-                </div>
-                <div>
-                    <h3 class="text-sm font-semibold mb-4 tracking-wider text-stone-300">PAST ISSUES</h3>
-                    <ul class="space-y-2 text-sm text-stone-400">
-                        <li><a href="#" class="hover:text-[#4E708D] transition-colors duration-300">Spring 2023</a></li>
-                        <li><a href="#" class="hover:text-[#4E708D] transition-colors duration-300">Summer 2023</a></li>
-                        <li><a href="#" class="hover:text-[#4E708D] transition-colors duration-300">Autumn 2023</a></li>
-                        <li><a href="#" class="hover:text-[#4E708D] transition-colors duration-300">Winter 2023</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="text-sm font-semibold mb-4 tracking-wider text-stone-300">QUICK LINKS</h3>
-                    <ul class="space-y-2 text-sm text-stone-400">
-                        <li><a href="#" class="hover:text-[#4E708D] transition-colors duration-300">About Us</a></li>
-                        <li><a href="#" class="hover:text-[#4E708D] transition-colors duration-300">Contact</a></li>
-                        <li><a href="#" class="hover:text-[#4E708D] transition-colors duration-300">Privacy Policy</a></li>
-                        <li><a href="#" class="hover:text-[#4E708D] transition-colors duration-300">Terms of Use</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="text-sm font-semibold mb-4 tracking-wider text-stone-300">SUBSCRIBE</h3>
-                    <div class="flex">
-                        <input type="email" placeholder="Your email address" class="w-full p-2 border border-stone-700 bg-stone-800 text-stone-300 rounded-l-lg focus:ring-[#4E708D] focus:border-[#4E708D]">
-                        <button class="bg-[#4E708D] hover:bg-[#3E5A73] text-white p-2 rounded-r-lg transition-colors duration-300">
-                            Subscribe
-                        </button>
-                    </div>
-                    <p class="text-xs text-stone-500 mt-2">*Newsletter signup disabled due to sandbox restrictions.</p>
-                </div>
-            </div>
-            <div class="border-t border-stone-700 mt-8 pt-8 text-center text-sm text-stone-500">
-                <p>© 2025 Heritage Chronicles Magazine. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
 
     <!-- Modal -->
-    <div id="modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50 modal opacity-0 translate-y-10 invisible transition-all duration-300">
+    <div id="modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[rgba(0,0,0,0.47)] bg-opacity-50 modal opacity-0 translate-y-10 invisible transition-all duration-300">
         <div class="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
             <div class="p-6">
                 <div class="flex justify-between items-start mb-4">
@@ -280,7 +227,7 @@
             title: "春节 Spring Festival",
             author: "By Li Wei • January 2023",
             content: `
-                <div class="article-image mb-4" style="background-image: url('https://images.unsplash.com/photo-1547981609-4b6bfe67ca0b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'); height: 200px;"></div>
+                <div class="article-image mb-4" style="background-image: url('{% static 'asset/image/fastival/fasimg (2).png' %}'); height: 200px; background-size: cover; background-position: center; "></div>
                 <p>The Spring Festival, or Chinese New Year, is the most significant celebration in Chinese culture, marking the lunar new year with family reunions, red envelopes, and elaborate feasts. Dating back over 3,500 years to the Shang Dynasty, it spans 15 days, culminating in the Lantern Festival.</p>
                 <h3 class="font-bold mt-4 text-[#4E708D]">Historical Origins</h3>
                 <p>Originating in the Shang Dynasty, the festival began as a ritual to honor deities and ancestors at the year's end. The legend of the Nian monster, a beast that attacked villages, explains traditions like using red decorations and firecrackers to ward off evil. Emperor Wu of the Han Dynasty formalized the lunar calendar, and by the Qing Dynasty, customs like red envelopes (hongbao) were widespread.</p>
@@ -327,7 +274,7 @@
             title: "元宵节 Lantern Festival",
             author: "By Zhang Min • February 2023",
             content: `
-                <div class="article-image mb-4" style="background-image: url('https://images.unsplash.com/photo-1513889961551-628c1e5e2ee9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'); height: 200px;"></div>
+                <div class="article-image mb-4" style="background-image: url('{% static 'asset/image/fastival/fasimg (3).png' %}'); height: 200px; background-size: cover; background-position: center;"></div>
                 <p>The Lantern Festival, held on the 15th day of the first lunar month, marks the end of the Spring Festival with vibrant lantern displays, riddles, and sweet tangyuan rice balls. Originating in the Han Dynasty, it’s a romantic and joyous celebration of light and unity.</p>
                 <h3 class="font-bold mt-4 text-[#4E708D]">Historical Origins</h3>
                 <p>The festival began in the Han Dynasty (206 BCE–220 CE) when Emperor Ming promoted Buddhism, ordering lanterns to be lit to honor Buddha. Another legend involves a fairy warning villagers to light lanterns to trick the Jade Emperor. By the Tang Dynasty, it became a major public event with elaborate lantern displays.</p>
@@ -373,7 +320,7 @@
             title: "端午节 Dragon Boat Festival",
             author: "By Chen Yang • June 2023",
             content: `
-                <div class="article-image mb-4" style="background-image: url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'); height: 200px;"></div>
+                <div class="article-image mb-4" style="background-image: url('{% static 'asset/image/fastival/fasimg (4).png' %}'); height: 200px; background-size: cover; background-position: center;"></div>
                 <p>The Dragon Boat Festival, celebrated on the 5th day of the 5th lunar month (May 31, 2025), commemorates poet Qu Yuan’s sacrifice in 278 BC. This 2,300-year-old tradition features dragon boat races, zongzi dumplings, and rituals to ward off evil.</p>
                 <h3 class="font-bold mt-4 text-[#4E708D]">Historical Origins</h3>
                 <p>Qu Yuan, a Chu State poet, drowned himself in the Miluo River to protest corruption. Villagers raced boats to save him and threw rice into the water to protect his body, leading to boat races and zongzi. Other origins link to Wu Zixu or ancient summer solstice rituals to prevent disease.</p>
@@ -419,7 +366,7 @@
             title: "中秋节 Mid-Autumn Festival",
             author: "By Wang Jing • September 2023",
             content: `
-                <div class="article-image mb-4" style="background-image: url('https://images.unsplash.com/photo-1506025064161-8f9b9d0a64c1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'); height: 200px;"></div>
+                <div class="article-image mb-4" style="background-image: url('{% static 'asset/image/fastival/fasimg (5).png' %}'); height: 200px; background-size: cover; background-position: center;"></div>
                 <p>The Mid-Autumn Festival, celebrated on the 15th day of the 8th lunar month (October 6, 2025), is a harvest celebration centered on family reunions, moon gazing, and mooncakes. Rooted in over 3,000 years of history, it’s tied to the legend of Chang'e, the Moon Goddess.</p>
                 <h3 class="font-bold mt-4 text-[#4E708D]">Historical Origins</h3>
                 <p>Originating in the Shang Dynasty as a form of moon worship tied to harvests, the festival became formalized in the Tang Dynasty with moon-gazing poetry. By the Song Dynasty, mooncakes emerged as offerings. It gained prominence in the Ming and Qing Dynasties as a family-oriented holiday.</p>
@@ -471,7 +418,7 @@
             title: "清明节 Qingming Festival",
             author: "By Liu Feng • April 2023",
             content: `
-                <div class="article-image mb-4" style="background-image: url('https://images.unsplash.com/photo-1556909114-44e2b9a51715?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'); height: 200px;"></div>
+                <div class="article-image mb-4" style="background-image: url('{% static 'asset/image/fastival/fasimg (6).png' %}'); height: 200px; background-size: cover; background-position: center;"></div>
                 <p>The Qingming Festival, or Tomb-Sweeping Day, occurs on April 4–6, honoring ancestors through gravesite rituals and springtime activities. This 2,500-year-old tradition blends Confucian filial piety with renewal, celebrated around the solar term Qingming.</p>
                 <h3 class="font-bold mt-4 text-[#4E708D]">Historical Origins</h3>
                 <p>Originating from the Cold Food Festival, which commemorated Jie Zitui, a loyal servant who died in a fire, Qingming evolved in the Han Dynasty to include ancestor worship. The Tang Dynasty formalized it as a national memorial day, combining solemnity with spring outings.</p>
@@ -517,7 +464,7 @@
             title: "重阳节 Double Ninth Festival",
             author: "By Zhou Mei • October 2023",
             content: `
-                <div class="article-image mb-4" style="background-image: url('https://images.unsplash.com/photo-1508804185872-d7badad00f7d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'); height: 200px;"></div>
+                <div class="article-image mb-4" style="background-image: url('{% static 'asset/image/fastival/fasimg (7).png' %}'); height: 200px; background-size: cover; background-position: center;"></div>
                 <p>The Double Ninth Festival, on the 9th day of the 9th lunar month, celebrates longevity and elder appreciation. Named for the double yang number nine, this 2,000-year-old festival emphasizes filial piety and autumnal beauty.</p>
                 <h3 class="font-bold mt-4 text-[#4E708D]">Historical Origins</h3>
                 <p>Originating in the Han Dynasty, the festival initially aimed to ward off danger associated with the double yang. A legend tells of a man climbing a mountain to escape disaster, inspiring the mountain-climbing tradition. It became Senior Citizens’ Day in 1989.</p>
@@ -563,7 +510,7 @@
             title: "The Complete History of Chinese Festivals",
             author: "By Professor Zhang Wei • Photography by Li Chen",
             content: `
-                <div class="article-image mb-4" style="background-image: url('https://images.unsplash.com/photo-1519817650390-64a93db51149?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'); height: 200px;"></div>
+                <div class="article-image mb-4" style="background-image: url('{% static 'asset/image/fastival/fasimg (8).png' %}'); height: 200px; background-size: cover; background-position: center;"></div>
                 <p>Chinese festivals, spanning over 3,500 years, are a vibrant tapestry of cultural heritage, blending ancient rituals with modern innovations. From Shang Dynasty oracle bones to global celebrations, they reflect family, harmony, and resilience.</p>
                 <h3 class="font-bold mt-4 text-[#4E708D]">Ancient Origins</h3>
                 <p>Festivals began as agricultural and ancestral rituals. Shang Dynasty oracle bones show lunar celebrations, while the Zhou Dynasty formalized seasonal rites. Myths like Nian (Spring Festival) and Chang'e (Mid-Autumn) shaped traditions.</p>
@@ -653,7 +600,7 @@
         border-bottom: 1px solid #e5e5e5;
     }
     .article-image {
-        height: 200px;
+        height: 200px; background-size: cover; background-position: center;
         background-size: cover;
         background-position: center;
     }
@@ -661,7 +608,7 @@
         background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
                     url('https://images.unsplash.com/photo-1519817650390-64a93db51149?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
         background-size: cover;
-        background-position: center;
+        background-position: center;    
     }
     .modal {
         transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;

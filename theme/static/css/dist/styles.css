@@ -308,6 +308,9 @@
   .z-0 {
     z-index: 0;
   }
+  .z-1 {
+    z-index: 1;
+  }
   .z-10 {
     z-index: 10;
   }
@@ -446,6 +449,12 @@
   }
   .h-12 {
     height: calc(var(--spacing) * 12);
+  }
+  .h-32 {
+    height: calc(var(--spacing) * 32);
+  }
+  .h-40 {
+    height: calc(var(--spacing) * 40);
   }
   .h-48 {
     height: calc(var(--spacing) * 48);
@@ -676,8 +685,20 @@
   .bg-\[\#f2eedf\] {
     background-color: #f2eedf;
   }
+  .bg-\[rgba\(0\,0\,0\,0\.3\)\] {
+    background-color: rgba(0,0,0,0.3);
+  }
   .bg-\[rgba\(0\,0\,0\,0\.5\)\] {
     background-color: rgba(0,0,0,0.5);
+  }
+  .bg-\[rgba\(0\,0\,0\,0\.47\)\] {
+    background-color: rgba(0,0,0,0.47);
+  }
+  .bg-\[rgba\(0\,0\,0\,0\.51\)\] {
+    background-color: rgba(0,0,0,0.51);
+  }
+  .bg-\[rgba\(34\,34\,34\,0\.57\)\] {
+    background-color: rgba(34,34,34,0.57);
   }
   .bg-amber-500 {
     background-color: var(--color-amber-500);
@@ -813,8 +834,23 @@
   .py-16 {
     padding-block: calc(var(--spacing) * 16);
   }
+  .py-22 {
+    padding-block: calc(var(--spacing) * 22);
+  }
+  .py-32 {
+    padding-block: calc(var(--spacing) * 32);
+  }
   .py-36 {
     padding-block: calc(var(--spacing) * 36);
+  }
+  .py-38 {
+    padding-block: calc(var(--spacing) * 38);
+  }
+  .py-60 {
+    padding-block: calc(var(--spacing) * 60);
+  }
+  .py-\[100px\] {
+    padding-block: 100px;
   }
   .py-\[150px\] {
     padding-block: 150px;
@@ -875,6 +911,15 @@
     font-size: var(--text-xs);
     line-height: var(--tw-leading, var(--text-xs--line-height));
   }
+  .text-\[20px\] {
+    font-size: 20px;
+  }
+  .text-\[21px\] {
+    font-size: 21px;
+  }
+  .text-\[22px\] {
+    font-size: 22px;
+  }
   .text-\[60px\] {
     font-size: 60px;
   }
@@ -932,6 +977,9 @@
   }
   .text-\[\#F2EEDF\] {
     color: #F2EEDF;
+  }
+  .text-\[\#f2eedf\] {
+    color: #f2eedf;
   }
   .text-amber-600 {
     color: var(--color-amber-600);
