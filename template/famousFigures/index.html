@@ -1,5 +1,684 @@
 {% extends 'partials/base.html' %}
+{% load static %}
 
 {% block content %}
-    <h1>im from figur</h1>
-{% endblock %}                                                                                                            
+<div class="bg-stone-100 py-[100px] relative">
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="fixed bottom-8 right-8 bg-[#4E708D] text-white p-3 rounded-full shadow-lg hover:bg-[#3E5A73] transition-all duration-300 opacity-0 invisible">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <div class="container mx-auto px-4 max-w-7xl">
+        <!-- Magazine Header with Background Image -->
+        <div class="relative text-center mb-16 animate-fadeIn bg-cover bg-center rounded-lg py-38" style="background-image: url('{% static 'images/mao.png' %}'); background-size: cover; background-position: center;">
+            <div class="absolute inset-0 bg-[rgba(0,0,0,0.3)] bg-opacity-50 rounded-lg"></div>
+            <div class="relative z-1">
+                <h1 class="text-6xl font-bold mb-4 tracking-tight text-[#4E708D] drop-shadow-lg">FAMOUS FIGURES</h1>
+                <div class="w-48 h-1 bg-gradient-to-r from-[#4E708D] to-amber-500 mx-auto mb-4"></div>
+                <p class="text-xl text-white italic drop-shadow-lg">Famous Chinese in History</p>
+            </div>
+        </div>
+
+        <!-- Sidebar for Quick Navigation -->
+        <div class="flex flex-col lg:flex-row gap-8">
+            <aside class="lg:w-1/4 hidden lg:block sticky top-20 h-fit bg-white rounded-lg shadow-md p-6">
+                <h3 class="text-lg font-bold mb-4 chinese-font text-[#4E708D]">Notable Figures</h3>
+                <ul class="space-y-3">
+                    <li><a href="#mao" class="text-sm text-stone-600 hover:text-[#4E708D] transition-colors duration-300">Mao Zedong</a></li>
+                    <li><a href="#confucius" class="text-sm text-stone-600 hover:text-[#4E708D] transition-colors duration-300">Confucius</a></li>
+                    <li><a href="#tu" class="text-sm text-stone-600 hover:text-[#4E708D] transition-colors duration-300">Tu Youyou</a></li>
+                    <li><a href="#yuan" class="text-sm text-stone-600 hover:text-[#4E708D] transition-colors duration-300">Yuan Longping</a></li>
+                    <li><a href="#chan" class="text-sm text-stone-600 hover:text-[#4E708D] transition-colors duration-300">Jackie Chan</a></li>
+                    <li><a href="#ma" class="text-sm text-stone-600 hover:text-[#4E708D] transition-colors duration-300">Jack Ma</a></li>
+                    <li><a href="#deng" class="text-sm text-stone-600 hover:text-[#4E708D] transition-colors duration-300">Deng Xiaoping</a></li>
+                    <li><a href="#sun" class="text-sm text-stone-600 hover:text-[#4E708D] transition-colors duration-300">Sun Yat-sen</a></li>
+                    <li><a href="#li" class="text-sm text-stone-600 hover:text-[#4E708D] transition-colors duration-300">Li Bai</a></li>
+                    <li><a href="#chang" class="text-sm text-stone-600 hover:text-[#4E708D] transition-colors duration-300">Eileen Chang</a></li>
+                    <li><a href="#wu" class="text-sm text-stone-600 hover:text-[#4E708D] transition-colors duration-300">Wu Zetian</a></li>
+                    <li><a href="#zhang" class="text-sm text-stone-600 hover:text-[#4E708D] transition-colors duration-300">Zhang Yimou</a></li>
+                </ul>
+            </aside>
+
+            <!-- Magazine Grid Layout -->
+            <div class="lg:w-3/4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Mao Zedong -->
+                <div id="mao" class="magazine-article relative overflow-hidden rounded-lg">
+                    <div class="article-image h-40 relative" style="background-image: url('{% static 'images/mao.png' %}'); background-size: cover; background-position: center;">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs font-semibold text-stone-400 tracking-wider">POLITICIAN</span>
+                        <h2 class="text-2xl font-bold mt-2 chinese-font text-[#4E708D]">毛泽东 Mao Zedong</h2>
+                        <div class="author-line py-2 my-3">
+                            <span class="text-xs font-medium text-stone-600">By Dr. Li Mei • April 2025</span>
+                        </div>
+                        <p class="text-stone-600 mb-4 text-sm leading-relaxed">
+                            Mao Zedong (1893–1976) founded the People's Republic of China in 1949. His leadership during the Long March and policies like the Cultural Revolution shaped modern China.
+                        </p>
+                        <button onclick="openModal('mao')" class="w-full bg-[#4E708D] hover:bg-[#3E5A73] text-white py-2 px-4 text-xs font-semibold tracking-wider transition duration-300 rounded">
+                            READ MORE
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Confucius -->
+                <div id="confucius" class="magazine-article relative overflow-hidden rounded-lg">
+                    <div class="article-image h-40 relative" style="background-image: url('{% static 'images/conficius.png' %}'); background-size: cover; background-position: center;">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs font-semibold text-stone-400 tracking-wider">PHILOSOPHER</span>
+                        <h2 class="text-2xl font-bold mt-2 chinese-font text-[#4E708D]">孔子 Confucius</h2>
+                        <div class="author-line py-2 my-3">
+                            <span class="text-xs font-medium text-stone-600">By Dr. Li Mei • April 2025</span>
+                        </div>
+                        <p class="text-stone-600 mb-4 text-sm leading-relaxed">
+                            Confucius (551–479 BCE) was a philosopher whose teachings on morality, family, and governance formed Confucianism, influencing Chinese culture for millennia.
+                        </p>
+                        <button onclick="openModal('confucius')" class="w-full bg-[#4E708D] hover:bg-[#3E5A73] text-white py-2 px-4 text-xs font-semibold tracking-wider transition duration-300 rounded">
+                            READ MORE
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Tu Youyou -->
+                <div id="tu" class="magazine-article relative overflow-hidden rounded-lg">
+                    <div class="article-image h-40 relative" style="background-image: url('{% static 'images/Tu Youyou.png' %}'); background-size: cover; background-position: center;">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs font-semibold text-stone-400 tracking-wider">SCIENTIST</span>
+                        <h2 class="text-2xl font-bold mt-2 chinese-font text-[#4E708D]">屠呦呦 Tu Youyou</h2>
+                        <div class="author-line py-2 my-3">
+                            <span class="text-xs font-medium text-stone-600">By Dr. Li Mei • April 2025</span>
+                        </div>
+                        <p class="text-stone-600 mb-4 text-sm leading-relaxed">
+                            Tu Youyou (born 1930) discovered artemisinin, a malaria treatment that saved millions of lives, earning her a Nobel Prize in 2015.
+                        </p>
+                        <button onclick="openModal('tu')" class="w-full bg-[#4E708D] hover:bg-[#3E5A73] text-white py-2 px-4 text-xs font-semibold tracking-wider transition duration-300 rounded">
+                            READ MORE
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Yuan Longping -->
+                <div id="yuan" class="magazine-article relative overflow-hidden rounded-lg">
+                    <div class="article-image h-40 relative" style="background-image: url('{% static 'images/Yuan Longping.png' %}'); background-size: cover; background-position: center;">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs font-semibold text-stone-400 tracking-wider">SCIENTIST</span>
+                        <h2 class="text-2xl font-bold mt-2 chinese-font text-[#4E708D]">袁隆平 Yuan Longping</h2>
+                        <div class="author-line py-2 my-3">
+                            <span class="text-xs font-medium text-stone-600">By Dr. Li Mei • April 2025</span>
+                        </div>
+                        <p class="text-stone-600 mb-4 text-sm leading-relaxed">
+                            Yuan Longping (1930–2021), the "Father of Hybrid Rice," developed high-yield rice varieties, boosting global food security.
+                        </p>
+                        <button onclick="openModal('yuan')" class="w-full bg-[#4E708D] hover:bg-[#3E5A73] text-white py-2 px-4 text-xs font-semibold tracking-wider transition duration-300 rounded">
+                            READ MORE
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Jackie Chan -->
+                <div id="chan" class="magazine-article relative overflow-hidden rounded-lg">
+                    <div class="article-image h-40 relative" style="background-image: url('{% static 'images/Jackie Chan,.png' %}'); background-size: cover; background-position: center;">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs font-semibold text-stone-400 tracking-wider">ACTOR</span>
+                        <h2 class="text-2xl font-bold mt-2 chinese-font text-[#4E708D]">成龙 Jackie Chan</h2>
+                        <div class="author-line py-2 my-3">
+                            <span class="text-xs font-medium text-stone-600">By Dr. Li Mei • April 2025</span>
+                        </div>
+                        <p class="text-stone-600 mb-4 text-sm leading-relaxed">
+                            Jackie Chan (born 1954) is a global star known for his acrobatic martial arts films, comedic style, and philanthropy.
+                        </p>
+                        <button onclick="openModal('chan')" class="w-full bg-[#4E708D] hover:bg-[#3E5A73] text-white py-2 px-4 text-xs font-semibold tracking-wider transition duration-300 rounded">
+                            READ MORE
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Jack Ma -->
+                <div id="ma" class="magazine-article relative overflow-hidden rounded-lg">
+                    <div class="article-image h-40 relative" style="background-image: url('{% static 'images/Jack Ma.png' %}'); background-size: cover; background-position: center;">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs font-semibold text-stone-400 tracking-wider">ENTREPRENEUR</span>
+                        <h2 class="text-2xl font-bold mt-2 chinese-font text-[#4E708D]">马云 Jack Ma</h2>
+                        <div class="author-line py-2 my-3">
+                            <span class="text-xs font-medium text-stone-600">By Dr. Li Mei • April 2025</span>
+                        </div>
+                        <p class="text-stone-600 mb-4 text-sm leading-relaxed">
+                            Jack Ma (born 1964) founded Alibaba, revolutionizing e-commerce in China and inspiring entrepreneurs globally.
+                        </p>
+                        <button onclick="openModal('ma')" class="w-full bg-[#4E708D] hover:bg-[#3E5A73] text-white py-2 px-4 text-xs font-semibold tracking-wider transition duration-300 rounded">
+                            READ MORE
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Deng Xiaoping -->
+                <div id="deng" class="magazine-article relative overflow-hidden rounded-lg">
+                    <div class="article-image h-40 relative" style="background-image: url('{% static 'images/Deng Xiaoping.png' %}'); background-size: cover; background-position: center;">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs font-semibold text-stone-400 tracking-wider">POLITICIAN</span>
+                        <h2 class="text-2xl font-bold mt-2 chinese-font text-[#4E708D]">邓小平 Deng Xiaoping</h2>
+                        <div class="author-line py-2 my-3">
+                            <span class="text-xs font-medium text-stone-600">By Dr. Li Mei • April 2025</span>
+                        </div>
+                        <p class="text-stone-600 mb-4 text-sm leading-relaxed">
+                            Deng Xiaoping (1904–1997) spearheaded China’s economic reforms, opening it to global markets and fostering growth.
+                        </p>
+                        <button onclick="openModal('deng')" class="w-full bg-[#4E708D] hover:bg-[#3E5A73] text-white py-2 px-4 text-xs font-semibold tracking-wider transition duration-300 rounded">
+                            READ MORE
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Sun Yat-sen -->
+                <div id="sun" class="magazine-article relative overflow-hidden rounded-lg">
+                    <div class="article-image h-40 relative" style="background-image: url('{% static 'images/Sun Yat-sen.png' %}'); background-size: cover; background-position: center;">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs font-semibold text-stone-400 tracking-wider">REVOLUTIONARY</span>
+                        <h2 class="text-2xl font-bold mt-2 chinese-font text-[#4E708D]">孙中山 Sun Yat-sen</h2>
+                        <div class="author-line py-2 my-3">
+                            <span class="text-xs font-medium text-stone-600">By Dr. Li Mei • April 2025</span>
+                        </div>
+                        <p class="text-stone-600 mb-4 text-sm leading-relaxed">
+                            Sun Yat-sen (1866–1925) led the 1911 Revolution, ending the Qing Dynasty and founding the Republic of China.
+                        </p>
+                        <button onclick="openModal('sun')" class="w-full bg-[#4E708D] hover:bg-[#3E5A73] text-white py-2 px-4 text-xs font-semibold tracking-wider transition duration-300 rounded">
+                            READ MORE
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Li Bai -->
+                <div id="li" class="magazine-article relative overflow-hidden rounded-lg">
+                    <div class="article-image h-40 relative" style="background-image: url('{% static 'images/Li Bai.png' %}'); background-size: cover; background-position: center;">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs font-semibold text-stone-400 tracking-wider">POET</span>
+                        <h2 class="text-2xl font-bold mt-2 chinese-font text-[#4E708D]">李白 Li Bai</h2>
+                        <div class="author-line py-2 my-3">
+                            <span class="text-xs font-medium text-stone-600">By Dr. Li Mei • April 2025</span>
+                        </div>
+                        <p class="text-stone-600 mb-4 text-sm leading-relaxed">
+                            Li Bai (701–762), a Tang Dynasty poet, crafted romantic verses celebrating nature and freedom.
+                        </p>
+                        <button onclick="openModal('li')" class="w-full bg-[#4E708D] hover:bg-[#3E5A73] text-white py-2 px-4 text-xs font-semibold tracking-wider transition duration-300 rounded">
+                            READ MORE
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Eileen Chang -->
+                <div id="chang" class="magazine-article relative overflow-hidden rounded-lg">
+                    <div class="article-image h-40 relative" style="background-image: url('{% static 'images/Eileen Chang.png' %}'); background-size: cover; background-position: center;">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs font-semibold text-stone-400 tracking-wider">WRITER</span>
+                        <h2 class="text-2xl font-bold mt-2 chinese-font text-[#4E708D]">张爱玲 Eileen Chang</h2>
+                        <div class="author-line py-2 my-3">
+                            <span class="text-xs font-medium text-stone-600">By Dr. Li Mei • April 2025</span>
+                        </div>
+                        <p class="text-stone-600 mb-4 text-sm leading-relaxed">
+                            Eileen Chang (1920–1995) was a literary icon whose stories of love and society in wartime China gained global acclaim.
+                        </p>
+                        <button onclick="openModal('chang')" class="w-full bg-[#4E708D] hover:bg-[#3E5A73] text-white py-2 px-4 text-xs font-semibold tracking-wider transition duration-300 rounded">
+                            READ MORE
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Wu Zetian -->
+                <div id="wu" class="magazine-article relative overflow-hidden rounded-lg">
+                    <div class="article-image h-40 relative" style="background-image: url('{% static 'images/Wu Zetian.png' %}'); background-size: cover; background-position: center;">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs font-semibold text-stone-400 tracking-wider">EMPRESS</span>
+                        <h2 class="text-2xl font-bold mt-2 chinese-font text-[#4E708D]">武则天 Wu Zetian</h2>
+                        <div class="author-line py-2 my-3">
+                            <span class="text-xs font-medium text-stone-600">By Dr. Li Mei • April 2025</span>
+                        </div>
+                        <p class="text-stone-600 mb-4 text-sm leading-relaxed">
+                            Wu Zetian (624–705) was China’s only female emperor, ruling the Tang Dynasty with unmatched authority.
+                        </p>
+                        <button onclick="openModal('wu')" class="w-full bg-[#4E708D] hover:bg-[#3E5A73] text-white py-2 px-4 text-xs font-semibold tracking-wider transition duration-300 rounded">
+                            READ MORE
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Zhang Yimou -->
+                <div id="zhang" class="magazine-article relative overflow-hidden rounded-lg">
+                    <div class="article-image h-40 relative" style="background-image: url('{% static 'images/Zhang Yimou.png' %}'); background-size: cover; background-position: center;">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs font-semibold text-stone-400 tracking-wider">FILMMAKER</span>
+                        <h2 class="text-2xl font-bold mt-2 chinese-font text-[#4E708D]">张艺谋 Zhang Yimou</h2>
+                        <div class="author-line py-2 my-3">
+                            <span class="text-xs font-medium text-stone-600">By Dr. Li Mei • April 2025</span>
+                        </div>
+                        <p class="text-stone-600 mb-4 text-sm leading-relaxed">
+                            Zhang Yimou (born 1950) is a renowned filmmaker whose visually stunning films elevated Chinese cinema globally.
+                        </p>
+                        <button onclick="openModal('zhang')" class="w-full bg-[#4E708D] hover:bg-[#3E5A73] text-white py-2 px-4 text-xs font-semibold tracking-wider transition duration-300 rounded">
+                            READ MORE
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cover Story -->
+        <div class="magazine-article mt-12 cover-story text-white rounded-lg" style="background-image: url('https://images.unsplash.com/photo-1519817650390-64a93db51149?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'); background-size: cover; background-position: center;">
+            <div class="p-8 bg-[rgba(0,0,0,0.51)] bg-opacity-40">
+                <div class="mb-6 max-w-2xl">
+                    <span class="text-xs font-semibold tracking-wider text-white text-opacity-80">COVER STORY</span>
+                    <h2 class="text-3xl font-bold mt-2 chinese-font text-[#f2eedf]">Icons of China: Shaping a Nation’s Legacy</h2>
+                    <div class="author-line py-3 my-4 border-white border-opacity-20">
+                        <span class="text-sm font-medium">By Dr. Li Mei • Photography by Wang Hao</span>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div>
+                        <p class="mb-4 text-white text-opacity-90 leading-relaxed">
+                            From philosophers like Confucius to modern trailblazers like Tu Youyou, China’s iconic figures have left an indelible mark on history.
+                        </p>
+                        <button onclick="openModal('cover')" class="mt-4 bg-[#4E708D] hover:bg-[#3E5A73] text-white py-2 px-6 text-xs font-semibold tracking-wider transition duration-300 rounded">
+                            READ FULL STORY
+                        </button>
+                    </div>
+                    <div class="flex items-center justify-center">
+                        <div class="text-center p-6 bg-[#4E708D] bg-opacity-10 rounded-lg">
+                            <i class="fas fa-quote-left text-3xl text-white text-opacity-30 mb-4"></i>
+                            <p class="italic text-white text-opacity-90 mb-4">
+                                "China’s greatest minds have woven a tapestry of wisdom, courage, and innovation that continues to inspire the world."
+                            </p>
+                            <p class="text-sm text-white text-opacity-70">- Dr. Zhang Wei, Cultural Historian</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-stone-900 text-white mt-20 py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-lg font-bold mb-4 chinese-font">文化遗产</h3>
+                    <p class="text-sm text-stone-400">
+                        Celebrating China's influential figures through insightful stories.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold mb-3 tracking-wider">ISSUES</h3>
+                    <ul class="space-y-2 text-sm text-stone-400">
+                        <li>Spring 2024</li>
+                        <li>Summer 2024</li>
+                        <li>Autumn 2024</li>
+                        <li>Winter 2024</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold mb-3 tracking-wider">FOLLOW</h3>
+                    <div class="flex space-x-4 text-stone-400">
+                        <i class="fab fa-weixin hover:text-green-500 cursor-pointer"></i>
+                        <i class="fab fa-weibo hover:text-red-500 cursor-pointer"></i>
+                        <i class="fab fa-instagram hover:text-pink-500 cursor-pointer"></i>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold mb-3 tracking-wider">SUBSCRIBE</h3>
+                    <button class="bg-[#4E708D] hover:bg-[#3E5A73] text-white px-4 py-2 text-xs font-semibold tracking-wider transition duration-300">
+                        JOIN NOW
+                    </button>
+                </div>
+            </div>
+            <div class="border-t border-stone-700 mt-8 pt-8 text-center text-sm text-stone-500">
+                <p>© 2025 Heritage Chronicles Magazine. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal -->
+    <div id="modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[rgba(0,0,0,0.47)] bg-opacity-50 modal opacity-0 translate-y-10 invisible transition-all duration-300">
+        <div class="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div class="p-6">
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <span id="modal-category" class="text-xs font-semibold text-stone-500 tracking-wider"></span>
+                        <h2 id="modal-title" class="text-2xl font-bold mt-1 chinese-font text-[#4E708D]"></h2>
+                        <div class="author-line py-2 my-3">
+                            <span id="modal-author" class="text-xs font-medium"></span>
+                        </div>
+                    </div>
+                    <button onclick="closeModal()" class="text-stone-400 hover:text-stone-600 transition-colors duration-300">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                </div>
+                
+                <div id="modal-content" class="text-stone-700 text-sm leading-relaxed space-y-4">
+                    <!-- Content will be inserted here by JavaScript -->
+                </div>
+                
+                <button onclick="closeModal()" class="mt-6 w-full bg-[#4E708D] hover:bg-[#3E5A73] text-white py-2 px-4 text-xs font-semibold tracking-wider transition duration-300 rounded">
+                    CLOSE
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Modal content for each figure
+    const modalContents = {
+        mao: {
+            category: "POLITICIAN",
+            title: "毛泽东 Mao Zedong",
+            author: "By Dr. Li Mei • April 2025",
+            content: `
+                <div class="article-image mb-4" style="background-image: url('{% static 'images/mao.png' %}'); height: 200px; background-size: cover; background-position: center;"></div>
+                <p>Mao Zedong (1893–1976) was born in Shaoshan, Hunan, to a prosperous farmer. His early exposure to revolutionary ideas during the fall of the Qing Dynasty ignited his passion for change.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Rise to Power</h3>
+                <p>Co-founding the Chinese Communist Party in 1921, Mao led the Long March (1934–1935), a 6,000-mile retreat that cemented his leadership. He proclaimed the People's Republic of China in 1949 after defeating the Nationalists.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Key Policies</h3>
+                <ul class="list-disc pl-5 space-y-1 mt-2">
+                    <li>Land Reform: Redistributed land to peasants, often violently, in the early 1950s.</li>
+                    <li>Great Leap Forward (1958–1962): Aimed to industrialize but led to a famine killing 15–45 million.</li>
+                    <li>Cultural Revolution (1966–1976): Targeted intellectuals and cultural heritage, causing societal upheaval.</li>
+                </ul>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Legacy</h3>
+                <p>Mao unified China and elevated its global status, but his policies caused immense suffering. Maoism inspired revolutions worldwide, and his image remains a symbol of both progress and controversy.</p>
+            `
+        },
+        confucius: {
+            category: "PHILOSOPHER",
+            title: "孔子 Confucius",
+            author: "By Dr. Li Mei • April 2025",
+            content: `
+                <div class="article-image mb-4" style="background-image: url('{% static 'images/conficius.png' %}'); height: 200px; background-size: cover; background-position: center;"></div>
+                <p>Confucius (551–479 BCE), born Kong Qiu in Lu (modern Shandong), grew up in poverty after his father’s early death. He became a self-taught scholar, mastering the Six Arts: rites, music, archery, charioteering, calligraphy, and mathematics.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Teachings</h3>
+                <p>Confucius promoted ethical governance, filial piety, and social harmony. His philosophy, recorded in the Analects, emphasized self-cultivation and respect for tradition. He taught thousands of students, many of whom became influential.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Legacy</h3>
+                <p>Initially overlooked, Confucianism became China’s state ideology during the Han Dynasty. Temples and schools dedicated to Confucius spread across East Asia, and his ideas continue to shape education, family values, and governance.</p>
+                <p class="mt-4">His famous saying, "Do not do to others what you do not want done to you," remains a universal principle.</p>
+            `
+        },
+        tu: {
+            category: "SCIENTIST",
+            title: "屠呦呦 Tu Youyou",
+            author: "By Dr. Li Mei • April 2025",
+            content: `
+                <div class="article-image mb-4" style="background-image: url('{% static 'images/Tu Youyou.png' %}'); height: 200px; background-size: cover; background-position: center;"></div>
+                <p>Tu Youyou (born 1930) was born in Ningbo, Zhejiang. After surviving tuberculosis as a teenager, she pursued pharmaceutical sciences at Peking University Medical School, graduating in 1955.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Discovery</h3>
+                <p>During the Vietnam War, Tu led Project 523, studying traditional Chinese herbs. In 1971, she isolated artemisinin from sweet wormwood, a malaria treatment that reduced mortality rates dramatically.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Recognition</h3>
+                <p>In 2015, Tu won the Nobel Prize in Physiology or Medicine, the first Chinese woman to do so. Known as the “Three Noes Scientist” (no doctorate, no foreign study, no academy membership), she exemplified perseverance.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Legacy</h3>
+                <p>Artemisinin remains a cornerstone of malaria treatment, saving millions. Tu’s integration of traditional and modern medicine inspires global health research.</p>
+            `
+        },
+        yuan: {
+            category: "SCIENTIST",
+            title: "袁隆平 Yuan Longping",
+            author: "By Dr. Li Mei • April 2025",
+            content: `
+                <div class="article-image mb-4" style="background-image: url('{% static 'images/Yuan Longping.png' %}'); height: 200px; background-size: cover; background-position: center;"></div>
+                <p>Yuan Longping (1930–2021) was born in Beijing to a family of intellectuals. Inspired by famine in the 1950s, he studied agronomy at Southwest University, graduating in 1953.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Hybrid Rice</h3>
+                <p>In the 1970s, Yuan developed hybrid rice, increasing yields by 20–30%. His breakthrough defied traditional beliefs about rice hybridization, transforming agriculture in China and beyond.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Impact</h3>
+                <p>Hybrid rice feeds over 100 million people annually. Yuan’s work earned him the World Food Prize (2004) and China’s highest scientific honor in 2000.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Legacy</h3>
+                <p>Called the "Father of Hybrid Rice," Yuan worked in fields into his 80s. His dream was “rice as tall as sorghum,” symbolizing his ambition to end hunger.</p>
+            `
+        },
+        chan: {
+            category: "ACTOR",
+            title: "成龙 Jackie Chan",
+            author: "By Dr. Li Mei • April 2025",
+            content: `
+                <div class="article-image mb-4" style="background-image: url('{% static 'images/Jackie Chan,.png' %}'); height: 200px; background-size: cover; background-position: center;"></div>
+                <p>Jackie Chan (born 1954), born Chan Kong-sang in Hong Kong, trained rigorously at the China Drama Academy, learning martial arts, acrobatics, and acting from age seven.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Career</h3>
+                <p>Starting as a stuntman in Bruce Lee films, Chan rose to fame with films like Drunken Master (1978) and Hollywood hits like Rush Hour (1998), blending humor and daring stunts.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Achievements</h3>
+                <p>Chan has starred in over 150 films, performing his own stunts. He won an Honorary Oscar in 2016 and has stars on the Hollywood Walk of Fame and Hong Kong Avenue of Stars.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Legacy</h3>
+                <p>Through the Jackie Chan Charitable Foundation, he supports education and disaster relief. His global influence bridges Eastern and Western cinema, inspiring action filmmakers worldwide.</p>
+            `
+        },
+        ma: {
+            category: "ENTREPRENEUR",
+            title: "马云 Jack Ma",
+            author: "By Dr. Li Mei • April 2025",
+            content: `
+                <div class="article-image mb-4" style="background-image: url('{% static 'images/Jack Ma.png' %}'); height: 200px; background-size: cover; background-position: center;"></div>
+                <p>Jack Ma (born 1964) was born in Hangzhou to a modest family of musicians. He taught himself English by guiding tourists and overcame multiple rejections to attend Hangzhou Normal University.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Alibaba</h3>
+                <p>In 1999, Ma founded Alibaba in his apartment, growing it into a global e-commerce giant. Its 2014 IPO raised $25 billion, the largest in history at the time.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Impact</h3>
+                <p>Alibaba transformed China’s digital economy, empowering small businesses. Ma’s charisma and vision made him a global tech icon.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Legacy</h3>
+                <p>Retiring in 2019, Ma focuses on philanthropy via the Jack Ma Foundation, supporting education, entrepreneurship, and rural development. His quote, “Never give up. Today is hard, tomorrow will be worse, but the day after tomorrow will be sunshine,” inspires millions.</p>
+            `
+        },
+        deng: {
+            category: "POLITICIAN",
+            title: "邓小平 Deng Xiaoping",
+            author: "By Dr. Li Mei • April 2025",
+            content: `
+                <div class="article-image mb-4" style="background-image: url('{% static 'images/Deng Xiaoping.png' %}'); height: 200px; background-size: cover; background-position: center;"></div>
+                <p>Deng Xiaoping (1904–1997) was born in Sichuan to a landowner family. He studied in France and joined the Communist Party, surviving purges to become a key leader.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Reforms</h3>
+                <p>In the late 1970s, Deng introduced market reforms, establishing Special Economic Zones and opening China to foreign investment, spurring unprecedented growth.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Impact</h3>
+                <p>Deng’s policies lifted millions out of poverty and made China a global economic power, though he maintained strict political control, notably during the 1989 Tiananmen Square protests.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Legacy</h3>
+                <p>Known as the "Architect of Modern China," Deng’s pragmatic approach balanced socialism and capitalism, shaping China’s rise as a superpower.</p>
+            `
+        },
+        sun: {
+            category: "REVOLUTIONARY",
+            title: "孙中山 Sun Yat-sen",
+            author: "By Dr. Li Mei • April 2025",
+            content: `
+                <div class="article-image mb-4" style="background-image: url('{% static 'images/Sun Yat-sen.png' %}'); height: 200px; background-size: cover; background-position: center;"></div>
+                <p>Sun Yat-sen (1866–1925), born in Guangdong, studied medicine in Hong Kong and Hawaii. Inspired by Western ideas, he became a revolutionary against Qing rule.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Revolution</h3>
+                <p>Sun organized the 1911 Revolution, overthrowing the Qing Dynasty. He became the first president of the Republic of China in 1912, advocating his Three Principles: nationalism, democracy, and welfare.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Impact</h3>
+                <p>His vision laid the groundwork for modern China, inspiring both the Nationalist and Communist movements. He founded the Kuomintang party, shaping China’s political landscape.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Legacy</h3>
+                <p>Called the "Father of the Nation," Sun’s ideals of modernization and democracy remain influential in China and Taiwan, with memorials dedicated to him worldwide.</p>
+            `
+        },
+        li: {
+            category: "POET",
+            title: "李白 Li Bai",
+            author: "By Dr. Li Mei • April 2025",
+            content: `
+                <div class="article-image mb-4" style="background-image: url('{% static 'images/Li Bai.png' %}'); height: 200px; background-size: cover; background-position: center;"></div>
+                <p>Li Bai (701–762), born in Central Asia or Sichuan, was a wandering poet of the Tang Dynasty. His free-spirited nature and love for wine defined his life and work.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Works</h3>
+                <p>Li Bai wrote over 1,000 poems, including "Drinking Alone by Moonlight" and "Quiet Night Thoughts," celebrated for their vivid imagery and emotional depth.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Impact</h3>
+                <p>His romantic style contrasted with the structured poetry of his time, earning him the nickname "Poet Immortal." He influenced generations of poets and artists.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Legacy</h3>
+                <p>Li Bai’s works are taught in schools and recited globally. His celebration of nature and freedom resonates in Chinese literature and culture.</p>
+            `
+        },
+        chang: {
+            category: "WRITER",
+            title: "张爱玲 Eileen Chang",
+            author: "By Dr. Li Mei • April 2025",
+            content: `
+                <div class="article-image mb-4" style="background-image: url('{% static 'images/Eileen Chang.png' %}'); height: 200px; background-size: cover; background-position: center;"></div>
+                <p>Eileen Chang (1920–1995), born in Shanghai to an aristocratic family, faced a turbulent childhood amid her parents’ divorce. She studied at the University of Hong Kong before writing.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Works</h3>
+                <p>Her stories, like "Lust, Caution," "Love in a Fallen City," and "Red Rose, White Rose," explore love, betrayal, and societal change in wartime China.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Impact</h3>
+                <p>Chang’s nuanced prose captured the complexities of human emotions, gaining her a cult following in the 1940s. Her works were adapted into acclaimed films.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Legacy</h3>
+                <p>Rediscovered in the 1980s, Chang is now a literary icon. Her stories, translated globally, offer timeless insights into Chinese society and gender dynamics.</p>
+            `
+        },
+        wu: {
+            category: "EMPRESS",
+            title: "武则天 Wu Zetian",
+            author: "By Dr. Li Mei • April 2025",
+            content: `
+                <div class="article-image mb-4" style="background-image: url('{% static 'images/Wu Zetian.png' %}'); height: 200px; background-size: cover; background-position: center;"></div>
+                <p>Wu Zetian (624–705), born in Shanxi, rose from a concubine in Emperor Taizong’s court to become China’s only female emperor, ruling from 690 to 705 during the Tang Dynasty.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Rise to Power</h3>
+                <p>After Taizong’s death, Wu became a consort to Emperor Gaozong. She outmaneuvered rivals, including the empress, to gain influence, eventually declaring herself emperor of the Zhou Dynasty.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Achievements</h3>
+                <p>Wu reformed the bureaucracy by promoting merit-based exams, expanded the empire, and supported Buddhism, commissioning grand temples like the Longmen Grottoes. Her secret police ensured loyalty but sparked fear.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Legacy</h3>
+                <p>Wu’s reign strengthened the Tang Dynasty, but her gender made her controversial. She remains a symbol of female empowerment and political acumen in Chinese history.</p>
+            `
+        },
+        zhang: {
+            category: "FILMMAKER",
+            title: "张艺谋 Zhang Yimou",
+            author: "By Dr. Li Mei • April 2025",
+            content: `
+                <div class="article-image mb-4" style="background-image: url('{% static 'images/Zhang Yimou.png' %}'); height: 200px; background-size: cover; background-position: center;"></div>
+                <p>Zhang Yimou (born 1950) was born in Xi’an, Shaanxi. After working in a factory during the Cultural Revolution, he studied cinematography at the Beijing Film Academy in 1978.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Career</h3>
+                <p>Zhang’s films, like "Raise the Red Lantern" (1991) and "Hero" (2002), blend striking visuals with deep narratives. He directed the 2008 Beijing Olympics ceremonies, showcasing Chinese culture globally.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Achievements</h3>
+                <p>His films have won awards at Cannes, Venice, and Berlin. Zhang’s "Red Sorghum" (1988) earned the Golden Bear, marking a milestone for Chinese cinema.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Legacy</h3>
+                <p>Zhang elevated Chinese filmmaking, blending art and history. His work inspires global directors and promotes Chinese culture through visually captivating storytelling.</p>
+            `
+        },
+        cover: {
+            category: "COVER STORY",
+            title: "Icons of China: Shaping a Nation’s Legacy",
+            author: "By Dr. Li Mei • Photography by Wang Hao",
+            content: `
+                <div class="article-image mb-4" style="background-image: url('https://images.unsplash.com/photo-1519817650390-64a93db51149?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'); height: 200px; background-size: cover; background-position: center;"></div>
+                <p>China’s history is defined by its iconic figures, from ancient philosophers to modern pioneers, whose contributions have shaped the nation and the world.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Ancient Influencers</h3>
+                <p>Figures like Confucius and Wu Zetian laid the foundation for Chinese ethics, governance, and female leadership, influencing culture for centuries.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Modern Trailblazers</h3>
+                <p>Leaders like Sun Yat-sen and innovators like Tu Youyou transformed China’s political landscape and global health, respectively.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Cultural Giants</h3>
+                <p>Poets like Li Bai, writers like Eileen Chang, and filmmakers like Zhang Yimou enriched China’s literary and cinematic heritage, resonating globally.</p>
+                <p class="mt-4">These icons embody China’s enduring spirit of resilience, creativity, and progress.</p>
+            `
+        }
+    };
+
+    // Modal functions
+    function openModal(figure) {
+        const modal = document.getElementById('modal');
+        const content = modalContents[figure];
+        
+        document.getElementById('modal-category').textContent = content.category;
+        document.getElementById('modal-title').textContent = content.title;
+        document.getElementById('modal-author').textContent = content.author;
+        document.getElementById('modal-content').innerHTML = content.content;
+        
+        modal.classList.remove('opacity-0', 'invisible', 'translate-y-10');
+        modal.classList.add('opacity-100', 'visible', 'translate-y-0');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+        const modal = document.getElementById('modal');
+        modal.classList.remove('opacity-100', 'visible', 'translate-y-0');
+        modal.classList.add('opacity-0', 'invisible', 'translate-y-10');
+        document.body.style.overflow = 'auto';
+    }
+
+    // Close modal when clicking outside content
+    document.getElementById('modal').addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeModal();
+        }
+    });
+
+    // Back to Top Button
+    window.addEventListener('scroll', function() {
+        const backToTop = document.getElementById('backToTop');
+        if (window.scrollY > 300) {
+            backToTop.classList.remove('opacity-0', 'invisible');
+            backToTop.classList.add('opacity-100', 'visible');
+        } else {
+            backToTop.classList.remove('opacity-100', 'visible');
+            backToTop.classList.add('opacity-0', 'invisible');
+        }
+    });
+
+    document.getElementById('backToTop').addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+</script>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    body {
+        font-family: 'Playfair Display', serif;
+        background-color: #f9f5f0;
+    }
+    .magazine-article {
+        background: white;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        transition: all 0.3s ease;
+        overflow: hidden;
+    }
+    .magazine-article:hover {
+        transform: scale(1.02);
+        box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+    }
+    .chinese-font {
+        font-family: 'Noto Sans SC', sans-serif;
+    }
+    .author-line {
+        border-top: 1px solid #e5e5e5;
+        border-bottom: 1px solid #e5e5e5;
+    }
+    .article-image {
+        height: 200px;
+        background-size: cover;
+        background-position: center;
+    }
+    .cover-story {
+        background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+                    url('https://images.unsplash.com/photo-1519817650390-64a93db51149?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+        background-size: cover;
+        background-position: center;    
+    }
+    .modal {
+        transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fadeIn {
+        animation: fadeIn 1s ease forwards;
+    }
+</style>
+{% endblock %}

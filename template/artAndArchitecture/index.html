@@ -1,5 +1,428 @@
 {% extends 'partials/base.html' %}
+{% load static %}
 
 {% block content %}
-    <h1>im from art</h1>
-{% endblock %}                                                                                                            
+<div class="bg-stone-100 py-[100px] relative">
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="fixed bottom-8 right-8 bg-[#4E708D] text-white p-3 rounded-full shadow-lg hover:bg-[#3E5A73] transition-all duration-300 opacity-0 invisible">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <div class="container mx-auto px-4 max-w-7xl">
+        <!-- Magazine Header with Background Image -->
+        <div class="relative text-center mb-16 animate-fadeIn bg-cover bg-center rounded-lg py-38" style="background-image: url('{% static 'images/forbidden_city.png' %}'); background-size: cover; background-position: center;">
+            <div class="absolute inset-0 bg-[rgba(0,0,0,0.3)] bg-opacity-50 rounded-lg"></div>
+            <div class="relative z-1">
+                <h1 class="text-6xl font-bold mb-4 tracking-tight text-[#4E708D] drop-shadow-lg">CHINESE ART & ARCHITECTURE</h1>
+                <div class="w-48 h-1 bg-gradient-to-r from-[#4E708D] to-amber-500 mx-auto mb-4"></div>
+                <p class="text-xl text-white italic drop-shadow-lg">Timeless Beauty of Chinese Creativity</p>
+            </div>
+        </div>
+
+        <!-- Sidebar for Quick Navigation -->
+        <div class="flex flex-col lg:flex-row gap-8">
+            <aside class="lg:w-1/4 hidden lg:block sticky top-20 h-fit bg-white rounded-lg shadow-md p-6">
+                <h3 class="text-lg font-bold mb-4 chinese-font text-[#4E708D]">Art & Architecture</h3>
+                <ul class="space-y-3">
+                    <li><a href="#painting" class="text-sm text-stone-600 hover:text-[#4E708D] transition-colors duration-300">Traditional Painting</a></li>
+                    <li><a href="#calligraphy" class="text-sm text-stone-600 hover:text-[#4E708D] transition-colors duration-300">Calligraphy</a></li>
+                    <li><a href="#forbidden-city" class="text-sm text-stone-600 hover:text-[#4E708D] transition-colors duration-300">Forbidden City</a></li>
+                    <li><a href="#great-wall" class="text-sm text-stone-600 hover:text-[#4E708D] transition-colors duration-300">Great Wall</a></li>
+                    <li><a href="#gardens" class="text-sm text-stone-600 hover:text-[#4E708D] transition-colors duration-300">Classical Gardens</a></li>
+                </ul>
+            </aside>
+
+            <!-- Magazine Grid Layout -->
+            <div class="lg:w-3/4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Traditional Painting -->
+                <div id="painting" class="magazine-article relative overflow-hidden rounded-lg">
+                    <div class="article-image h-40 relative" style="background-image: url('{% static 'images/painting.png' %}'); background-size: cover; background-position: center;">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs font-semibold text-stone-400 tracking-wider">ART</span>
+                        <h2 class="text-2xl font-bold mt-2 chinese-font text-[#4E708D]">传统绘画 Painting</h2>
+                        <div class="author-line py-2 my-3">
+                            <span class="text-xs font-medium text-stone-600">By Dr. Li Mei • April 2025</span>
+                        </div>
+                        <p class="text-stone-600 mb-4 text-sm leading-relaxed">
+                            Chinese painting, with its focus on landscapes and brush techniques, reflects harmony with nature and philosophical depth.
+                        </p>
+                        <button onclick="openModal('painting')" class="w-full bg-[#4E708D] hover:bg-[#3E5A73] text-white py-2 px-4 text-xs font-semibold tracking-wider transition duration-300 rounded">
+                            READ MORE
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Calligraphy -->
+                <div id="calligraphy" class="magazine-article relative overflow-hidden rounded-lg">
+                    <div class="article-image h-40 relative" style="background-image: url('{% static 'images/calligraphy.png' %}'); background-size: cover; background-position: center;">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs font-semibold text-stone-400 tracking-wider">ART</span>
+                        <h2 class="text-2xl font-bold mt-2 chinese-font text-[#4E708D]">书法 Calligraphy</h2>
+                        <div class="author-line py-2 my-3">
+                            <span class="text-xs font-medium text-stone-600">By Dr. Li Mei • April 2025</span>
+                        </div>
+                        <p class="text-stone-600 mb-4 text-sm leading-relaxed">
+                            Calligraphy, an art form of writing, embodies Chinese aesthetics, discipline, and the beauty of the written word.
+                        </p>
+                        <button onclick="openModal('calligraphy')" class="w-full bg-[#4E708D] hover:bg-[#3E5A73] text-white py-2 px-4 text-xs font-semibold tracking-wider transition duration-300 rounded">
+                            READ MORE
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Forbidden City -->
+                <div id="forbidden-city" class="magazine-article relative overflow-hidden rounded-lg">
+                    <div class="article-image h-40 relative" style="background-image: url('{% static 'images/forbidden_city.png' %}'); background-size: cover; background-position: center;">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs font-semibold text-stone-400 tracking-wider">ARCHITECTURE</span>
+                        <h2 class="text-2xl font-bold mt-2 chinese-font text-[#4E708D]">紫禁城 Forbidden City</h2>
+                        <div class="author-line py-2 my-3">
+                            <span class="text-xs font-medium text-stone-600">By Dr. Li Mei • April 2025</span>
+                        </div>
+                        <p class="text-stone-600 mb-4 text-sm leading-relaxed">
+                            The Forbidden City in Beijing, a masterpiece of imperial architecture, served as the emperor’s palace for nearly 500 years.
+                        </p>
+                        <button onclick="openModal('forbidden-city')" class="w-full bg-[#4E708D] hover:bg-[#3E5A73] text-white py-2 px-4 text-xs font-semibold tracking-wider transition duration-300 rounded">
+                            READ MORE
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Great Wall -->
+                <div id="great-wall" class="magazine-article relative overflow-hidden rounded-lg">
+                    <div class="article-image h-40 relative" style="background-image: url('{% static 'images/great_wall.png' %}'); background-size: cover; background-position: center;">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs font-semibold text-stone-400 tracking-wider">ARCHITECTURE</span>
+                        <h2 class="text-2xl font-bold mt-2 chinese-font text-[#4E708D]">长城 Great Wall</h2>
+                        <div class="author-line py-2 my-3">
+                            <span class="text-xs font-medium text-stone-600">By Dr. Li Mei • April 2025</span>
+                        </div>
+                        <p class="text-stone-600 mb-4 text-sm leading-relaxed">
+                            The Great Wall, a monumental feat of engineering, stretches over 13,000 miles, symbolizing China’s historical resilience.
+                        </p>
+                        <button onclick="openModal('great-wall')" class="w-full bg-[#4E708D] hover:bg-[#3E5A73] text-white py-2 px-4 text-xs font-semibold tracking-wider transition duration-300 rounded">
+                            READ MORE
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Classical Gardens -->
+                <div id="gardens" class="magazine-article relative overflow-hidden rounded-lg">
+                    <div class="article-image h-40 relative" style="background-image: url('{% static 'images/gardens.png' %}'); background-size: cover; background-position: center;">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs font-semibold text-stone-400 tracking-wider">ARCHITECTURE</span>
+                        <h2 class="text-2xl font-bold mt-2 chinese-font text-[#4E708D]">古典园林 Gardens</h2>
+                        <div class="author-line py-2 my-3">
+                            <span class="text-xs font-medium text-stone-600">By Dr. Li Mei • April 2025</span>
+                        </div>
+                        <p class="text-stone-600 mb-4 text-sm leading-relaxed">
+                            Classical Chinese gardens, like those in Suzhou, blend nature and architecture to create serene, poetic landscapes.
+                        </p>
+                        <button onclick="openModal('gardens')" class="w-full bg-[#4E708D] hover:bg-[#3E5A73] text-white py-2 px-4 text-xs font-semibold tracking-wider transition duration-300 rounded">
+                            READ MORE
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cover Story -->
+        <div class="magazine-article mt-12 cover-story text-white rounded-lg" style="background-image: url('https://images.unsplash.com/photo-1519817650390-64a93db51149?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'); background-size: cover; background-position: center;">
+            <div class="p-8 bg-[rgba(0,0,0,0.51)] bg-opacity-40">
+                <div class="mb-6 max-w-2xl">
+                    <span class="text-xs font-semibold tracking-wider text-white text-opacity-80">COVER STORY</span>
+                    <h2 class="text-3xl font-bold mt-2 chinese-font text-[#f2eedf]">The Legacy of Chinese Art & Architecture</h2>
+                    <div class="author-line py-3 my-4 border-white border-opacity-20">
+                        <span class="text-sm font-medium">By Dr. Li Mei • Photography by Wang Hao</span>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div>
+                        <p class="mb-4 text-white text-opacity-90 leading-relaxed">
+                            Chinese art and architecture, from intricate paintings to grand palaces, reflect a rich cultural heritage that continues to inspire globally.
+                        </p>
+                        <button onclick="openModal('cover')" class="mt-4 bg-[#4E708D] hover:bg-[#3E5A73] text-white py-2 px-6 text-xs font-semibold tracking-wider transition duration-300 rounded">
+                            READ FULL STORY
+                        </button>
+                    </div>
+                    <div class="flex items-center justify-center">
+                        <div class="text-center p-6 bg-[#4E708D] bg-opacity-10 rounded-lg">
+                            <i class="fas fa-quote-left text-3xl text-white text-opacity-30 mb-4"></i>
+                            <p class="italic text-white text-opacity-90 mb-4">
+                                "Chinese art and architecture are a testament to the harmony between human creativity and the natural world."
+                            </p>
+                            <p class="text-sm text-white text-opacity-70">- Dr. Zhang Wei, Cultural Historian</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-stone-900 text-white mt-20 py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-lg font-bold mb-4 chinese-font">文化遗产</h3>
+                    <p class="text-sm text-stone-400">
+                        Celebrating the timeless beauty of Chinese art and architecture through insightful stories.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold mb-3 tracking-wider">ISSUES</h3>
+                    <ul class="space-y-2 text-sm text-stone-400">
+                        <li>Spring 2024</li>
+                        <li>Summer 2024</li>
+                        <li>Autumn 2024</li>
+                        <li>Winter 2024</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold mb-3 tracking-wider">FOLLOW</h3>
+                    <div class="flex space-x-4 text-stone-400">
+                        <i class="fab fa-weixin hover:text-green-500 cursor-pointer"></i>
+                        <i class="fab fa-weibo hover:text-red-500 cursor-pointer"></i>
+                        <i class="fab fa-instagram hover:text-pink-500 cursor-pointer"></i>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold mb-3 tracking-wider">SUBSCRIBE</h3>
+                    <button class="bg-[#4E708D] hover:bg-[#3E5A73] text-white px-4 py-2 text-xs font-semibold tracking-wider transition duration-300">
+                        JOIN NOW
+                    </button>
+                </div>
+            </div>
+            <div class="border-t border-stone-700 mt-8 pt-8 text-center text-sm text-stone-500">
+                <p>© 2025 Heritage Chronicles Magazine. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal -->
+    <div id="modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[rgba(0,0,0,0.47)] bg-opacity-50 modal opacity-0 translate-y-10 invisible transition-all duration-300">
+        <div class="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div class="p-6">
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <span id="modal-category" class="text-xs font-semibold text-stone-500 tracking-wider"></span>
+                        <h2 id="modal-title" class="text-2xl font-bold mt-1 chinese-font text-[#4E708D]"></h2>
+                        <div class="author-line py-2 my-3">
+                            <span id="modal-author" class="text-xs font-medium"></span>
+                        </div>
+                    </div>
+                    <button onclick="closeModal()" class="text-stone-400 hover:text-stone-600 transition-colors duration-300">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                </div>
+                
+                <div id="modal-content" class="text-stone-700 text-sm leading-relaxed space-y-4">
+                    <!-- Content will be inserted here by JavaScript -->
+                </div>
+                
+                <button onclick="closeModal()" class="mt-6 w-full bg-[#4E708D] hover:bg-[#3E5A73] text-white py-2 px-4 text-xs font-semibold tracking-wider transition duration-300 rounded">
+                    CLOSE
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Modal content for each topic
+    const modalContents = {
+        painting: {
+            category: "ART",
+            title: "传统绘画 Traditional Painting",
+            author: "By Dr. Li Mei • April 2025",
+            content: `
+                <div class="article-image mb-4" style="background-image: url('{% static 'images/painting.png' %}'); height: 200px; background-size: cover; background-position: center;"></div>
+                <p>Chinese painting dates back to the Neolithic period, with early examples on pottery. It flourished during the Tang (618–907) and Song (960–1279) Dynasties, focusing on landscapes, flowers, and birds.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Techniques</h3>
+                <p>Artists use ink and water on rice paper or silk, employing the <em>gongbi</em> (meticulous) or <em>xieyi</em> (freehand) styles. Landscape painting often symbolizes the harmony between humans and nature, influenced by Daoist philosophy.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Influence</h3>
+                <p>Chinese painting influenced East Asian art, particularly in Japan and Korea. Masters like Gu Kaizhi and Fan Kuan set standards for composition and brushwork that persist today.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Legacy</h3>
+                <p>Modern Chinese artists blend traditional techniques with contemporary themes, preserving the art’s philosophical roots while adapting to global trends.</p>
+            `
+        },
+        calligraphy: {
+            category: "ART",
+            title: "书法 Calligraphy",
+            author: "By Dr. Li Mei • April 2025",
+            content: `
+                <div class="article-image mb-4" style="background-image: url('{% static 'images/calligraphy.png' %}'); height: 200px; background-size: cover; background-position: center;"></div>
+                <p>Calligraphy, known as <em>shufa</em>, emerged over 2,000 years ago with the development of Chinese writing. It reached its peak during the Tang Dynasty with masters like Wang Xizhi.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Styles</h3>
+                <p>Key styles include seal script, clerical script, regular script, running script, and cursive script. Each stroke reflects the artist’s personality, requiring years of disciplined practice.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Cultural Role</h3>
+                <p>Calligraphy is more than art—it’s a spiritual practice tied to Confucian values of self-cultivation. It was a key skill for scholars in imperial exams.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Legacy</h3>
+                <p>Calligraphy remains a revered art form, taught in schools and displayed in homes. Its influence extends to modern typography and design in East Asia.</p>
+            `
+        },
+        'forbidden-city': {
+            category: "ARCHITECTURE",
+            title: "紫禁城 Forbidden City",
+            author: "By Dr. Li Mei • April 2025",
+            content: `
+                <div class="article-image mb-4" style="background-image: url('{% static 'images/forbidden_city.png' %}'); height: 200px; background-size: cover; background-position: center;"></div>
+                <p>The Forbidden City, built from 1406 to 1420 during the Ming Dynasty, served as the imperial palace for the Ming and Qing Dynasties until 1912. Located in Beijing, it spans 180 acres.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Design</h3>
+                <p>The complex features 980 buildings, with yellow-tiled roofs symbolizing imperial power and red walls for good fortune. Its layout reflects cosmological principles, aligning with the north-south axis.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Historical Role</h3>
+                <p>Home to 24 emperors, it was the political and ceremonial center of China. Access was restricted—hence its name—symbolizing the emperor’s divine authority.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Legacy</h3>
+                <p>Now the Palace Museum, it houses over 1.8 million artifacts. A UNESCO World Heritage Site, it attracts millions annually, preserving China’s imperial history.</p>
+            `
+        },
+        'great-wall': {
+            category: "ARCHITECTURE",
+            title: "长城 Great Wall",
+            author: "By Dr. Li Mei • April 2025",
+            content: `
+                <div class="article-image mb-4" style="background-image: url('{% static 'images/great_wall.png' %}'); height: 200px; background-size: cover; background-position: center;"></div>
+                <p>The Great Wall began in the 3rd century BCE under Qin Shi Huang, with major expansions during the Ming Dynasty (1368–1644). It stretches over 13,000 miles across northern China.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Construction</h3>
+                <p>Built with stone, brick, and earth, it includes watchtowers, fortresses, and beacon towers. Ming-era walls are up to 26 feet high, designed to deter invaders like the Mongols.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Purpose</h3>
+                <p>Beyond defense, it facilitated trade, migration control, and communication along the Silk Road. Its rugged terrain made it a formidable barrier.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Legacy</h3>
+                <p>A UNESCO World Heritage Site, the Great Wall symbolizes China’s historical resilience. Sections like Badaling are major tourist attractions, though many parts face erosion.</p>
+            `
+        },
+        gardens: {
+            category: "ARCHITECTURE",
+            title: "古典园林 Classical Gardens",
+            author: "By Dr. Li Mei • April 2025",
+            content: `
+                <div class="article-image mb-4" style="background-image: url('{% static 'images/gardens.png' %}'); height: 200px; background-size: cover; background-position: center;"></div>
+                <p>Classical Chinese gardens, particularly in Suzhou, date back to the 11th century. Designed by scholars, they embody Daoist ideals of harmony between humans and nature.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Design</h3>
+                <p>Gardens feature pavilions, rockeries, ponds, and winding paths, creating an illusion of vastness in small spaces. Elements like the Humble Administrator’s Garden in Suzhou reflect poetic beauty.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Cultural Role</h3>
+                <p>They were retreats for literati to paint, write poetry, and meditate. Gardens symbolize an idealized natural world, contrasting with urban life.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Legacy</h3>
+                <p>Many gardens are UNESCO World Heritage Sites. They influence modern landscape design globally, emphasizing balance and natural aesthetics.</p>
+            `
+        },
+        cover: {
+            category: "COVER STORY",
+            title: "The Legacy of Chinese Art & Architecture",
+            author: "By Dr. Li Mei • Photography by Wang Hao",
+            content: `
+                <div class="article-image mb-4" style="background-image: url('https://images.unsplash.com/photo-1519817650390-64a93db51149?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'); height: 200px; background-size: cover; background-position: center;"></div>
+                <p>Chinese art and architecture, spanning millennia, reflect a deep connection to philosophy, nature, and imperial power, leaving a lasting global impact.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Artistic Expression</h3>
+                <p>Painting and calligraphy, rooted in Daoist and Confucian ideals, emphasize harmony and discipline, influencing East Asian aesthetics.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Architectural Grandeur</h3>
+                <p>Structures like the Forbidden City and Great Wall showcase engineering prowess and cultural symbolism, blending function with beauty.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Global Influence</h3>
+                <p>Chinese gardens and artistic techniques inspire modern design, from minimalist architecture to global art movements, bridging ancient and contemporary worlds.</p>
+            `
+        }
+    };
+
+    // Modal functions
+    function openModal(section) {
+        const modal = document.getElementById('modal');
+        const content = modalContents[section];
+        
+        document.getElementById('modal-category').textContent = content.category;
+        document.getElementById('modal-title').textContent = content.title;
+        document.getElementById('modal-author').textContent = content.author;
+        document.getElementById('modal-content').innerHTML = content.content;
+        
+        modal.classList.remove('opacity-0', 'invisible', 'translate-y-10');
+        modal.classList.add('opacity-100', 'visible', 'translate-y-0');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+        const modal = document.getElementById('modal');
+        modal.classList.remove('opacity-100', 'visible', 'translate-y-0');
+        modal.classList.add('opacity-0', 'invisible', 'translate-y-10');
+        document.body.style.overflow = 'auto';
+    }
+
+    // Close modal when clicking outside content
+    document.getElementById('modal').addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeModal();
+        }
+    });
+
+    // Back to Top Button
+    window.addEventListener('scroll', function() {
+        const backToTop = document.getElementById('backToTop');
+        if (window.scrollY > 300) {
+            backToTop.classList.remove('opacity-0', 'invisible');
+            backToTop.classList.add('opacity-100', 'visible');
+        } else {
+            backToTop.classList.remove('opacity-100', 'visible');
+            backToTop.classList.add('opacity-0', 'invisible');
+        }
+    });
+
+    document.getElementById('backToTop').addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+</script>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    body {
+        font-family: 'Playfair Display', serif;
+        background-color: #f9f5f0;
+    }
+    .magazine-article {
+        background: white;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        transition: all 0.3s ease;
+        overflow: hidden;
+    }
+    .magazine-article:hover {
+        transform: scale(1.02);
+        box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+    }
+    .chinese-font {
+        font-family: 'Noto Sans SC', sans-serif;
+    }
+    .author-line {
+        border-top: 1px solid #e5e5e5;
+        border-bottom: 1px solid #e5e5e5;
+    }
+    .article-image {
+        height: 200px;
+        background-size: cover;
+        background-position: center;
+    }
+    .cover-story {
+        background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+                    url('https://images.unsplash.com/photo-1519817650390-64a93db51149?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+        background-size: cover;
+        background-position: center;    
+    }
+    .modal {
+        transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fadeIn {
+        animation: fadeIn 1s ease forwards;
+    }
+</style>
+{% endblock %}

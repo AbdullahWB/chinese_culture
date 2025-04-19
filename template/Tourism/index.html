@@ -1,5 +1,701 @@
 {% extends 'partials/base.html' %}
+{% load static %}
 
 {% block content %}
-    <h1>im from tourisam</h1>
-{% endblock %}                                                                                                            
+<div class="bg-stone-100 py-[100px] relative">
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="fixed bottom-8 right-8 bg-[#4E708D] text-white p-3 rounded-full shadow-lg hover:bg-[#3E5A73] transition-all duration-300 opacity-0 invisible">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <div class="container mx-auto px-4 max-w-7xl">
+        <!-- Magazine Header with Background Image -->
+        <div class="relative text-center mb-16 animate-fadeIn bg-cover bg-center rounded-lg py-38" style="background-image: url('{% static 'images/greatWall.png' %}'); background-size: cover; background-position: center;">
+            <div class="absolute inset-0 bg-[rgba(0,0,0,0.3)] bg-opacity-50 rounded-lg"></div>
+            <div class="relative z-1">
+                <h1 class="text-6xl font-bold mb-4 tracking-tight text-[#4E708D] drop-shadow-lg">CHINA TOURISM</h1>
+                <div class="w-48 h-1 bg-gradient-to-r from-[#4E708D] to-amber-500 mx-auto mb-4"></div>
+                <p class="text-xl text-white italic drop-shadow-lg">Discover China's Iconic Destinations</p>
+            </div>
+        </div>
+
+        <!-- Sidebar for Quick Navigation -->
+        <div class="flex flex-col lg:flex-row gap-8">
+            <aside class="lg:w-1/4 hidden lg:block sticky top-20 h-fit bg-white rounded-lg shadow-md p-6">
+                <h3 class="text-lg font-bold mb-4 chinese-font text-[#4E708D]">Travel Guide</h3>
+                <ul class="space-y-3">
+                    <li><a href="#greatwall" class="text-sm text-stone-600 hover:text-[#4E708D] transition-colors duration-300">Great Wall of China</a></li>
+                    <li><a href="#forbiddencity" class="text-sm text-stone-600 hover:text-[#4E708D] transition-colors duration-300">Forbidden City</a></li>
+                    <li><a href="#terracotta" class="text-sm text-stone-600 hover:text-[#4E708D] transition-colors duration-300">Terracotta Army</a></li>
+                    <li><a href="#guilin" class="text-sm text-stone-600 hover:text-[#4E708D] transition-colors duration-300">Guilin</a></li>
+                    <li><a href="#jiuzhaigou" class="text-sm text-stone-600 hover:text-[#4E708D] transition-colors duration-300">Jiuzhaigou Valley</a></li>
+                    <li><a href="#yangtze" class="text-sm text-stone-600 hover:text-[#4E708D] transition-colors duration-300">Yangtze River</a></li>
+                    <li><a href="#zhangjiajie" class="text-sm text-stone-600 hover:text-[#4E708D] transition-colors duration-300">Zhangjiajie</a></li>
+                    <li><a href="#chengdu" class="text-sm text-stone-600 hover:text-[#4E708D] transition-colors duration-300">Chengdu</a></li>
+                    <li><a href="#shanghai" class="text-sm text-stone-600 hover:text-[#4E708D] transition-colors duration-300">Shanghai</a></li>
+                    <li><a href="#lijiang" class="text-sm text-stone-600 hover:text-[#4E708D] transition-colors duration-300">Lijiang</a></li>
+                    <li><a href="#huangshan" class="text-sm text-stone-600 hover:text-[#4E708D] transition-colors duration-300">Huangshan</a></li>
+                    <li><a href="#mogao" class="text-sm text-stone-600 hover:text-[#4E708D] transition-colors duration-300">Mogao Caves</a></li>
+                </ul>
+            </aside>
+
+            <!-- Magazine Grid Layout -->
+            <div class="lg:w-3/4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Great Wall of China -->
+                <div id="greatwall" class="magazine-article relative overflow-hidden rounded-lg">
+                    <div class="article-image h-40 relative" style="background-image: url('{% static 'images/greatWall.png' %}'); background-size: cover; background-position: center;">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs font-semibold text-stone-400 tracking-wider">HISTORICAL SITE</span>
+                        <h2 class="text-2xl font-bold mt-2 chinese-font text-[#4E708D]">长城 Great Wall of China</h2>
+                        <div class="author-line py-2 my-3">
+                            <span class="text-xs font-medium text-stone-600">By Dr. Chen Wei • April 2025</span>
+                        </div>
+                        <p class="text-stone-600 mb-4 text-sm leading-relaxed">
+                            Spanning 21,196 km, the Great Wall, a UNESCO World Heritage Site, was built over centuries to protect against invasions.
+                        </p>
+                        <button onclick="openModal('greatwall')" class="w-full bg-[#4E708D] hover:bg-[#3E5A73] text-white py-2 px-4 text-xs font-semibold tracking-wider transition duration-300 rounded">
+                            READ MORE
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Forbidden City -->
+                <div id="forbiddencity" class="magazine-article relative overflow-hidden rounded-lg">
+                    <div class="article-image h-40 relative" style="background-image: url('{% static 'images/Forbidden City.png' %}'); background-size: cover; background-position: center;">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs font-semibold text-stone-400 tracking-wider">HISTORICAL SITE</span>
+                        <h2 class="text-2xl font-bold mt-2 chinese-font text-[#4E708D]">故宫 Forbidden City</h2>
+                        <div class="author-line py-2 my-3">
+                            <span class="text-xs font-medium text-stone-600">By Dr. Chen Wei • April 2025</span>
+                        </div>
+                        <p class="text-stone-600 mb-4 text-sm leading-relaxed">
+                            Beijing’s Forbidden City, a Ming-Qing palace complex, housed 24 emperors, with 980 buildings drawing 19 million visitors yearly.
+                        </p>
+                        <button onclick="openModal('forbiddencity')" class="w-full bg-[#4E708D] hover:bg-[#3E5A73] text-white py-2 px-4 text-xs font-semibold tracking-wider transition duration-300 rounded">
+                            READ MORE
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Terracotta Army -->
+                <div id="terracotta" class="magazine-article relative overflow-hidden rounded-lg">
+                    <div class="article-image h-40 relative" style="background-image: url('{% static 'images/Terracotta Army.png' %}'); background-size: cover; background-position: center;">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs font-semibold text-stone-400 tracking-wider">ARCHAEOLOGICAL SITE</span>
+                        <h2 class="text-2xl font-bold mt-2 chinese-font text-[#4E708D]">兵马俑 Terracotta Army</h2>
+                        <div class="author-line py-2 my-3">
+                            <span class="text-xs font-medium text-stone-600">By Dr. Chen Wei • April 2025</span>
+                        </div>
+                        <p class="text-stone-600 mb-4 text-sm leading-relaxed">
+                            Xi’an’s Terracotta Army, built for Emperor Qin Shi Huang around 210 BCE, features over 8,000 unique warriors.
+                        </p>
+                        <button onclick="openModal('terracotta')" class="w-full bg-[#4E708D] hover:bg-[#3E5A73] text-white py-2 px-4 text-xs font-semibold tracking-wider transition duration-300 rounded">
+                            READ MORE
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Guilin -->
+                <div id="guilin" class="magazine-article relative overflow-hidden rounded-lg">
+                    <div class="article-image h-40 relative" style="background-image: url('{% static 'images/Guilin.png' %}'); background-size: cover; background-position: center;">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs font-semibold text-stone-400 tracking-wider">NATURAL LANDSCAPE</span>
+                        <h2 class="text-2xl font-bold mt-2 chinese-font text-[#4E708D]">桂林 Guilin</h2>
+                        <div class="author-line py-2 my-3">
+                            <span class="text-xs font-medium text-stone-600">By Dr. Chen Wei • April 2025</span>
+                        </div>
+                        <p class="text-stone-600 mb-4 text-sm leading-relaxed">
+                            Guilin’s limestone karst hills and Li River, featured on the 20-yuan note, offer breathtaking scenery.
+                        </p>
+                        <button onclick="openModal('guilin')" class="w-full bg-[#4E708D] hover:bg-[#3E5A73] text-white py-2 px-4 text-xs font-semibold tracking-wider transition duration-300 rounded">
+                            READ MORE
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Jiuzhaigou Valley -->
+                <div id="jiuzhaigou" class="magazine-article relative overflow-hidden rounded-lg">
+                    <div class="article-image h-40 relative" style="background-image: url('https://media.gettyimages.com/id/1133743891/photo/jiuzhaigou-valley-lakes.jpg?s=612x612&w=0&k=20&c=6bXq9y9gW4cU8mV8qZ8lX9z0k7mX7yX8zX9q9y9z0k='); background-size: cover; background-position: center;">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs font-semibold text-stone-400 tracking-wider">NATURAL LANDSCAPE</span>
+                        <h2 class="text-2xl font-bold mt-2 chinese-font text-[#4E708D]">九寨沟 Jiuzhaigou Valley</h2>
+                        <div class="author-line py-2 my-3">
+                            <span class="text-xs font-medium text-stone-600">By Dr. Chen Wei • April 2025</span>
+                        </div>
+                        <p class="text-stone-600 mb-4 text-sm leading-relaxed">
+                            Sichuan’s Jiuzhaigou Valley, a UNESCO site, is renowned for its turquoise lakes and Tibetan villages.
+                        </p>
+                        <button onclick="openModal('jiuzhaigou')" class="w-full bg-[#4E708D] hover:bg-[#3E5A73] text-white py-2 px-4 text-xs font-semibold tracking-wider transition duration-300 rounded">
+                            READ MORE
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Yangtze River -->
+                <div id="yangtze" class="magazine-article relative overflow-hidden rounded-lg">
+                    <div class="article-image h-40 relative" style="background-image: url('https://media.gettyimages.com/id/1133743893/photo/yangtze-river-three-gorges.jpg?s=612x612&w=0&k=20&c=7bXq9y9gW4cU8mV8qZ8lX9z0k7mX7yX8zX9q9y9z0k='); background-size: cover; background-position: center;">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs font-semibold text-stone-400 tracking-wider">NATURAL LANDSCAPE</span>
+                        <h2 class="text-2xl font-bold mt-2 chinese-font text-[#4E708D]">长江 Yangtze River</h2>
+                        <div class="author-line py-2 my-3">
+                            <span class="text-xs font-medium text-stone-600">By Dr. Chen Wei • April 2025</span>
+                        </div>
+                        <p class="text-stone-600 mb-4 text-sm leading-relaxed">
+                            Asia’s longest river, the Yangtze, stretches 6,300 km, with Three Gorges cruises offering stunning views.
+                        </p>
+                        <button onclick="openModal('yangtze')" class="w-full bg-[#4E708D] hover:bg-[#3E5A73] text-white py-2 px-4 text-xs font-semibold tracking-wider transition duration-300 rounded">
+                            READ MORE
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Zhangjiajie -->
+                <div id="zhangjiajie" class="magazine-article relative overflow-hidden rounded-lg">
+                    <div class="article-image h-40 relative" style="background-image: url('https://media.gettyimages.com/id/1133743895/photo/zhangjiajie-national-park.jpg?s=612x612&w=0&k=20&c=8bXq9y9gW4cU8mV8qZ8lX9z0k7mX7yX8zX9q9y9z0k='); background-size: cover; background-position: center;">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs font-semibold text-stone-400 tracking-wider">NATURAL LANDSCAPE</span>
+                        <h2 class="text-2xl font-bold mt-2 chinese-font text-[#4E708D]">张家界 Zhangjiajie</h2>
+                        <div class="author-line py-2 my-3">
+                            <span class="text-xs font-medium text-stone-600">By Dr. Chen Wei • April 2025</span>
+                        </div>
+                        <p class="text-stone-600 mb-4 text-sm leading-relaxed">
+                            Zhangjiajie’s 3,000 sandstone pillars, a UNESCO site, inspired Avatar’s floating mountains.
+                        </p>
+                        <button onclick="openModal('zhangjiajie')" class="w-full bg-[#4E708D] hover:bg-[#3E5A73] text-white py-2 px-4 text-xs font-semibold tracking-wider transition duration-300 rounded">
+                            READ MORE
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Chengdu -->
+                <div id="chengdu" class="magazine-article relative overflow-hidden rounded-lg">
+                    <div class="article-image h-40 relative" style="background-image: url('https://media.gettyimages.com/id/1133743897/photo/chengdu-panda-base.jpg?s=612x612&w=0&k=20&c=9bXq9y9gW4cU8mV8qZ8lX9z0k7mX7yX8zX9q9y9z0k='); background-size: cover; background-position: center;">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs font-semibold text-stone-400 tracking-wider">CULTURAL CITY</span>
+                        <h2 class="text-2xl font-bold mt-2 chinese-font text-[#4E708D]">成都 Chengdu</h2>
+                        <div class="author-line py-2 my-3">
+                            <span class="text-xs font-medium text-stone-600">By Dr. Chen Wei • April 2025</span>
+                        </div>
+                        <p class="text-stone-600 mb-4 text-sm leading-relaxed">
+                            Chengdu, Sichuan’s capital, is famed for panda conservation, spicy cuisine, and teahouse culture.
+                        </p>
+                        <button onclick="openModal('chengdu')" class="w-full bg-[#4E708D] hover:bg-[#3E5A73] text-white py-2 px-4 text-xs font-semibold tracking-wider transition duration-300 rounded">
+                            READ MORE
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Shanghai -->
+                <div id="shanghai" class="magazine-article relative overflow-hidden rounded-lg">
+                    <div class="article-image h-40 relative" style="background-image: url('https://media.gettyimages.com/id/1133743899/photo/shanghai-skyline-bund.jpg?s=612x612&w=0&k=20&c=0bXq9y9gW4cU8mV8qZ8lX9z0k7mX7yX8zX9q9y9z0k='); background-size: cover; background-position: center;">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs font-semibold text-stone-400 tracking-wider">MODERN CITY</span>
+                        <h2 class="text-2xl font-bold mt-2 chinese-font text-[#4E708D]">上海 Shanghai</h2>
+                        <div class="author-line py-2 my-3">
+                            <span class="text-xs font-medium text-stone-600">By Dr. Chen Wei • April 2025</span>
+                        </div>
+                        <p class="text-stone-600 mb-4 text-sm leading-relaxed">
+                            Shanghai’s skyline, historic Bund, and cultural hubs make it a global destination.
+                        </p>
+                        <button onclick="openModal('shanghai')" class="w-full bg-[#4E708D] hover:bg-[#3E5A73] text-white py-2 px-4 text-xs font-semibold tracking-wider transition duration-300 rounded">
+                            READ MORE
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Lijiang -->
+                <div id="lijiang" class="magazine-article relative overflow-hidden rounded-lg">
+                    <div class="article-image h-40 relative" style="background-image: url('https://media.gettyimages.com/id/1133743901/photo/lijiang-old-town-yunnan.jpg?s=612x612&w=0&k=20&c=1bXq9y9gW4cU8mV8qZ8lX9z0k7mX7yX8zX9q9y9z0k='); background-size: cover; background-position: center;">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs font-semibold text-stone-400 tracking-wider">CULTURAL CITY</span>
+                        <h2 class="text-2xl font-bold mt-2 chinese-font text-[#4E708D]">丽江 Lijiang</h2>
+                        <div class="author-line py-2 my-3">
+                            <span class="text-xs font-medium text-stone-600">By Dr. Chen Wei • April 2025</span>
+                        </div>
+                        <p class="text-stone-600 mb-4 text-sm leading-relaxed">
+                            Lijiang’s UNESCO-listed Old Town, with Naxi culture, is set against Jade Dragon Snow Mountain.
+                        </p>
+                        <button onclick="openModal('lijiang')" class="w-full bg-[#4E708D] hover:bg-[#3E5A73] text-white py-2 px-4 text-xs font-semibold tracking-wider transition duration-300 rounded">
+                            READ MORE
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Huangshan -->
+                <div id="huangshan" class="magazine-article relative overflow-hidden rounded-lg">
+                    <div class="article-image h-40 relative" style="background-image: url('https://media.gettyimages.com/id/1133743903/photo/huangshan-mountain-anhui.jpg?s=612x612&w=0&k=20&c=2bXq9y9gW4cU8mV8qZ8lX9z0k7mX7yX8zX9q9y9z0k='); background-size: cover; background-position: center;">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs font-semibold text-stone-400 tracking-wider">NATURAL LANDSCAPE</span>
+                        <h2 class="text-2xl font-bold mt-2 chinese-font text-[#4E708D]">黄山 Huangshan</h2>
+                        <div class="author-line py-2 my-3">
+                            <span class="text-xs font-medium text-stone-600">By Dr. Chen Wei • April 2025</span>
+                        </div>
+                        <p class="text-stone-600 mb-4 text-sm leading-relaxed">
+                            Huangshan’s misty peaks and ancient pines, a UNESCO site, have inspired Chinese art for centuries.
+                        </p>
+                        <button onclick="openModal('huangshan')" class="w-full bg-[#4E708D] hover:bg-[#3E5A73] text-white py-2 px-4 text-xs font-semibold tracking-wider transition duration-300 rounded">
+                            READ MORE
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Mogao Caves -->
+                <div id="mogao" class="magazine-article relative overflow-hidden rounded-lg">
+                    <div class="article-image h-40 relative" style="background-image: url('https://media.gettyimages.com/id/1133743905/photo/mogao-caves-dunhuang.jpg?s=612x612&w=0&k=20&c=3bXq9y9gW4cU8mV8qZ8lX9z0k7mX7yX8zX9q9y9z0k='); background-size: cover; background-position: center;">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs font-semibold text-stone-400 tracking-wider">HISTORICAL SITE</span>
+                        <h2 class="text-2xl font-bold mt-2 chinese-font text-[#4E708D]">莫高窟 Mogao Caves</h2>
+                        <div class="author-line py-2 my-3">
+                            <span class="text-xs font-medium text-stone-600">By Dr. Chen Wei • April 2025</span>
+                        </div>
+                        <p class="text-stone-600 mb-4 text-sm leading-relaxed">
+                            Dunhuang’s Mogao Caves, a UNESCO site, preserve 1,000 years of Buddhist art.
+                        </p>
+                        <button onclick="openModal('mogao')" class="w-full bg-[#4E708D] hover:bg-[#3E5A73] text-white py-2 px-4 text-xs font-semibold tracking-wider transition duration-300 rounded">
+                            READ MORE
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cover Story -->
+        <div class="magazine-article mt-12 cover-story text-white rounded-lg" style="background-image: url('https://images.unsplash.com/photo-1514195038038-4c8a503d0480?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80'); background-size: cover; background-position: center;">
+            <div class="p-8 bg-[rgba(0,0,0,0.51)] bg-opacity-40">
+                <div class="mb-6 max-w-2xl">
+                    <span class="text-xs font-semibold tracking-wider text-white text-opacity-80">COVER STORY</span>
+                    <h2 class="text-3xl font-bold mt-2 chinese-font text-[#f2eedf]">China’s Timeless Wonders</h2>
+                    <div class="author-line py-3 my-4 border-white border-opacity-20">
+                        <span class="text-sm font-medium">By Dr. Chen Wei • Photography by Liu Yang</span>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div>
+                        <p class="mb-4 text-white text-opacity-90 leading-relaxed">
+                            From the ancient Great Wall to the vibrant streets of Shanghai, China’s diverse landscapes and rich heritage offer unforgettable experiences.
+                        </p>
+                        <button onclick="openModal('cover')" class="mt-4 bg-[#4E708D] hover:bg-[#3E5A73] text-white py-2 px-6 text-xs font-semibold tracking-wider transition duration-300 rounded">
+                            READ FULL STORY
+                        </button>
+                    </div>
+                    <div class="flex items-center justify-center">
+                        <div class="text-center p-6 bg-[#4E708D] bg-opacity-10 rounded-lg">
+                            <i class="fas fa-quote-left text-3xl text-white text-opacity-30 mb-4"></i>
+                            <p class="italic text-white text-opacity-90 mb-4">
+                                "China’s beauty lies in its ability to blend the ancient with the modern, creating a tapestry of experiences."
+                            </p>
+                            <p class="text-sm text-white text-opacity-70">- Dr. Zhang Li, Travel Historian</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[rgba(0,0,0,0.47)] bg-opacity-50 modal opacity-0 translate-y-10 invisible transition-all duration-300">
+        <div class="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div class="p-6">
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <span id="modal-category" class="text-xs font-semibold text-stone-500 tracking-wider"></span>
+                        <h2 id="modal-title" class="text-2xl font-bold mt-1 chinese-font text-[#4E708D]"></h2>
+                        <div class="author-line py-2 my-3">
+                            <span id="modal-author" class="text-xs font-medium"></span>
+                        </div>
+                    </div>
+                    <button onclick="closeModal()" class="text-stone-400 hover:text-stone-600 transition-colors duration-300">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                </div>
+                
+                <div id="modal-content" class="text-stone-700 text-sm leading-relaxed space-y-4">
+                    <!-- Content will be inserted here by JavaScript -->
+                </div>
+                
+                <button onclick="closeModal()" class="mt-6 w-full bg-[#4E708D] hover:bg-[#3E5A73] text-white py-2 px-4 text-xs font-semibold tracking-wider transition duration-300 rounded">
+                    CLOSE
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Modal content for each destination
+    const modalContents = {
+        greatwall: {
+            category: "HISTORICAL SITE",
+            title: "长城 Great Wall of China",
+            author: "By Dr. Chen Wei • April 2025",
+            content: `
+                <div class="article-image mb-4" style="background-image: url('{% static 'images/greatWall.png' %}'); height: 200px; background-size: cover; background-position: center;"></div>
+                <p>The Great Wall, spanning 21,196 km, was constructed from the 3rd century BCE to the 17th century to defend against nomadic tribes. Built with stone, brick, and tamped earth, it includes 7,000 watchtowers.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Highlights</h3>
+                <ul class="list-disc pl-5 space-y-1 mt-2">
+                    <li>Hike Mutianyu for cable cars and fewer crowds, ideal for families.</li>
+                    <li>Explore Jinshanling’s mix of restored and wild sections, perfect for photographers.</li>
+                    <li>Visit Jiankou for rugged, unrestored beauty, best for experienced hikers.</li>
+                    <li>Join a night tour at Simatai for illuminated views.</li>
+                </ul>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Visitor Tips</h3>
+                <p>Visit in spring or autumn to avoid crowds and extreme weather. Wear sturdy shoes and bring water for hikes. Book guided tours for historical insights.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Impact</h3>
+                <p>A UNESCO site since 1987, the Great Wall welcomed over 10 million visitors in 2023, symbolizing China’s engineering prowess and cultural resilience. It contributes significantly to Beijing’s tourism economy.</p>
+            `
+        },
+        forbiddencity: {
+            category: "HISTORICAL SITE",
+            title: "故宫 Forbidden City",
+            author: "By Dr. Chen Wei • April 2025",
+            content: `
+                <div class="article-image mb-4" style="background-image: url('{% static 'images/Forbidden City.png' %}'); height: 200px; background-size: cover; background-position: center;"></div>
+                <p>Built between 1406 and 1420, the Forbidden City in Beijing was the imperial palace for 24 Ming and Qing emperors. Covering 72 hectares, it features 980 buildings with 8,707 rooms, surrounded by a 10-meter-high wall.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Highlights</h3>
+                <ul class="list-disc pl-5 space-y-1 mt-2">
+                    <li>Explore the Hall of Supreme Harmony, used for coronations.</li>
+                    <li>Visit the Palace Museum for 1.8 million artifacts, including jade and paintings.</li>
+                    <li>Stroll the Imperial Garden’s pavilions and ancient trees.</li>
+                    <li>Climb Jingshan Park for a panoramic view of the complex.</li>
+                </ul>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Visitor Tips</h3>
+                <p>Book tickets online to avoid long queues. Visit early mornings or late afternoons for fewer crowds. Audio guides in multiple languages enhance the experience.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Impact</h3>
+                <p>A UNESCO site since 1987, it drew 19 million visitors in 2019, offering a window into China’s imperial past and contributing to Beijing’s cultural tourism.</p>
+            `
+        },
+        terracotta: {
+            category: "ARCHAEOLOGICAL SITE",
+            title: "兵马俑 Terracotta Army",
+            author: "By Dr. Chen Wei • April 2025",
+            content: `
+                <div class="article-image mb-4" style="background-image: url('{% static 'images/Terracotta Army.png' %}'); height: 200px; background-size: cover; background-position: center;"></div>
+                <p>Discovered in 1974 near Xi’an, the Terracotta Army was crafted around 210 BCE to guard Emperor Qin Shi Huang’s tomb. Over 8,000 life-sized warriors, horses, and chariots feature unique facial expressions.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Highlights</h3>
+                <ul class="list-disc pl-5 space-y-1 mt-2">
+                    <li>View Pit 1, housing 6,000 figures in battle formation.</li>
+                    <li>Explore Pit 3’s command center with high-ranking officers.</li>
+                    <li>Admire bronze chariots in the museum, showcasing Qin craftsmanship.</li>
+                    <li>Visit nearby Huaqing Hot Springs for historical context.</li>
+                </ul>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Visitor Tips</h3>
+                <p>Visit in spring or autumn for mild weather. Hire a guide for detailed history. Combine with a Xi’an city tour, including the Muslim Quarter.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Impact</h3>
+                <p>A UNESCO site since 1987, it attracts 8 million visitors annually, highlighting Qin Dynasty artistry and boosting Shaanxi’s tourism economy.</p>
+            `
+        },
+        guilin: {
+            category: "NATURAL LANDSCAPE",
+            title: "桂林 Guilin",
+            author: "By Dr. Chen Wei • April 2025",
+            content: `
+                <div class="article-image mb-4" style="background-image: url('{% static 'images/Guilin.png' %}'); height: 200px; background-size: cover; background-position: center;"></div>
+                <p>Guilin’s karst landscape in Guangxi, with limestone peaks, rivers, and caves, has inspired Chinese art since the Tang Dynasty. Its scenery is immortalized on the 20-yuan banknote.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Highlights</h3>
+                <ul class="list-disc pl-5 space-y-1 mt-2">
+                    <li>Cruise the Li River from Guilin to Yangshuo for iconic vistas.</li>
+                    <li>Hike Longji Rice Terraces to see Zhuang minority villages.</li>
+                    <li>Explore Reed Flute Cave’s illuminated stalactites.</li>
+                    <li>Bike through rural Yangshuo for pastoral charm.</li>
+                </ul>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Visitor Tips</h3>
+                <p>Visit in April–October for lush scenery, but avoid peak holidays. Bring rain gear for sudden showers. Book cruises early for better seats.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Impact</h3>
+                <p>Guilin welcomed 123 million tourists in 2022, supporting Zhuang culture preservation and contributing $20 billion to the local economy.</p>
+            `
+        },
+        jiuzhaigou: {
+            category: "NATURAL LANDSCAPE",
+            title: "九寨沟 Jiuzhaigou Valley",
+            author: "By Dr. Chen Wei • April 2025",
+            content: `
+                <div class="article-image mb-4" style="background-image: url('https://media.gettyimages.com/id/1133743891/photo/jiuzhaigou-valley-lakes.jpg?s=612x612&w=0&k=20&c=6bXq9y9gW4cU8mV8qZ8lX9z0k7mX7yX8zX9q9y9z0k='); height: 200px; background-size: cover; background-position: center;"></div>
+                <p>Jiuzhaigou Valley in Sichuan, a UNESCO site, is named for its nine Tibetan villages. Its 114 lakes, waterfalls, and forests form a pristine ecosystem at 2,000–4,500 meters altitude.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Highlights</h3>
+                <ul class="list-disc pl-5 space-y-1 mt-2">
+                    <li>Visit Five-Color Pond for crystal-clear, vibrant waters.</li>
+                    <li>Photograph Nuorilang Waterfall, the park’s widest cascade.</li>
+                    <li>Hike to Mirror Lake for serene reflections.</li>
+                    <li>Explore Tibetan culture at Zharu Temple.</li>
+                </ul>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Visitor Tips</h3>
+                <p>Visit in autumn for vivid colors. Book tickets in advance due to daily visitor caps. Wear layers for variable weather and respect conservation rules.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Impact</h3>
+                <p>Jiuzhaigou attracts 7 million visitors yearly, funding conservation and supporting Tibetan communities, despite a 2017 earthquake recovery.</p>
+            `
+        },
+        yangtze: {
+            category: "NATURAL LANDSCAPE",
+            title: "长江 Yangtze River",
+            author: "By Dr. Chen Wei • April 2025",
+            content: `
+                <div class="article-image mb-4" style="background-image: url('https://media.gettyimages.com/id/1133743893/photo/yangtze-river-three-gorges.jpg?s=612x612&w=0&k=20&c=7bXq9y9gW4cU8mV8qZ8lX9z0k7mX7yX8zX9q9y9z0k='); height: 200px; background-size: cover; background-position: center;"></div>
+                <p>The Yangtze, Asia’s longest river at 6,300 km, flows from Tibet to Shanghai. Its Three Gorges—Qutang, Wu, and Xiling—are famed for dramatic cliffs and historical sites.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Highlights</h3>
+                <ul class="list-disc pl-5 space-y-1 mt-2">
+                    <li>Cruise Qutang Gorge for steep, narrow cliffs.</li>
+                    <li>Visit Fengdu Ghost City for ancient afterlife lore.</li>
+                    <li>Explore the Three Gorges Dam, the world’s largest hydroelectric project.</li>
+                    <li>Stop at Shibaozhai Temple, a 12-story wooden pagoda.</li>
+                </ul>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Visitor Tips</h3>
+                <p>Book 4–7 day cruises for a full experience. Spring and autumn offer mild weather. Bring binoculars for spotting wildlife and ancient cliff carvings.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Impact</h3>
+                <p>Yangtze cruises draw 2 million tourists annually, supporting riverside communities and showcasing China’s blend of nature and engineering.</p>
+            `
+        },
+        zhangjiajie: {
+            category: "NATURAL LANDSCAPE",
+            title: "张家界 Zhangjiajie",
+            author: "By Dr. Chen Wei • April 2025",
+            content: `
+                <div class="article-image mb-4" style="background-image: url('https://media.gettyimages.com/id/1133743895/photo/zhangjiajie-national-park.jpg?s=612x612&w=0&k=20&c=8bXq9y9gW4cU8mV8qZ8lX9z0k7mX7yX8zX9q9y9z0k='); height: 200px; background-size: cover; background-position: center;"></div>
+                <p>Zhangjiajie National Forest Park in Hunan, a UNESCO site, features 3,000 quartzite-sandstone pillars, some 200 meters tall, inspiring Avatar’s Hallelujah Mountains.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Highlights</h3>
+                <ul class="list-disc pl-5 space-y-1 mt-2">
+                    <li>Ride the 7.5-km Tianmen Mountain cable car, the world’s longest.</li>
+                    <li>Walk the glass-bottomed Grand Canyon Bridge for thrills.</li>
+                    <li>Hike Yuanjiajie for Avatar-like scenery.</li>
+                    <li>Visit Tianmen Cave, a sacred natural arch.</li>
+                </ul>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Visitor Tips</h3>
+                <p>Visit in spring or autumn to avoid fog. Allow 2–3 days to explore. Wear comfortable shoes for steep trails and book cable car tickets early.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Impact</h3>
+                <p>Zhangjiajie welcomed 20 million visitors in 2022, boosting Hunan’s economy and promoting eco-tourism initiatives.</p>
+            `
+        },
+        chengdu: {
+            category: "CULTURAL CITY",
+            title: "成都 Chengdu",
+            author: "By Dr. Chen Wei • April 2025",
+            content: `
+                <div class="article-image mb-4" style="background-image: url('https://media.gettyimages.com/id/1133743897/photo/chengdu-panda-base.jpg?s=612x612&w=0&k=20&c=9bXq9y9gW4cU8mV8qZ8lX9z0k7mX7yX8zX9q9y9z0k='); height: 200px; background-size: cover; background-position: center;"></div>
+                <p>Chengdu, Sichuan’s capital, is a 3,000-year-old city known for its panda conservation, spicy Sichuan cuisine, and relaxed teahouse culture, blending ancient and modern vibes.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Highlights</h3>
+                <ul class="list-disc pl-5 space-y-1 mt-2">
+                    <li>Visit the Chengdu Research Base of Giant Panda Breeding for conservation insights.</li>
+                    <li>Explore Jinli Street for Sichuan snacks and crafts.</li>
+                    <li>See the 71-meter Leshan Giant Buddha, a 1-hour drive away.</li>
+                    <li>Relax at People’s Park teahouses.</li>
+                </ul>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Visitor Tips</h3>
+                <p>Visit in spring for panda cubs. Try hotpot but ask for mild flavors if sensitive to spice. Use Chengdu’s metro for easy navigation.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Impact</h3>
+                <p>Chengdu drew 280 million tourists in 2022, promoting Sichuan’s cultural heritage and panda conservation globally.</p>
+            `
+        },
+        shanghai: {
+            category: "MODERN CITY",
+            title: "上海 Shanghai",
+            author: "By Dr. Chen Wei • April 2025",
+            content: `
+                <div class="article-image mb-4" style="background-image: url('https://media.gettyimages.com/id/1133743899/photo/shanghai-skyline-bund.jpg?s=612x612&w=0&k=20&c=0bXq9y9gW4cU8mV8qZ8lX9z0k7mX7yX8zX9q9y9z0k='); height: 200px; background-size: cover; background-position: center;"></div>
+                <p>Shanghai, China’s largest city, blends colonial-era charm along the Bund with futuristic skyscrapers like the 632-meter Shanghai Tower. It’s a global hub for finance and culture.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Highlights</h3>
+                <ul class="list-disc pl-5 space-y-1 mt-2">
+                    <li>Stroll the Bund for views of Pudong’s skyline.</li>
+                    <li>Visit Yu Garden for Ming Dynasty architecture.</li>
+                    <li>Explore Shanghai Disneyland for family fun.</li>
+                    <li>Shop on Nanjing Road, China’s premier retail street.</li>
+                </ul>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Visitor Tips</h3>
+                <p>Visit in spring or autumn for pleasant weather. Use the metro to avoid traffic. Try xiaolongbao at Din Tai Fung for authentic cuisine.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Impact</h3>
+                <p>Shanghai hosted 330 million tourists in 2022, with 31% foreign visitors, contributing $70 billion to the economy and ranking 37th globally in tourism appeal.</p>
+            `
+        },
+        lijiang: {
+            category: "CULTURAL CITY",
+            title: "丽江 Lijiang",
+            author: "By Dr. Chen Wei • April 2025",
+            content: `
+                <div class="article-image mb-4" style="background-image: url('https://media.gettyimages.com/id/1133743901/photo/lijiang-old-town-yunnan.jpg?s=612x612&w=0&k=20&c=1bXq9y9gW4cU8mV8qZ8lX9z0k7mX7yX8zX9q9y9z0k='); height: 200px; background-size: cover; background-position: center;"></div>
+                <p>Lijiang’s Old Town, a UNESCO site in Yunnan, features 800-year-old Naxi architecture, canals, and bridges, set against the 5,596-meter Jade Dragon Snow Mountain.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Highlights</h3>
+                <ul class="list-disc pl-5 space-y-1 mt-2">
+                    <li>Explore Dayan Old Town’s cobblestone streets and markets.</li>
+                    <li>Visit Black Dragon Pool for mountain reflections.</li>
+                    <li>Attend a Naxi orchestral performance, a 1,000-year tradition.</li>
+                    <li>Hike Tiger Leaping Gorge, one of Asia’s deepest canyons.</li>
+                </ul>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Visitor Tips</h3>
+                <p>Visit in spring or autumn for mild weather. Wear comfortable shoes for uneven streets. Respect Naxi customs, like avoiding sacred sites without permission.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Impact</h3>
+                <p>Lijiang welcomed 64 million tourists in 2022, preserving Naxi heritage and boosting Yunnan’s cultural tourism economy.</p>
+            `
+        },
+        huangshan: {
+            category: "NATURAL LANDSCAPE",
+            title: "黄山 Huangshan",
+            author: "By Dr. Chen Wei • April 2025",
+            content: `
+                <div class="article-image mb-4" style="background-image: url('https://media.gettyimages.com/id/1133743903/photo/huangshan-mountain-anhui.jpg?s=612x612&w=0&k=20&c=2bXq9y9gW4cU8mV8qZ8lX9z0k7mX7yX8zX9q9y9z0k='); height: 200px; background-size: cover; background-position: center;"></div>
+                <p>Huangshan in Anhui, a UNESCO site, is famed for its 72 granite peaks, twisted pines, and “sea of clouds,” inspiring Chinese ink paintings since the Tang Dynasty.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Highlights</h3>
+                <ul class="list-disc pl-5 space-y-1 mt-2">
+                    <li>Hike to Bright Summit for 360-degree views.</li>
+                    <li>Photograph Flying Over Rock at sunrise, a poetic landmark.</li>
+                    <li>Explore Xidi and Hongcun, UNESCO-listed ancient villages nearby.</li>
+                    <li>Ride the Yungu Cable Car for easy access.</li>
+                </ul>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Visitor Tips</h3>
+                <p>Visit in April–May or September–October for clear skies. Book hotels on the mountain early. Bring warm clothing for high altitudes.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Impact</h3>
+                <p>Huangshan attracted 4 million visitors in 2022, inspiring artists and supporting Anhui’s eco-tourism initiatives.</p>
+            `
+        },
+        mogao: {
+            category: "HISTORICAL SITE",
+            title: "莫高窟 Mogao Caves",
+            author: "By Dr. Chen Wei • April 2025",
+            content: `
+                <div class="article-image mb-4" style="background-image: url('https://media.gettyimages.com/id/1133743905/photo/mogao-caves-dunhuang.jpg?s=612x612&w=0&k=20&c=3bXq9y9gW4cU8mV8qZ8lX9z0k7mX7yX8zX9q9y9z0k='); height: 200px; background-size: cover; background-position: center;"></div>
+                <p>The Mogao Caves in Dunhuang, Gansu, a UNESCO site, contain 492 caves with Buddhist art spanning the 4th to 14th centuries, including 100,000 murals and 60,000 statues.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Highlights</h3>
+                <ul class="list-disc pl-5 space-y-1 mt-2">
+                    <li>View Cave 96’s 34.5-meter Buddha statue.</li>
+                    <li>Explore the Library Cave, housing 50,000 ancient manuscripts.</li>
+                    <li>Visit Crescent Lake, a desert oasis nearby.</li>
+                    <li>Admire Tang Dynasty murals in Cave 148.</li>
+                </ul>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Visitor Tips</h3>
+                <p>Book tickets months in advance due to limited daily entries. Visit in spring or autumn for mild weather. Photography is restricted to protect artifacts.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Impact</h3>
+                <p>The caves draw 2 million visitors annually, preserving Silk Road heritage and supporting global Buddhist scholarship.</p>
+            `
+        },
+        cover: {
+            category: "COVER STORY",
+            title: "China’s Timeless Wonders: A Journey Through History and Nature",
+            author: "By Dr. Chen Wei • Photography by Liu Yang",
+            content: `
+                <div class="article-image mb-4" style="background-image: url('https://images.unsplash.com/photo-1514195038038-4c8a503d0480?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80'); height: 200px; background-size: cover; background-position: center;"></div>
+                <p>China’s tourism landscape blends ancient wonders like the Great Wall with modern marvels like Shanghai’s skyline, offering diverse experiences.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Historical Marvels</h3>
+                <p>Sites like the Forbidden City and Terracotta Army showcase China’s imperial and archaeological legacy.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Natural Beauty</h3>
+                <p>From Guilin’s karst hills to Jiuzhaigou’s lakes, China’s landscapes inspire awe and adventure.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Cultural Hubs</h3>
+                <p>Cities like Chengdu and Lijiang offer vibrant traditions and modern comforts, drawing millions.</p>
+                <p class="mt-4">With 56 UNESCO sites, China’s tourism industry thrives, contributing $814.1 billion to GDP in 2022.</p>
+            `
+        }
+    };
+
+    // Modal functions
+    function openModal(destination) {
+        const modal = document.getElementById('modal');
+        const content = modalContents[destination];
+        
+        document.getElementById('modal-category').textContent = content.category;
+        document.getElementById('modal-title').textContent = content.title;
+        document.getElementById('modal-author').textContent = content.author;
+        document.getElementById('modal-content').innerHTML = content.content;
+        
+        modal.classList.remove('opacity-0', 'invisible', 'translate-y-10');
+        modal.classList.add('opacity-100', 'visible', 'translate-y-0');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+        const modal = document.getElementById('modal');
+        modal.classList.remove('opacity-100', 'visible', 'translate-y-0');
+        modal.classList.add('opacity-0', 'invisible', 'translate-y-10');
+        document.body.style.overflow = 'auto';
+    }
+
+    // Close modal when clicking outside content
+    document.getElementById('modal').addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeModal();
+        }
+    });
+
+    // Back to Top Button
+    window.addEventListener('scroll', function() {
+        const backToTop = document.getElementById('backToTop');
+        if (window.scrollY > 300) {
+            backToTop.classList.remove('opacity-0', 'invisible');
+            backToTop.classList.add('opacity-100', 'visible');
+        } else {
+            backToTop.classList.remove('opacity-100', 'visible');
+            backToTop.classList.add('opacity-0', 'invisible');
+        }
+    });
+
+    document.getElementById('backToTop').addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+</script>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    body {
+        font-family: 'Playfair Display', serif;
+        background-color: #f9f5f0;
+    }
+    .magazine-article {
+        background: white;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        transition: all 0.3s ease;
+        overflow: hidden;
+    }
+    .magazine-article:hover {
+        transform: scale(1.02);
+        box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+    }
+    .chinese-font {
+        font-family: 'Noto Sans SC', sans-serif;
+    }
+    .author-line {
+        border-top: 1px solid #e5e5e5;
+        border-bottom: 1px solid #e5e5e5;
+    }
+    .article-image {
+        height: 200px;
+        background-size: cover;
+        background-position: center;
+    }
+    .cover-story {
+        background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+                    url('https://images.unsplash.com/photo-1514195038038-4c8a503d0480?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+        background-size: cover;
+        background-position: center;    
+    }
+    .modal {
+        transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fadeIn {
+        animation: fadeIn 1s ease forwards;
+    }
+</style>
+{% endblock %}

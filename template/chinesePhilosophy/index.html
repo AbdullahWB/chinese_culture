@@ -1,5 +1,428 @@
 {% extends 'partials/base.html' %}
+{% load static %}
 
 {% block content %}
-    <h1 class="text-[60px]">im from philo</h1>
-{% endblock %}                                                                                                            
+<div class="bg-stone-100 py-[100px] relative">
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="fixed bottom-8 right-8 bg-[#4E708D] text-white p-3 rounded-full shadow-lg hover:bg-[#3E5A73] transition-all duration-300 opacity-0 invisible">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <div class="container mx-auto px-4 max-w-7xl">
+        <!-- Magazine Header with Background Image -->
+        <div class="relative text-center mb-16 animate-fadeIn bg-cover bg-center rounded-lg py-38" style="background-image: url('{% static 'images/confucianism.png' %}'); background-size: cover; background-position: center;">
+            <div class="absolute inset-0 bg-[rgba(0,0,0,0.3)] bg-opacity-50 rounded-lg"></div>
+            <div class="relative z-1">
+                <h1 class="text-6xl font-bold mb-4 tracking-tight text-[#4E708D] drop-shadow-lg">CHINESE PHILOSOPHY</h1>
+                <div class="w-48 h-1 bg-gradient-to-r from-[#4E708D] to-amber-500 mx-auto mb-4"></div>
+                <p class="text-xl text-white italic drop-shadow-lg">Ancient Wisdom Shaping Modern Thought</p>
+            </div>
+        </div>
+
+        <!-- Sidebar for Quick Navigation -->
+        <div class="flex flex-col lg:flex-row gap-8">
+            <aside class="lg:w-1/4 hidden lg:block sticky top-20 h-fit bg-white rounded-lg shadow-md p-6">
+                <h3 class="text-lg font-bold mb-4 chinese-font text-[#4E708D]">Philosophical Traditions</h3>
+                <ul class="space-y-3">
+                    <li><a href="#confucianism" class="text-sm text-stone-600 hover:text-[#4E708D] transition-colors duration-300">Confucianism</a></li>
+                    <li><a href="#daoism" class="text-sm text-stone-600 hover:text-[#4E708D] transition-colors duration-300">Daoism</a></li>
+                    <li><a href="#legalism" class="text-sm text-stone-600 hover:text-[#4E708D] transition-colors duration-300">Legalism</a></li>
+                    <li><a href="#mohism" class="text-sm text-stone-600 hover:text-[#4E708D] transition-colors duration-300">Mohism</a></li>
+                    <li><a href="#hundred-schools" class="text-sm text-stone-600 hover:text-[#4E708D] transition-colors duration-300">Hundred Schools</a></li>
+                </ul>
+            </aside>
+
+            <!-- Magazine Grid Layout -->
+            <div class="lg:w-3/4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Confucianism -->
+                <div id="confucianism" class="magazine-article relative overflow-hidden rounded-lg">
+                    <div class="article-image h-40 relative" style="background-image: url('{% static 'images/confucianism.png' %}'); background-size: cover; background-position: center;">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs font-semibold text-stone-400 tracking-wider">PHILOSOPHY</span>
+                        <h2 class="text-2xl font-bold mt-2 chinese-font text-[#4E708D]">儒家 Confucianism</h2>
+                        <div class="author-line py-2 my-3">
+                            <span class="text-xs font-medium text-stone-600">By Dr. Li Mei • April 2025</span>
+                        </div>
+                        <p class="text-stone-600 mb-4 text-sm leading-relaxed">
+                            Founded by Confucius, this philosophy emphasizes morality, family loyalty, and social harmony, deeply influencing Chinese governance and culture.
+                        </p>
+                        <button onclick="openModal('confucianism')" class="w-full bg-[#4E708D] hover:bg-[#3E5A73] text-white py-2 px-4 text-xs font-semibold tracking-wider transition duration-300 rounded">
+                            READ MORE
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Daoism -->
+                <div id="daoism" class="magazine-article relative overflow-hidden rounded-lg">
+                    <div class="article-image h-40 relative" style="background-image: url('{% static 'images/daoism.png' %}'); background-size: cover; background-position: center;">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs font-semibold text-stone-400 tracking-wider">PHILOSOPHY</span>
+                        <h2 class="text-2xl font-bold mt-2 chinese-font text-[#4E708D]">道家 Daoism</h2>
+                        <div class="author-line py-2 my-3">
+                            <span class="text-xs font-medium text-stone-600">By Dr. Li Mei • April 2025</span>
+                        </div>
+                        <p class="text-stone-600 mb-4 text-sm leading-relaxed">
+                            Attributed to Laozi, Daoism focuses on living in harmony with the Dao, advocating simplicity, spontaneity, and balance with nature.
+                        </p>
+                        <button onclick="openModal('daoism')" class="w-full bg-[#4E708D] hover:bg-[#3E5A73] text-white py-2 px-4 text-xs font-semibold tracking-wider transition duration-300 rounded">
+                            READ MORE
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Legalism -->
+                <div id="legalism" class="magazine-article relative overflow-hidden rounded-lg">
+                    <div class="article-image h-40 relative" style="background-image: url('{% static 'images/legalism.png' %}'); background-size: cover; background-position: center;">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs font-semibold text-stone-400 tracking-wider">PHILOSOPHY</span>
+                        <h2 class="text-2xl font-bold mt-2 chinese-font text-[#4E708D]">法家 Legalism</h2>
+                        <div class="author-line py-2 my-3">
+                            <span class="text-xs font-medium text-stone-600">By Dr. Li Mei • April 2025</span>
+                        </div>
+                        <p class="text-stone-600 mb-4 text-sm leading-relaxed">
+                            Legalism, led by thinkers like Han Feizi, stresses strict laws, centralized control, and harsh punishments to maintain order.
+                        </p>
+                        <button onclick="openModal('legalism')" class="w-full bg-[#4E708D] hover:bg-[#3E5A73] text-white py-2 px-4 text-xs font-semibold tracking-wider transition duration-300 rounded">
+                            READ MORE
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Mohism -->
+                <div id="mohism" class="magazine-article relative overflow-hidden rounded-lg">
+                    <div class="article-image h-40 relative" style="background-image: url('{% static 'images/mohism.png' %}'); background-size: cover; background-position: center;">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs font-semibold text-stone-400 tracking-wider">PHILOSOPHY</span>
+                        <h2 class="text-2xl font-bold mt-2 chinese-font text-[#4E708D]">墨家 Mohism</h2>
+                        <div class="author-line py-2 my-3">
+                            <span class="text-xs font-medium text-stone-600">By Dr. Li Mei • April 2025</span>
+                        </div>
+                        <p class="text-stone-600 mb-4 text-sm leading-relaxed">
+                            Founded by Mozi, Mohism promotes universal love, meritocracy, and anti-war principles, challenging Confucian hierarchies.
+                        </p>
+                        <button onclick="openModal('mohism')" class="w-full bg-[#4E708D] hover:bg-[#3E5A73] text-white py-2 px-4 text-xs font-semibold tracking-wider transition duration-300 rounded">
+                            READ MORE
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Hundred Schools of Thought -->
+                <div id="hundred-schools" class="magazine-article relative overflow-hidden rounded-lg">
+                    <div class="article-image h-40 relative" style="background-image: url('{% static 'images/hundred_schools.png' %}'); background-size: cover; background-position: center;">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    </div>
+                    <div class="p-6">
+                        <span class="text-xs font-semibold text-stone-400 tracking-wider">PHILOSOPHY</span>
+                        <h2 class="text-2xl font-bold mt-2 chinese-font text-[#4E708D]">百家争鸣 Hundred Schools</h2>
+                        <div class="author-line py-2 my-3">
+                            <span class="text-xs font-medium text-stone-600">By Dr. Li Mei • April 2025</span>
+                        </div>
+                        <p class="text-stone-600 mb-4 text-sm leading-relaxed">
+                            A golden age of thought during the Warring States period, where diverse schools like Confucianism and Daoism flourished.
+                        </p>
+                        <button onclick="openModal('hundred-schools')" class="w-full bg-[#4E708D] hover:bg-[#3E5A73] text-white py-2 px-4 text-xs font-semibold tracking-wider transition duration-300 rounded">
+                            READ MORE
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cover Story -->
+        <div class="magazine-article mt-12 cover-story text-white rounded-lg" style="background-image: url('https://images.unsplash.com/photo-1519817650390-64a93db51149?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'); background-size: cover; background-position: center;">
+            <div class="p-8 bg-[rgba(0,0,0,0.51)] bg-opacity-40">
+                <div class="mb-6 max-w-2xl">
+                    <span class="text-xs font-semibold tracking-wider text-white text-opacity-80">COVER STORY</span>
+                    <h2 class="text-3xl font-bold mt-2 chinese-font text-[#f2eedf]">The Legacy of Chinese Philosophy</h2>
+                    <div class="author-line py-3 my-4 border-white border-opacity-20">
+                        <span class="text-sm font-medium">By Dr. Li Mei • Photography by Wang Hao</span>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div>
+                        <p class="mb-4 text-white text-opacity-90 leading-relaxed">
+                            Chinese philosophy, from Confucianism to Daoism, has shaped ethics, governance, and culture for millennia, influencing global thought.
+                        </p>
+                        <button onclick="openModal('cover')" class="mt-4 bg-[#4E708D] hover:bg-[#3E5A73] text-white py-2 px-6 text-xs font-semibold tracking-wider transition duration-300 rounded">
+                            READ FULL STORY
+                        </button>
+                    </div>
+                    <div class="flex items-center justify-center">
+                        <div class="text-center p-6 bg-[#4E708D] bg-opacity-10 rounded-lg">
+                            <i class="fas fa-quote-left text-3xl text-white text-opacity-30 mb-4"></i>
+                            <p class="italic text-white text-opacity-90 mb-4">
+                                "Chinese philosophy offers timeless wisdom, balancing individual harmony with societal order."
+                            </p>
+                            <p class="text-sm text-white text-opacity-70">- Dr. Zhang Wei, Cultural Historian</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-stone-900 text-white mt-20 py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-lg font-bold mb-4 chinese-font">文化遗产</h3>
+                    <p class="text-sm text-stone-400">
+                        Exploring the profound ideas of Chinese philosophy through insightful stories.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold mb-3 tracking-wider">ISSUES</h3>
+                    <ul class="space-y-2 text-sm text-stone-400">
+                        < peri>Spring 2024</li>
+                        <li>Summer 2024</li>
+                        <li>Autumn 2024</li>
+                        <li>Winter 2024</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold mb-3 tracking-wider">FOLLOW</h3>
+                    <div class="flex space-x-4 text-stone-400">
+                        <i class="fab fa-weixin hover:text-green-500 cursor-pointer"></i>
+                        <i class="fab fa-weibo hover:text-red-500 cursor-pointer"></i>
+                        <i class="fab fa-instagram hover:text-pink-500 cursor-pointer"></i>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold mb-3 tracking-wider">SUBSCRIBE</h3>
+                    <button class="bg-[#4E708D] hover:bg-[#3E5A73] text-white px-4 py-2 text-xs font-semibold tracking-wider transition duration-300">
+                        JOIN NOW
+                    </button>
+                </div>
+            </div>
+            <div class="border-t border-stone-700 mt-8 pt-8 text-center text-sm text-stone-500">
+                <p>© 2025 Heritage Chronicles Magazine. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal -->
+    <div id="modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[rgba(0,0,0,0.47)] bg-opacity-50 modal opacity-0 translate-y-10 invisible transition-all duration-300">
+        <div class="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div class="p-6">
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <span id="modal-category" class="text-xs font-semibold text-stone-500 tracking-wider"></span>
+                        <h2 id="modal-title" class="text-2xl font-bold mt-1 chinese-font text-[#4E708D]"></h2>
+                        <div class="author-line py-2 my-3">
+                            <span id="modal-author" class="text-xs font-medium"></span>
+                        </div>
+                    </div>
+                    <button onclick="closeModal()" class="text-stone-400 hover:text-stone-600 transition-colors duration-300">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                </div>
+                
+                <div id="modal-content" class="text-stone-700 text-sm leading-relaxed space-y-4">
+                    <!-- Content will be inserted here by JavaScript -->
+                </div>
+                
+                <button onclick="closeModal()" class="mt-6 w-full bg-[#4E708D] hover:bg-[#3E5A73] text-white py-2 px-4 text-xs font-semibold tracking-wider transition duration-300 rounded">
+                    CLOSE
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Modal content for each philosophy
+    const modalContents = {
+        confucianism: {
+            category: "PHILOSOPHY",
+            title: "儒家 Confucianism",
+            author: "By Dr. Li Mei • April 2025",
+            content: `
+                <div class="article-image mb-4" style="background-image: url('{% static 'images/confucianism.png' %}'); height: 200px; background-size: cover; background-position: center;"></div>
+                <p>Confucianism, founded by Confucius (551–479 BCE), emerged during the Spring and Autumn period. Confucius, born in the state of Lu, sought to restore social order through ethical principles.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Core Ideas</h3>
+                <p>Confucianism emphasizes <em>ren</em> (benevolence), <em>li</em> (ritual propriety), and <em>xiao</em> (filial piety). It advocates for hierarchical relationships—ruler to subject, parent to child—rooted in mutual respect and duty.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Influence</h3>
+                <p>Adopted as the state ideology during the Han Dynasty (206 BCE–220 CE), Confucianism shaped Chinese education, governance, and family structures. The imperial examination system, based on Confucian texts, lasted until 1905.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Legacy</h3>
+                <p>Confucianism remains a cornerstone of East Asian culture, influencing ethics, education, and social norms in China, Korea, and Japan. Its focus on harmony continues to resonate in modern governance.</p>
+            `
+        },
+        daoism: {
+            category: "PHILOSOPHY",
+            title: "道家 Daoism",
+            author: "By Dr. Li Mei • April 2025",
+            content: `
+                <div class="article-image mb-4" style="background-image: url('{% static 'images/daoism.png' %}'); height: 200px; background-size: cover; background-position: center;"></div>
+                <p>Daoism, attributed to Laozi (6th century BCE), is rooted in the <em>Daodejing</em>, a text emphasizing the Dao ("The Way") as the source of all things. Laozi’s origins are debated, with some viewing him as a mythical figure.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Core Ideas</h3>
+                <p>Daoism advocates living in harmony with the Dao through <em>wu wei</em> (non-action), simplicity, and naturalness. It contrasts with Confucianism’s structured hierarchies, favoring spontaneity and balance.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Influence</h3>
+                <p>Daoism influenced Chinese art, medicine, and governance. Practices like Tai Chi and Qigong stem from Daoist principles, as does traditional Chinese medicine’s focus on yin-yang balance.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Legacy</h3>
+                <p>Daoism’s emphasis on nature and balance resonates in modern environmental movements. Its spiritual branch, with alchemy and immortality quests, also shaped Chinese religious traditions.</p>
+            `
+        },
+        legalism: {
+            category: "PHILOSOPHY",
+            title: "法家 Legalism",
+            author: "By Dr. Li Mei • April 2025",
+            content: `
+                <div class="article-image mb-4" style="background-image: url('{% static 'images/legalism.png' %}'); height: 200px; background-size: cover; background-position: center;"></div>
+                <p>Legalism, developed during the Warring States period (475–221 BCE), was championed by thinkers like Han Feizi. It arose in a time of chaos, aiming to create order through strict governance.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Core Ideas</h3>
+                <p>Legalism assumes humans are inherently selfish, requiring strict laws (<em>fa</em>), centralized power (<em>shi</em>), and political strategy (<em>shu</em>). Rewards and harsh punishments enforce compliance.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Influence</h3>
+                <p>Legalism underpinned the Qin Dynasty’s unification of China in 221 BCE under Qin Shi Huang. Its policies, like standardized laws and weights, enabled rapid centralization but led to resentment.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Legacy</h3>
+                <p>Though criticized for its harshness, Legalism influenced Chinese bureaucracy. Modern authoritarian governance in China echoes Legalist principles, balancing order with economic growth.</p>
+            `
+        },
+        mohism: {
+            category: "PHILOSOPHY",
+            title: "墨家 Mohism",
+            author: "By Dr. Li Mei • April 2025",
+            content: `
+                <div class="article-image mb-4" style="background-image: url('{% static 'images/mohism.png' %}'); height: 200px; background-size: cover; background-position: center;"></div>
+                <p>Mohism, founded by Mozi (c. 470–391 BCE), emerged as a rival to Confucianism during the Warring States period. Mozi, a former Confucian student, criticized its focus on rituals.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Core Ideas</h3>
+                <p>Mohism promotes <em>jian ai</em> (universal love), advocating equal care for all, regardless of social ties. It also emphasizes meritocracy, anti-war stances, and practical problem-solving.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Influence</h3>
+                <p>Mohists were skilled in defensive warfare, often aiding small states against invaders. Their ideas on logic and science were advanced for the time, influencing early Chinese thought.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Legacy</h3>
+                <p>Mohism declined after the Han Dynasty as Confucianism dominated, but its egalitarian ideas resurface in modern Chinese discussions on social justice and universal ethics.</p>
+            `
+        },
+        'hundred-schools': {
+            category: "PHILOSOPHY",
+            title: "百家争鸣 Hundred Schools of Thought",
+            author: "By Dr. Li Mei • April 2025",
+            content: `
+                <div class="article-image mb-4" style="background-image: url('{% static 'images/hundred_schools.png' %}'); height: 200px; background-size: cover; background-position: center;"></div>
+                <p>The Hundred Schools of Thought refers to a period (c. 770–221 BCE) during the Spring and Autumn and Warring States periods, where intellectual diversity flourished amidst political turmoil.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Key Schools</h3>
+                <p>Besides Confucianism, Daoism, Legalism, and Mohism, other schools included the Logicians, who focused on language and debate, and the School of Yin-Yang, which explored cosmology.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Influence</h3>
+                <p>This era produced foundational texts like the <em>Analects</em>, <em>Daodejing</em>, and <em>Han Feizi</em>. The intellectual debates shaped Chinese culture, politics, and philosophy.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Legacy</h3>
+                <p>The Qin Dynasty’s book burning in 213 BCE suppressed many ideas, but the surviving schools, especially Confucianism, became pillars of Chinese thought, influencing global philosophy.</p>
+            `
+        },
+        cover: {
+            category: "COVER STORY",
+            title: "The Legacy of Chinese Philosophy",
+            author: "By Dr. Li Mei • Photography by Wang Hao",
+            content: `
+                <div class="article-image mb-4" style="background-image: url('https://images.unsplash.com/photo-1519817650390-64a93db51149?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'); height: 200px; background-size: cover; background-position: center;"></div>
+                <p>Chinese philosophy, spanning over 2,500 years, has profoundly shaped global thought, offering frameworks for ethics, governance, and personal harmony.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Ethical Foundations</h3>
+                <p>Confucianism’s focus on morality and Mohism’s universal love provided competing visions for societal order, influencing modern ethical debates.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Governance Models</h3>
+                <p>Legalism’s strict control contrasted with Daoism’s non-interference, shaping Chinese political thought from the Qin Dynasty to today’s governance.</p>
+                <h3 class="font-bold mt-4 text-[#4E708D]">Global Impact</h3>
+                <p>Chinese philosophy’s emphasis on balance and harmony inspires modern environmental and leadership theories, bridging ancient wisdom with contemporary challenges.</p>
+            `
+        }
+    };
+
+    // Modal functions
+    function openModal(section) {
+        const modal = document.getElementById('modal');
+        const content = modalContents[section];
+        
+        document.getElementById('modal-category').textContent = content.category;
+        document.getElementById('modal-title').textContent = content.title;
+        document.getElementById('modal-author').textContent = content.author;
+        document.getElementById('modal-content').innerHTML = content.content;
+        
+        modal.classList.remove('opacity-0', 'invisible', 'translate-y-10');
+        modal.classList.add('opacity-100', 'visible', 'translate-y-0');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+        const modal = document.getElementById('modal');
+        modal.classList.remove('opacity-100', 'visible', 'translate-y-0');
+        modal.classList.add('opacity-0', 'invisible', 'translate-y-10');
+        document.body.style.overflow = 'auto';
+    }
+
+    // Close modal when clicking outside content
+    document.getElementById('modal').addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeModal();
+        }
+    });
+
+    // Back to Top Button
+    window.addEventListener('scroll', function() {
+        const backToTop = document.getElementById('backToTop');
+        if (window.scrollY > 300) {
+            backToTop.classList.remove('opacity-0', 'invisible');
+            backToTop.classList.add('opacity-100', 'visible');
+        } else {
+            backToTop.classList.remove('opacity-100', 'visible');
+            backToTop.classList.add('opacity-0', 'invisible');
+        }
+    });
+
+    document.getElementById('backToTop').addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+</script>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    body {
+        font-family: 'Playfair Display', serif;
+        background-color: #f9f5f0;
+    }
+    .magazine-article {
+        background: white;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        transition: all 0.3s ease;
+        overflow: hidden;
+    }
+    .magazine-article:hover {
+        transform: scale(1.02);
+        box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+    }
+    .chinese-font {
+        font-family: 'Noto Sans SC', sans-serif;
+    }
+    .author-line {
+        border-top: 1px solid #e5e5e5;
+        border-bottom: 1px solid #e5e5e5;
+    }
+    .article-image {
+        height: 200px;
+        background-size: cover;
+        background-position: center;
+    }
+    .cover-story {
+        background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+                    url('https://images.unsplash.com/photo-1519817650390-64a93db51149?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+        background-size: cover;
+        background-position: center;    
+    }
+    .modal {
+        transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fadeIn {
+        animation: fadeIn 1s ease forwards;
+    }
+</style>
+{% endblock %}
