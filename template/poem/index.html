@@ -1,5 +1,1216 @@
 {% extends 'partials/base.html' %}
-
+{% load static %}
 {% block content %}
-    <h1>im from poem</h1>
-{% endblock %}                                                                                                            
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chinese Poetry Archive</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Playfair Display', serif;
+            background-image: url('images/background.jpg');
+            background-size: cover;
+        }
+        .poetry-card {
+            background: white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        .poetry-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.12);
+        }
+        .chinese-font {
+            font-family: 'Noto Sans SC', sans-serif;
+        }
+        .author-line {
+            border-top: 1px solid #e5e5e5;
+            border-bottom: 1px solid #e5e5e5;
+        }
+        .card-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+        .cover-story {
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
+                        url('https://images.unsplash.com/photo-1532012197267-da84d127e765?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        .modal {
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .poem-item {
+            position: relative;
+            cursor: pointer;
+        }
+        .poem-item:hover::after {
+            content: attr(data-poem);
+            position: absolute;
+            left: 0;
+            top: 100%;
+            background: #BFDBFE;
+            color: #1E3A8A;
+            padding: 4px 8px;
+            border-radius: 4px;
+            z-index: 10;
+            white-space: nowrap;
+            font-size: 0.75rem;
+        }
+        .carousel-container {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+        .carousel-slide {
+            display: none;
+        }
+        .carousel-slide.active {
+            display: block;
+        }
+        .carousel-control {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            z-index: 10;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .carousel-control:hover {
+            background: rgba(0,0,0,0.7);
+        }
+        #prev-btn {
+            left: 10px;
+        }
+        #next-btn {
+            right: 10px;
+        }
+
+        /* New colorful headline styles */
+        .poet-name {
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            background-size: 100%;
+            background-image: linear-gradient(90deg, #3b82f6, #8b5cf6);
+            display: inline-block;
+        }
+        
+
+        .poet-name.li-bai {
+            background-image: linear-gradient(90deg, #3b82f6, #1d4ed8);
+        }
+        .poet-name.du-fu {
+            background-image: linear-gradient(90deg, #10b981, #047857);
+        }
+        .poet-name.su-shi {
+            background-image: linear-gradient(90deg, #f59e0b, #b45309);
+        }
+        .poet-name.wang-wei {
+            background-image: linear-gradient(90deg, #8b5cf6, #6d28d9);
+        }
+        .poet-name.li-qingzhao {
+            background-image: linear-gradient(90deg, #ec4899, #be185d);
+        }
+        .poet-name.bai-juyi {
+            background-image: linear-gradient(90deg, #ef4444, #b91c1c);
+        }
+        .poet-name.du-mu {
+            background-image: linear-gradient(90deg, #6366f1, #4338ca);
+        }
+        .poet-name.han-yu {
+            background-image: linear-gradient(90deg, #f43f5e, #be123c);
+        }
+        .poet-name.li-shangyin {
+            background-image: linear-gradient(90deg, #7c3aed, #5b21b6);
+        }
+        .poet-name.li-yu {
+            background-image: linear-gradient(90deg, #f59e0b, #d97706);
+        }
+        .poet-name.liu-zongyuan {
+            background-image: linear-gradient(90deg, #14b8a6, #0d9488);
+        }
+        .poet-name.mei-yaochen {
+            background-image: linear-gradient(90deg, #84cc16, #65a30d);
+        }
+        .poet-name.meng-haoran {
+            background-image: linear-gradient(90deg, #06b6d4, #0891b2);
+        }
+        .poet-name.ouyang-xiu {
+            background-image: linear-gradient(90deg, #f97316, #ea580c);
+        }
+        .poet-name.tao-qian {
+            background-image: linear-gradient(90deg, #10b981, #059669);
+        }
+    </style>
+    
+</head>
+<body class="">
+    <div class="container mx-auto px-4 max-w-6xl">
+        <!-- Header -->
+        <div class="text-center mb-16 pt-[100px]">
+            <h1 class="text-5xl font-bold mb-2 tracking-tight">POETRY CHRONICLES</h1>
+            <div class="w-40 h-1 bg-blue-700 mx-auto mb-4"></div>
+            <p class="text-lg text-stone-600 italic">A Celebration of Ancient Chinese Poets and Their Timeless Works</p>
+        </div>
+
+        <!-- Poetry Grid Layout -->
+         <div class="carousel-container">
+            <div id="carousel" class="carousel-slide active">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Li Bai -->
+            <div class="poetry-card">
+                <div class="card-image flex items-center justify-center" 
+                style="background-image: url('images/Li Bai.png');
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center;
+                height: 200px;
+                width: 100%;
+                background-color:rgb(240, 240, 240);">
+                </div>
+                <div class="p-6">
+                    <span class="text-xs font-semibold text-stone-500 tracking-wider">TANG DYNASTY</span>
+                    <h2 class="text-2xl font-bold mt-2 chinese-font"><span class="poet-name li-bai">李白 Li Bai</span></h2>
+                    <div class="author-line py-2 my-3">
+                        <span class="text-xs font-medium">701–762 • Immortal Poet</span>
+                    </div>
+                    <p class="text-stone-700 mb-4 text-sm leading-relaxed">
+                        Known as the "Immortal Poet," Li Bai's romantic and imaginative verses capture the essence of Tang Dynasty splendor...
+                    </p>
+                    <button onclick="openModal('li-bai')" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 text-xs font-semibold tracking-wider transition duration-200">
+                        READ MORE
+                    </button>
+                </div>
+            </div>
+
+            <!-- Du Fu -->
+            <div class="poetry-card">
+                <div class="card-image flex items-center justify-center" 
+                style="background-image: url('images/Dufu.jpg');
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center;
+                height: 200px;
+                width: 100%;
+                background-color: #f0f0f0;">
+                </div>
+                <div class="p-6">
+                    <span class="text-xs font-semibold text-stone-500 tracking-wider">TANG DYNASTY</span>
+                    <h2 class="text-2xl font-bold mt-2 chinese-font"><span class="poet-name du-fu">杜甫 Du Fu</span></h2>
+                    <div class="author-line py-2 my-3">
+                        <span class="text-xs font-medium">712–770 • Sage of Poetry</span>
+                    </div>
+                    <p class="text-stone-700 mb-4 text-sm leading-relaxed">
+                        The "Sage of Poetry," Du Fu's profound works reflect the social turmoil and human struggles of the Tang Dynasty...
+                    </p>
+                    <button onclick="openModal('du-fu')" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-2 px-4 text-xs font-semibold tracking-wider transition duration-200">
+                        READ MORE
+                    </button>
+                </div>
+            </div>
+
+            <!-- Su Shi -->
+            <div class="poetry-card">
+                <div class="card-image flex items-center justify-center" 
+                style="background-image: url('images/Su_shi.jpg');
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center;
+                height: 200px;
+                width: 100%;
+                background-color: #f0f0f0;">
+                </div>
+                <div class="p-6">
+                    <span class="text-xs font-semibold text-stone-500 tracking-wider">SONG DYNASTY</span>
+                    <h2 class="text-2xl font-bold mt-2 chinese-font"><span class="poet-name su-shi">苏轼 Su Shi</span></h2>
+                    <div class="author-line py-2 my-3">
+                        <span class="text-xs font-medium">1037–1101 • Su Dongpo</span>
+                    </div>
+                    <p class="text-stone-700 mb-4 text-sm leading-relaxed">
+                        Also known as Su Dongpo, Su Shi's poetry blends philosophical depth with lyrical beauty, a hallmark of Song Dynasty literature...
+                    </p>
+                    <button onclick="openModal('su-shi')" class="w-full bg-amber-600 hover:bg-amber-700 text-white py-2 px-4 text-xs font-semibold tracking-wider transition duration-200">
+                        READ MORE
+                    </button>
+                </div>
+                </div>
+            </div>
+        </div>
+        <div id="carousel" class="carousel-slide">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Wang Wei -->
+            <div class="poetry-card">
+                <div class="card-image flex items-center justify-center" 
+                style="background-image: url('images/Wang_wei.jpg');
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center;
+                height: 200px;
+                width: 100%;
+                background-color: #f0f0f0;">
+                </div>
+                <div class="p-6">
+                    <span class="text-xs font-semibold text-stone-500 tracking-wider">TANG DYNASTY</span>
+                    <h2 class="text-2xl font-bold mt-2 chinese-font"><span class="poet-name wang-wei">王维 Wang Wei</span></h2>
+                    <div class="author-line py-2 my-3">
+                        <span class="text-xs font-medium">699–759 • Poet Buddha</span>
+                    </div>
+                    <p class="text-stone-700 mb-4 text-sm leading-relaxed">
+                        Wang Wei, known as the "Poet Buddha," created tranquil landscape poems infused with Buddhist philosophy...
+                    </p>
+                    <button onclick="openModal('wang-wei')" class="w-full bg-purple-600 hover:bg-purple-700 text-white py-2 px-4 text-xs font-semibold tracking-wider transition duration-200">
+                        READ MORE
+                    </button>
+                </div>
+            </div>
+
+            <!-- Li Qingzhao -->
+            <div class="poetry-card">
+                <div class="card-image flex items-center justify-center" 
+                style="background-image: url('images/Li_Qingzhao.jpg');
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center;
+                height: 200px;
+                width: 100%;
+                background-color: #f0f0f0;">
+                </div>
+                <div class="p-6">
+                    <span class="text-xs font-semibold text-stone-500 tracking-wider">SONG DYNASTY</span>
+                    <h2 class="text-2xl font-bold mt-2 chinese-font"><span class="poet-name li-qingzhao">李清照 Li Qingzhao</span></h2>
+                    <div class="author-line py-2 my-3">
+                        <span class="text-xs font-medium">1084–1155 • Greatest Female Poet</span>
+                    </div>
+                    <p class="text-stone-700 mb-4 text-sm leading-relaxed">
+                        China's greatest female poet, Li Qingzhao's works range from youthful romanticism to mature reflections on loss...
+                    </p>
+                    <button onclick="openModal('li-qingzhao')" class="w-full bg-pink-600 hover:bg-pink-700 text-white py-2 px-4 text-xs font-semibold tracking-wider transition duration-200">
+                        READ MORE
+                    </button>
+                </div>
+            </div>
+
+            <!-- Bai Juyi -->
+            <div class="poetry-card">
+                <div class="card-image flex items-center justify-center" 
+                style="background-image: url('images/Bai_Juyi.png');
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center;
+                height: 200px;
+                width: 100%;
+                background-color: #f0f0f0;">
+                </div>
+                <div class="p-6">
+                    <span class="text-xs font-semibold text-stone-500 tracking-wider">TANG DYNASTY</span>
+                    <h2 class="text-2xl font-bold mt-2 chinese-font"><span class="poet-name bai-juyi">白居易 Bai Juyi</span></h2>
+                    <div class="author-line py-2 my-3">
+                        <span class="text-xs font-medium">772–846 • People's Poet</span>
+                    </div>
+                    <p class="text-stone-700 mb-4 text-sm leading-relaxed">
+                        Bai Juyi wrote accessible poetry about social issues, earning him the nickname "People's Poet"...
+                    </p>
+                    <button onclick="openModal('bai-juyi')" class="w-full bg-red-600 hover:bg-red-700 text-white py-2 px-4 text-xs font-semibold tracking-wider transition duration-200">
+                        READ MORE
+                    </button>
+                </div>
+            </div>
+            </div>
+        </div>
+        <div id="carousel" class="carousel-slide">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Du Mu -->
+            <div class="poetry-card">
+                <div class="card-image flex items-center justify-center" 
+                style="background-image: url('images/Dumu.jpg');
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center;
+                height: 200px;
+                width: 100%;
+                background-color: #f0f0f0;">
+                </div>
+                <div class="p-6">
+                    <span class="text-xs font-semibold text-stone-500 tracking-wider">TANG DYNASTY</span>
+                    <h2 class="text-2xl font-bold mt-2 chinese-font"><span class="poet-name du-mu">杜牧 Du Mu</span></h2>
+                    <div class="author-line py-2 my-3">
+                        <span class="text-xs font-medium">803–852 • Late Tang Master</span>
+                    </div>
+                    <p class="text-stone-700 mb-4 text-sm leading-relaxed">
+                        Known for his lyrical and nostalgic poems, Du Mu's works often reflect on history and the passage of time...
+                    </p>
+                    <button onclick="openModal('du-mu')" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-2 px-4 text-xs font-semibold tracking-wider transition duration-200">
+                        READ MORE
+                    </button>
+                </div>
+            </div>
+
+            <!-- Han Yu -->
+            <div class="poetry-card">
+                <div class="card-image flex items-center justify-center" 
+                style="background-image: url('images/Han-Yu.jpg');
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center;
+                height: 200px;
+                width: 100%;
+                background-color: #f0f0f0;">
+                </div>
+                <div class="p-6">
+                    <span class="text-xs font-semibold text-stone-500 tracking-wider">TANG DYNASTY</span>
+                    <h2 class="text-2xl font-bold mt-2 chinese-font"><span class="poet-name han-yu">韓愈 Han Yu</span></h2>
+                    <div class="author-line py-2 my-3">
+                        <span class="text-xs font-medium">768–824 • Prince of Letters</span>
+                    </div>
+                    <p class="text-stone-700 mb-4 text-sm leading-relaxed">
+                        A leading Confucian intellectual, Han Yu's poetry and prose helped revive classical styles...
+                    </p>
+                    <button onclick="openModal('han-yu')" class="w-full bg-rose-600 hover:bg-rose-700 text-white py-2 px-4 text-xs font-semibold tracking-wider transition duration-200">
+                        READ MORE
+                    </button>
+                </div>
+            </div>
+
+            <!-- Li Shangyin -->
+            <div class="poetry-card">
+                <div class="card-image flex items-center justify-center" 
+                style="background-image: url('images/Li_Shangyin.jpg');
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center;
+                height: 200px;
+                width: 100%;
+                background-color: #f0f0f0;">
+                </div>
+                <div class="p-6">
+                    <span class="text-xs font-semibold text-stone-500 tracking-wider">TANG DYNASTY</span>
+                    <h2 class="text-2xl font-bold mt-2 chinese-font"><span class="poet-name li-shangyin">李商隱 Li Shangyin</span></h2>
+                    <div class="author-line py-2 my-3">
+                        <span class="text-xs font-medium">813–858 • Master of Obscurity</span>
+                    </div>
+                    <p class="text-stone-700 mb-4 text-sm leading-relaxed">
+                        Renowned for his dense, allusive style and enigmatic love poetry that continues to puzzle readers...
+                    </p>
+                    <button onclick="openModal('li-shangyin')" class="w-full bg-violet-600 hover:bg-violet-700 text-white py-2 px-4 text-xs font-semibold tracking-wider transition duration-200">
+                        READ MORE
+                            </button>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        <div id="carousel" class="carousel-slide">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Li Yu -->
+            <div class="poetry-card">
+                <div class="card-image flex items-center justify-center" 
+                style="background-image: url('images/Li Yu.jpg');
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center;
+                height: 200px;
+                width: 100%;
+                background-color: #f0f0f0;">
+                </div>
+                <div class="p-6">
+                    <span class="text-xs font-semibold text-stone-500 tracking-wider">SOUTHERN TANG</span>
+                    <h2 class="text-2xl font-bold mt-2 chinese-font"><span class="poet-name li-yu">李煜 Li Yu</span></h2>
+                    <div class="author-line py-2 my-3">
+                        <span class="text-xs font-medium">937–978 • Last Emperor-Poet</span>
+                    </div>
+                    <p class="text-stone-700 mb-4 text-sm leading-relaxed">
+                        His poignant poems written after being captured express deep nostalgia and regret...
+                    </p>
+                    <button onclick="openModal('li-yu')" class="w-full bg-amber-600 hover:bg-amber-700 text-white py-2 px-4 text-xs font-semibold tracking-wider transition duration-200">
+                        READ MORE
+                    </button>
+                </div>
+            </div>
+
+            <!-- Liu Zongyuan -->
+            <div class="poetry-card">
+                <div class="card-image flex items-center justify-center" 
+                style="background-image: url('images/Liu_Zongyuan.jpeg');
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center;
+                height: 200px;
+                width: 100%;
+                background-color: #f0f0f0;">
+                </div>
+                <div class="p-6">
+                    <span class="text-xs font-semibold text-stone-500 tracking-wider">TANG DYNASTY</span>
+                    <h2 class="text-2xl font-bold mt-2 chinese-font"><span class="poet-name liu-zongyuan">柳宗元 Liu Zongyuan</span></h2>
+                    <div class="author-line py-2 my-3">
+                        <span class="text-xs font-medium">773–819 • Exile Poet</span>
+                    </div>
+                    <p class="text-stone-700 mb-4 text-sm leading-relaxed">
+                        His exile poetry combines philosophical depth with vivid descriptions of southern landscapes...
+                    </p>
+                    <button onclick="openModal('liu-zongyuan')" class="w-full bg-teal-600 hover:bg-teal-700 text-white py-2 px-4 text-xs font-semibold tracking-wider transition duration-200">
+                        READ MORE
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mei Yaochen -->
+            <div class="poetry-card">
+                <div class="card-image flex items-center justify-center" 
+                style="background-image: url('images/Mei_Yaochan.jpg');
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center;
+                height: 200px;
+                width: 100%;
+                background-color: #f0f0f0;">
+                </div>
+                <div class="p-6">
+                    <span class="text-xs font-semibold text-stone-500 tracking-wider">SONG DYNASTY</span>
+                    <h2 class="text-2xl font-bold mt-2 chinese-font"><span class="poet-name mei-yaochen">梅堯臣 Mei Yaochen</span></h2>
+                    <div class="author-line py-2 my-3">
+                        <span class="text-xs font-medium">1002–1060 • Plain Style Master</span>
+                    </div>
+                    <p class="text-stone-700 mb-4 text-sm leading-relaxed">
+                        Pioneered the "plain style" that influenced generations of Song Dynasty poets...
+                    </p>
+                    <button onclick="openModal('mei-yaochen')" class="w-full bg-lime-600 hover:bg-lime-700 text-white py-2 px-4 text-xs font-semibold tracking-wider transition duration-200">
+                        READ MORE
+                            </button>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        <div id="carousel" class="carousel-slide">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Meng Haoran -->
+            <div class="poetry-card">
+                <div class="card-image flex items-center justify-center" 
+                style="background-image: url('images/meng-haoran.jpg');
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center;
+                height: 200px;
+                width: 100%;
+                background-color: #f0f0f0;">
+                </div>
+                <div class="p-6">
+                    <span class="text-xs font-semibold text-stone-500 tracking-wider">TANG DYNASTY</span>
+                    <h2 class="text-2xl font-bold mt-2 chinese-font"><span class="poet-name meng-haoran">孟浩然 Meng Haoran</span></h2>
+                    <div class="author-line py-2 my-3">
+                        <span class="text-xs font-medium">689–740 • Reclusive Poet</span>
+                    </div>
+                    <p class="text-stone-700 mb-4 text-sm leading-relaxed">
+                        His nature poetry celebrates the simple life and influenced Wang Wei's pastoral style...
+                    </p>
+                    <button onclick="openModal('meng-haoran')" class="w-full bg-cyan-600 hover:bg-cyan-700 text-white py-2 px-4 text-xs font-semibold tracking-wider transition duration-200">
+                        READ MORE
+                    </button>
+                </div>
+            </div>
+
+            <!-- Ouyang Xiu -->
+            <div class="poetry-card">
+                <div class="card-image flex items-center justify-center" 
+                style="background-image: url('images/Ouyang Xiu.jpg');
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center;
+                height: 200px;
+                width: 100%;
+                background-color: #f0f0f0;">
+                </div>
+                <div class="p-6">
+                    <span class="text-xs font-semibold text-stone-500 tracking-wider">SONG DYNASTY</span>
+                    <h2 class="text-2xl font-bold mt-2 chinese-font"><span class="poet-name ouyang-xiu">歐陽修 Ouyang Xiu</span></h2>
+                    <div class="author-line py-2 my-3">
+                        <span class="text-xs font-medium">1007–1072 • Literary Reformer</span>
+                    </div>
+                    <p class="text-stone-700 mb-4 text-sm leading-relaxed">
+                        Led the Classical Prose Movement while writing elegant, emotionally direct poetry...
+                    </p>
+                    <button onclick="openModal('ouyang-xiu')" class="w-full bg-orange-600 hover:bg-orange-700 text-white py-2 px-4 text-xs font-semibold tracking-wider transition duration-200">
+                        READ MORE
+                    </button>
+                </div>
+            </div>
+
+            <!-- Tao Qian -->
+            <div class="poetry-card">
+                <div class="card-image flex items-center justify-center" 
+                style="background-image: url('images/Tao qian.jpg');
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center;
+                height: 200px;
+                width: 100%;
+                background-color: #f0f0f0;">
+                </div>
+                <div class="p-6">
+                    <span class="text-xs font-semibold text-stone-500 tracking-wider">JIN DYNASTY</span>
+                    <h2 class="text-2xl font-bold mt-2 chinese-font"><span class="poet-name tao-qian">陶潛 Tao Qian</span></h2>
+                    <div class="author-line py-2 my-3">
+                        <span class="text-xs font-medium">365–427 • Hermit Poet</span>
+                    </div>
+                    <p class="text-stone-700 mb-4 text-sm leading-relaxed">
+                        His poems about rural life and drinking wine established the recluse-poet tradition...
+                    </p>
+                    <button onclick="openModal('tao-qian')" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-2 px-4 text-xs font-semibold tracking-wider transition duration-200">
+                        READ MORE
+                    </button>
+                        </div>
+                    </div>
+                </div>
+        </div>
+            <!-- Carousel Controls -->
+            <button id="prev-btn" class="carousel-control">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button id="next-btn" class="carousel-control">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+
+        <!-- Cover Story -->
+        <div class="poetry-card mt-12 cover-story text-white">
+            <div class="p-8 bg-black bg-opacity-40">
+                <div class="mb-6 max-w-2xl">
+                    <span class="text-xs font-semibold tracking-wider text-white text-opacity-80">COVER STORY</span>
+                    <h2 class="text-3xl font-bold mt-2 chinese-font">The Timeless Art of Chinese Poetry</h2>
+                    <div class="author-line py-3 my-4 border-white border-opacity-20">
+                        <span class="text-sm font-medium">By Poetry Scholars • Illustrations by Mei Ling</span>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div>
+                        <p class="mb-4 text-white text-opacity-90 leading-relaxed">
+                            From the Tang Dynasty's golden age to the Song Dynasty's lyrical depth, Chinese poetry weaves a tapestry of emotion and philosophy that resonates today.
+                        </p>
+                        <button onclick="openModal('cover')" class="mt-4 bg-white bg-opacity-20 hover:bg-opacity-30 text-white py-2 px-6 text-xs font-semibold tracking-wider border border-white border-opacity-30 transition duration-200">
+                            READ FULL STORY
+                        </button>
+                    </div>
+                    <div class="flex items-center justify-center">
+                        <div class="text-center p-6 bg-white bg-opacity-10 rounded-lg">
+                            <i class="fas fa-quote-left text-3xl text-white text-opacity-30 mb-4"></i>
+                            <p class="italic text-white text-opacity-90 mb-4">
+                                "Poetry is the voice of the heart, echoing through centuries."
+                            </p>
+                            <p class="text-sm text-white text-opacity-70">- Li Bai, Tang Dynasty Poet</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50 modal opacity-0 invisible transition-all duration-300">
+        <div class="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div class="p-6">
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <span id="modal-category" class="text-xs font-semibold text-black-500 tracking-wider"></span>
+                        <h2 id="modal-title" class="text-2xl font-bold mt-1 chinese-font text-blue-800"></h2>
+                        <div class="author-line py-2 my-3">
+                            <span id="modal-author" class="text-xs font-medium text-blue-600"></span>
+                        </div>
+                    </div>
+                    <button onclick="closeModal()" class="text-blue-400 hover:text-blue-600">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                </div>
+                <div id="modal-content" class="text-black-700 text-sm leading-relaxed space-y-4">
+                    <!-- Content will be inserted here by JavaScript -->
+                </div>
+                <button id="modal-action-btn" class="mt-6 w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 text-xs font-semibold tracking-wider transition duration-200">
+                    CLOSE
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Modal content for poets and poems
+        const modalContents = {
+            'li-bai': {
+                category: "TANG DYNASTY",
+                title: "李白 Li Bai",
+                author: "701–762 • Immortal Poet",
+                content: `
+                    <div class="card-image mb-4" style="background-image: url('images_ai/Li_Bai.png'); height: 350px;"></div>
+                    <p>Li Bai (701–762), known as the "Immortal Poet," is one of the most celebrated poets of the Tang Dynasty. His romantic and imaginative verses capture the beauty of nature and the human spirit.</p>
+                    <h3 class="font-bold mt-4 text-blue-600">Life and Legacy</h3>
+                    <p>Born in Central Asia and raised in Sichuan, Li Bai traveled extensively, drawing inspiration from landscapes and Daoist philosophy. His works, numbering over 1,000 poems, are known for their spontaneity and vivid imagery.</p>
+                    <h3 class="font-bold mt-4 text-blue-600">Famous Works</h3>
+                    <ul class="list-disc pl-5 space-y-1 mt-2">
+                        <li class="poem-item" onclick="openPoemModal('quiet-night', 'li-bai')" data-poem="Quiet Night Thought">静夜思/Quiet Night Thought</li>
+                        <li class="poem-item" onclick="openPoemModal('drinking-alone', 'li-bai')" data-poem="Drinking Alone Under the Moon">月下独酌/Drinking Alone Under the Moon</li>
+                        <li class="poem-item" onclick="openPoemModal('shu-road', 'li-bai')" data-poem="The Hard Road to Shu">蜀道難/The Hard Road to Shu</li>
+                    </ul>
+                    <p class="mt-4">Li Bai's poetry remains a cornerstone of Chinese literature, inspiring generations with its lyrical depth.</p>
+                `
+            },
+            'du-fu': {
+                category: "TANG DYNASTY",
+                title: "杜甫 Du Fu",
+                author: "712–770 • Sage of Poetry",
+                content: `
+                    <div class="card-image mb-4" style="background-image: url('images_ai/Du_Fu.png'); height: 350px;"></div>
+                    <p>Du Fu (712–770), the "Sage of Poetry," is renowned for his profound and socially conscious poetry that reflects the turmoil of the Tang Dynasty during the An Lushan Rebellion.</p>
+                    <h3 class="font-bold mt-4 text-emerald-600">Life and Legacy</h3>
+                    <p>Born in Henan, Du Fu faced hardship and displacement, which deeply influenced his work. His meticulous style contrasts with Li Bai's exuberance, offering keen observations of society.</p>
+                    <h3 class="font-bold mt-4 text-emerald-600">Famous Works</h3>
+                    <ul class="list-disc pl-5 space-y-1 mt-2">
+                        <li class="poem-item" onclick="openPoemModal('spring-view', 'du-fu')" data-poem="Spring View">Spring View</li>
+                        <li class="poem-item" onclick="openPoemModal('army-carts', 'du-fu')" data-poem="Ballad of the Army Carts">Ballad of the Army Carts</li>
+                        <li class="poem-item" onclick="openPoemModal('thatched-hut', 'du-fu')" data-poem="My Thatched Hut is Wrecked by Autumn Wind">My Thatched Hut is Wrecked by Autumn Wind</li>
+                    </ul>
+                    <p class="mt-4">Du Fu's poetry is a testament to resilience and empathy, earning him enduring reverence.</p>
+                `
+            },
+            'su-shi': {
+                category: "SONG DYNASTY",
+                title: "苏轼 Su Shi",
+                author: "1037–1101 • Su Dongpo",
+                content: `
+                    <div class="card-image mb-4" style="background-image: url('images_ai/Su_shi.png'); height: 350px;"></div>
+                    <p>Su Shi (1037–1101), also known as Su Dongpo, was a Song Dynasty polymath whose poetry blends philosophical depth with lyrical beauty.</p>
+                    <h3 class="font-bold mt-4 text-amber-600">Life and Legacy</h3>
+                    <p>A scholar, poet, and statesman, Su Shi faced political exile but produced some of China's finest literature. His works span poetry, prose, and calligraphy, reflecting optimism amid adversity.</p>
+                    <h3 class="font-bold mt-4 text-amber-600">Famous Works</h3>
+                    <ul class="list-disc pl-5 space-y-1 mt-2">
+                        <li>Mid-Autumn Moon</li>
+                        <li>Drinking at the Lake, First Sunny, Then Rainy</li>
+                        <li>Questioning the Mountain</li>
+                    </ul>
+                    <p class="mt-4">Su Shi's versatile genius continues to captivate readers worldwide.</p>
+                `
+            },
+            'wang-wei': {
+                category: "TANG DYNASTY",
+                title: "王维 Wang Wei",
+                author: "699–759 • Poet Buddha",
+                content: `
+                    <div class="card-image mb-4" style="background-image: url('images_ai/Wang_Wei.png'); height: 350px;"></div>
+                    <p>Wang Wei (699–759), known as the "Poet Buddha," was a Tang Dynasty poet, painter, musician, and statesman whose works embody Buddhist tranquility.</p>
+                    <h3 class="font-bold mt-4 text-purple-600">Life and Legacy</h3>
+                    <p>Born in Shanxi, Wang Wei served as a government official while pursuing artistic and spiritual interests. His poetry and paintings are celebrated for their Zen-like simplicity and harmony with nature.</p>
+                    <h3 class="font-bold mt-4 text-purple-600">Famous Works</h3>
+                    <ul class="list-disc pl-5 space-y-1 mt-2">
+                        <li>Deer Enclosure</li>
+                        <li>Farewell at Yangguan</li>
+                        <li>Bamboo Lodge</li>
+                    </ul>
+                    <p class="mt-4">Wang Wei's fusion of poetry and painting established the tradition of "poetic painting" in Chinese art.</p>
+                `
+            },
+            'li-qingzhao': {
+                category: "SONG DYNASTY",
+                title: "李清照 Li Qingzhao",
+                author: "1084–1155 • Greatest Female Poet",
+                content: `
+                    <div class="card-image mb-4" style="background-image: url('images_ai/Li_Qingzhao.png'); height: 350px;"></div>
+                    <p>Li Qingzhao (1084–1155) is widely considered China's greatest female poet, renowned for her ci poetry that evolved from youthful romanticism to mature reflections on loss during the Song Dynasty.</p>
+                    <h3 class="font-bold mt-4 text-pink-600">Life and Legacy</h3>
+                    <p>Born into a scholarly family in Shandong, Li Qingzhao enjoyed an early happy marriage before war and widowhood transformed her poetry. Her later works express profound grief and nostalgia.</p>
+                    <h3 class="font-bold mt-4 text-pink-600">Famous Works</h3>
+                    <ul class="list-disc pl-5 space-y-1 mt-2">
+                        <li>Like a Dream</li>
+                        <li>Sorrow of Departure</li>
+                        <li>Slow Song</li>
+                    </ul>
+                    <p class="mt-4">Li Qingzhao broke gender barriers to become one of China's most beloved poets, admired for her emotional depth and technical mastery.</p>
+                `
+            },
+            'bai-juyi': {
+                category: "TANG DYNASTY",
+                title: "白居易 Bai Juyi",
+                author: "772–846 • People's Poet",
+                content: `
+                    <div class="card-image mb-4" style="background-image: url('images_ai/Bai_Juyi_ai.png'); height: 350px;"></div>
+                    <p>Bai Juyi (772–846) was a Tang Dynasty poet known for his accessible style and social consciousness, earning him the nickname "People's Poet."</p>
+                    <h3 class="font-bold mt-4 text-red-600">Life and Legacy</h3>
+                    <p>Born in Henan, Bai Juyi served in government while advocating for social reform through his poetry. He believed literature should serve moral and political purposes, writing in a straightforward style.</p>
+                    <h3 class="font-bold mt-4 text-red-600">Famous Works</h3>
+                    <ul class="list-disc pl-5 space-y-1 mt-2">
+                        <li>Song of Everlasting Sorrow</li>
+                        <li>The Old Charcoal Seller</li>
+                        <li>On the Lake</li>
+                    </ul>
+                    <p class="mt-4">Bai Juyi's commitment to social justice and literary accessibility made him one of China's most influential poets.</p>
+                `
+            },
+            'du-mu': {
+        category: "TANG DYNASTY",
+        title: "杜牧 Du Mu",
+        author: "803–852 • Late Tang Master",
+        content: `
+            <div class="card-image mb-4" style="background-image: url('images_ai/Du_MU.png'); height: 350px;"></div>
+            <p>Du Mu was a leading poet of the late Tang Dynasty, known for his lyrical and historical poems that blend melancholy with vivid imagery.</p>
+            <h3 class="font-bold mt-4 text-indigo-600">Life and Legacy</h3>
+            <p>Born into an aristocratic family that had fallen on hard times, Du Mu served in various government posts but was never politically successful. His poetry often reflects on the decline of the Tang Dynasty.</p>
+            <h3 class="font-bold mt-4 text-indigo-600">Famous Works</h3>
+            <ul class="list-disc pl-5 space-y-1 mt-2">
+                <li>Spring in the South of the Yangzi</li>
+                <li>On the Qinhuai River</li>
+                <li>Parting at Yangzhou</li>
+            </ul>
+            <div class="mt-4 p-4 bg-indigo-50 rounded-lg">
+                <p class="italic">"The fallen leaves fill the mountain path,<br>
+                The frosty air chills the maple trees.<br>
+                The white clouds curl round the distant peaks,<br>
+                Where a thatched cottage nestles among them."</p>
+                <p class="text-sm mt-2">- From "Mountain Walk"</p>
+            </div>
+        `
+    },
+    
+    'han-yu': {
+        category: "TANG DYNASTY",
+        title: "韓愈 Han Yu",
+        author: "768–824 • Prince of Letters",
+        content: `
+            <div class="card-image mb-4" style="background-image: url('images_ai/Han_Yu.png'); height: 350px;"></div>
+            <p>Han Yu was a central figure in the Classical Prose Movement and one of China's greatest prose masters, though his poetry is equally significant.</p>
+            <h3 class="font-bold mt-4 text-rose-600">Life and Legacy</h3>
+            <p>Known for his Confucian orthodoxy, Han Yu was exiled for criticizing the emperor's devotion to Buddhism. His works emphasize moral purpose and clarity of expression.</p>
+            <h3 class="font-bold mt-4 text-rose-600">Famous Works</h3>
+            <ul class="list-disc pl-5 space-y-1 mt-2">
+                <li>On the Origin of Dao</li>
+                <li>Memorial on the Bone of Buddha</li>
+                <li>Mountain Rocks</li>
+            </ul>
+            <div class="mt-4 p-4 bg-rose-50 rounded-lg">
+                <p class="italic">"The ancients were not born with knowledge,<br>
+                Who can be free from perplexities?<br>
+                Perplexed but not learning from a teacher,<br>
+                Their perplexities remain forever."</p>
+                <p class="text-sm mt-2">- From "On Teachers"</p>
+            </div>
+        `
+    },
+
+    'li-shangyin': {
+        category: "TANG DYNASTY",
+        title: "李商隱 Li Shangyin",
+        author: "813–858 • Master of Obscurity",
+        content: `
+            <div class="card-image mb-4" style="background-image: url('images_ai/Li_Shangyin.png'); height: 350px;"></div>
+            <p>Li Shangyin is renowned for his dense, allusive style and enigmatic love poetry that continues to challenge interpreters.</p>
+            <h3 class="font-bold mt-4 text-violet-600">Life and Legacy</h3>
+            <p>Caught in political factionalism, Li Shangyin never achieved high office. His poetry combines sensual imagery with profound melancholy, often using elaborate symbolism.</p>
+            <h3 class="font-bold mt-4 text-violet-600">Famous Works</h3>
+            <ul class="list-disc pl-5 space-y-1 mt-2">
+                <li>The Patterned Lute</li>
+                <li>To One Unnamed</li>
+                <li>Night Rain</li>
+            </ul>
+            <div class="mt-4 p-4 bg-violet-50 rounded-lg">
+                <p class="italic">"The spring silkworm's thread will only end when death comes;<br>
+                The candle's tears dry only when it turns to ashes."</p>
+                <p class="text-sm mt-2">- From "Untitled"</p>
+            </div>
+        `
+    },
+
+    'li-yu': {
+        category: "SOUTHERN TANG",
+        title: "李煜 Li Yu",
+        author: "937–978 • Last Emperor-Poet",
+        content: `
+            <div class="card-image mb-4" style="background-image: url('images_ai/Li_Yu.png'); height: 350px;"></div>
+            <p>The last ruler of the Southern Tang state, Li Yu created some of China's most moving poems about loss and nostalgia after being captured by the Song Dynasty.</p>
+            <h3 class="font-bold mt-4 text-amber-600">Life and Legacy</h3>
+            <p>A reluctant ruler but gifted artist, Li Yu's later poems written in captivity transformed personal grief into universal expressions of human suffering.</p>
+            <h3 class="font-bold mt-4 text-amber-600">Famous Works</h3>
+            <ul class="list-disc pl-5 space-y-1 mt-2">
+                <li>Beautiful Lady Yu</li>
+                <li>To the Tune of "Meeting Happiness"</li>
+                <li>To the Tune of "Wave-Washing Sand"</li>
+            </ul>
+            <div class="mt-4 p-4 bg-amber-50 rounded-lg">
+                <p class="italic">"The spring flowers and autumn moon—when will they end?<br>
+                How much has happened in the past!<br>
+                Last night spring breezes blew again through my small chamber—<br>
+                I cannot bear to turn my head and look at my lost land."</p>
+                <p class="text-sm mt-2">- From "To the Tune of 'Beautiful Lady Yu'"</p>
+            </div>
+        `
+    },
+
+    'liu-zongyuan': {
+        category: "TANG DYNASTY",
+        title: "柳宗元 Liu Zongyuan",
+        author: "773–819 • Exile Poet",
+        content: `
+            <div class="card-image mb-4" style="background-image: url('images_ai/Liu_Zongyuan.png'); height: 350px;"></div>
+            <p>Liu Zongyuan was a founder of the Classical Prose Movement whose exile poetry combines philosophical depth with vivid landscape descriptions.</p>
+            <h3 class="font-bold mt-4 text-teal-600">Life and Legacy</h3>
+            <p>Exiled for political reasons, Liu transformed his southern banishment into literary opportunity, creating profound works about isolation and nature.</p>
+            <h3 class="font-bold mt-4 text-teal-600">Famous Works</h3>
+            <ul class="list-disc pl-5 space-y-1 mt-2">
+                <li>Eight Records of Excursions in Yongzhou</li>
+                <li>Snow on the River</li>
+                <li>Fishing in the Winter River</li>
+            </ul>
+            <div class="mt-4 p-4 bg-teal-50 rounded-lg">
+                <p class="italic">"A thousand mountains—no birds in flight,<br>
+                Ten thousand paths—no human trace.<br>
+                A lone boat, an old man in raincoat and hat,<br>
+                Fishing alone in the cold river snow."</p>
+                <p class="text-sm mt-2">- From "Snow on the River"</p>
+            </div>
+        `
+    },
+
+    'mei-yaochen': {
+        category: "SONG DYNASTY",
+        title: "梅堯臣 Mei Yaochen",
+        author: "1002–1060 • Plain Style Master",
+        content: `
+            <div class="card-image mb-4" style="background-image: url('images_ai/Mei_Yaochen.png'); height: 350px;"></div>
+            <p>Mei Yaochen pioneered the "plain style" that became characteristic of Song Dynasty poetry, focusing on everyday subjects with direct language.</p>
+            <h3 class="font-bold mt-4 text-lime-600">Life and Legacy</h3>
+            <p>Despite a modest official career, Mei's innovative poetry influenced generations. He and Ouyang Xiu led the movement away from ornate Tang styles.</p>
+            <h3 class="font-bold mt-4 text-lime-600">Famous Works</h3>
+            <ul class="list-disc pl-5 space-y-1 mt-2">
+                <li>Plowing Words</li>
+                <li>The Potter</li>
+                <li>Small Village</li>
+            </ul>
+            <div class="mt-4 p-4 bg-lime-50 rounded-lg">
+                <p class="italic">"The old man at the foot of the mountain,<br>
+                Living alone like a monk in his hut,<br>
+                Has a son who went off to war—<br>
+                Now he has only his grandson left."</p>
+                <p class="text-sm mt-2">- From "Small Village"</p>
+            </div>
+        `
+    },
+
+    'meng-haoran': {
+        category: "TANG DYNASTY",
+        title: "孟浩然 Meng Haoran",
+        author: "689–740 • Reclusive Poet",
+        content: `
+            <div class="card-image mb-4" style="background-image: url('images_ai/Meng_Haoran.png'); height: 350px;"></div>
+            <p>Meng Haoran was one of the first major Tang poets to specialize in nature poetry, influencing Wang Wei and the pastoral tradition.</p>
+            <h3 class="font-bold mt-4 text-cyan-600">Life and Legacy</h3>
+            <p>After failing the civil service exam, Meng lived as a recluse, writing poems celebrating rural life and simple pleasures that became models for later poets.</p>
+            <h3 class="font-bold mt-4 text-cyan-600">Famous Works</h3>
+            <ul class="list-disc pl-5 space-y-1 mt-2">
+                <li>Spring Dawn</li>
+                <li>Passing Through the Old Village</li>
+                <li>At the Orchid Pavilion</li>
+            </ul>
+            <div class="mt-4 p-4 bg-cyan-50 rounded-lg">
+                <p class="italic">"Spring sleep, unaware of dawn,<br>
+                Everywhere I hear birds singing.<br>
+                Last night's sound of wind and rain—<br>
+                Who knows how many flowers fell?"</p>
+                <p class="text-sm mt-2">- From "Spring Dawn"</p>
+            </div>
+        `
+    },
+
+    'ouyang-xiu': {
+        category: "SONG DYNASTY",
+        title: "歐陽修 Ouyang Xiu",
+        author: "1007–1072 • Literary Reformer",
+        content: `
+            <div class="card-image mb-4" style="background-image: url('images_ai/Ouyang_Xiu.png'); height: 350px;"></div>
+            <p>Ouyang Xiu led the Classical Prose Movement while writing emotionally direct poetry that set new standards for Song Dynasty literature.</p>
+            <h3 class="font-bold mt-4 text-orange-600">Life and Legacy</h3>
+            <p>As a high official, Ouyang promoted literary reform while creating innovative poetry and prose that blended scholarship with personal expression.</p>
+            <h3 class="font-bold mt-4 text-orange-600">Famous Works</h3>
+            <ul class="list-disc pl-5 space-y-1 mt-2">
+                <li>The Old Drunkard's Pavilion</li>
+                <li>Autumn Sounds</li>
+                <li>Butterflies Love Flowers</li>
+            </ul>
+            <div class="mt-4 p-4 bg-orange-50 rounded-lg">
+                <p class="italic">"The mountain monk cannot understand<br>
+                Why I sit here writing poems.<br>
+                I smile—'In all the world below,<br>
+                What thing is not a poem?'"</p>
+                <p class="text-sm mt-2">- From "Written at West Mountain Temple"</p>
+            </div>
+        `
+    },
+
+    'tao-qian': {
+        category: "JIN DYNASTY",
+        title: "陶潛 Tao Qian",
+        author: "365–427 • Hermit Poet",
+        content: `
+            <div class="card-image mb-4" style="background-image: url('images_ai/Tao_Qian.png'); height: 350px;"></div>
+            <p>Tao Qian (also known as Tao Yuanming) established the recluse-poet tradition with his celebrations of rural life and wine drinking.</p>
+            <h3 class="font-bold mt-4 text-emerald-600">Life and Legacy</h3>
+            <p>After resigning from government service, Tao retired to his farm, creating poetry that profoundly influenced later generations with its simplicity and authenticity.</p>
+            <h3 class="font-bold mt-4 text-emerald-600">Famous Works</h3>
+            <ul class="list-disc pl-5 space-y-1 mt-2">
+                <li>Returning to My Garden and Field</li>
+                <li>Drinking Wine</li>
+                <li>The Peach Blossom Spring</li>
+            </ul>
+            <div class="mt-4 p-4 bg-emerald-50 rounded-lg">
+                <p class="italic">"I pluck chrysanthemums under the eastern hedge,<br>
+                Then gaze long at the distant southern hills.<br>
+                The mountain air is fresh at dusk,<br>
+                The flying birds return in flocks."</p>
+                <p class="text-sm mt-2">- From "Drinking Wine #5"</p>
+            </div>
+        `
+    },
+            'quiet-night': {
+                category: "LI BAI POEM",
+                title: "静夜思 Quiet Night Thought",
+                author: "By Li Bai • Translated by Arthur Waley",
+                content: `
+                    <div class="card-image mb-4" style="background-image: url('https://images.unsplash.com/photo-1509316785289-025f5b846b35?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'); height: 200px;"></div>
+                    <p>One of Li Bai's most famous poems, "Quiet Night Thought" captures a moment of homesickness under the moonlight.</p>
+                    <h3 class="font-bold mt-4 text-blue-600">静夜思</h3>
+                    <p class="italic">床前明月光<br>疑是地上霜<br>举头望明月<br>低头思故乡</p>
+                    <h3 class="font-bold mt-4 text-blue-600">"Jìng yè sī"</h3>
+                    <p class="italic">Chuáng qián míngyuè guāng<br>Yí shì dìshang shuāng<br>Jǔtóu wàng míngyuè<br>Dītóu sī gùxiāng</p>
+                    <h3 class="font-bold mt-4 text-blue-600">Poem</h3>
+                    <p class="italic">Before my bed, the moonlight glows,<br>It seems like frost upon the floor.<br>I raise my head to view the moon,<br>Then lower it to think of home.</p>
+                    <h3 class="font-bold mt-4 text-blue-600">Significance</h3>
+                    <p>Written in simple yet evocative language, the poem resonates with universal themes of longing and solitude. Its imagery of moonlight and frost creates a vivid sensory experience.</p>
+                    <p class="mt-4">This poem is often taught in Chinese schools, symbolizing the power of concise expression.</p>
+                `
+            },
+            'drinking-alone': {
+                category: "LI BAI POEM",
+                title: "月下独酌 Drinking Alone under the Moon",
+                author: "By Li Bai • Translated by Arthur Waley",
+                content: `
+                    <div class="card-image mb-4" style="background-image: url('images_ai/Drinking Alone under the Moon.png'); height: 200px;"></div>
+                    <p>One of Li Bai's most celebrated drinking poems, "Drinking Alone under the Moon" expresses the poet's joyful solitude and imaginative companionship with the moon and his shadow.</p>
+                    <h3 class="font-bold mt-4 text-blue-600">月下独酌</h3>
+                    <p class="italic">花间一壶酒<br>独酌无相亲<br>举杯邀明月<br>对影成三人<br>月既不解饮<br>影徒随我身<br>暂伴月将影<br>行乐须及春</p>
+                    <h3 class="font-bold mt-4 text-blue-600">"Yuè xià dú zhuó"</h3>
+                    <p class="italic">Huā jiān yī hú jiǔ<br>Dú zhuó wú xiāng qīn<br>Jǔ bēi yāo míng yuè<br>Duì yǐng chéng sān rén<br>Yuè jì bù jiě yǐn<br>Yǐng tú suí wǒ shēn<br>Zàn bàn yuè jiāng yǐng<br>Xíng lè xū jí chūn</p>
+                    <h3 class="font-bold mt-4 text-blue-600">Poem</h3>
+                    <p class="italic">Among the flowers, a jug of wine,<br>I drink alone, no friend is near.<br>Raising my cup, I toast the bright moon,<br>With my shadow, together we make three.<br>The moon doesn't know how to drink,<br>My shadow just follows me around.<br>For now I have these companions,<br>We rejoice in spring before it's gone.</p>
+                    <h3 class="font-bold mt-4 text-blue-600">Significance</h3>
+                    <p>This poem showcases Li Bai's romantic spirit and his ability to find companionship in nature. The imagery of drinking with the moon and shadow reflects the poet's whimsical imagination and philosophical acceptance of solitude.</p>
+                    <p class="mt-4">The work is celebrated for its playful yet profound meditation on loneliness, companionship, and the fleeting nature of joy.</p>
+                `
+            },
+            'shu-road': {
+                category: "LI BAI POEM",
+                title: "蜀道難 The Hard Road to Shu",
+                author: "By Li Bai • Translated by Arthur Waley",
+                content: `
+                    <div class="card-image mb-4" style="background-image: url('images_ai/The Hard Road to Shu.png'); height: 200px;"></div>
+                    <p>Li Bai's magnificent and dramatic poem "The Hard Road to Shu" vividly depicts the perilous mountain paths leading to Sichuan province, blending myth, history, and natural grandeur.</p>
+                    <h3 class="font-bold mt-4 text-blue-600">蜀道難</h3>
+                    <p class="italic">噫吁嚱，危乎高哉！<br>蜀道之難，難於上青天！<br>蠶叢及魚鳧，開國何茫然！<br>爾來四萬八千歲，不與秦塞通人煙。<br>西當太白有鳥道，可以橫絕峨眉巔。</p>
+                    <h3 class="font-bold mt-4 text-blue-600">"Shǔ dào nán"</h3>
+                    <p class="italic">Yī xū xī, wēi hū gāo zāi!<br>Shǔ dào zhī nán, nán yú shàng qīng tiān!<br>Cán cóng jí yú fú, kāi guó hé máng rán!<br>Ěr lái sì wàn bā qiān suì, bù yǔ qín sāi tōng rén yān.<br>Xī dāng tài bái yǒu niǎo dào, kě yǐ héng jué é méi diān.</p>
+                    <h3 class="font-bold mt-4 text-blue-600">Poem (Excerpt)</h3>
+                    <p class="italic">Ah! How dangerous! How high!<br>The road to Shu is harder than climbing to heaven!<br>Since the two pioneers Can Cong and Yu Fu<br>Founded the kingdom, so misty and dim,<br>For forty-eight thousand years<br>No human foot had passed from Shu to Qin.<br>Only the bird flight west to Mount Taibai<br>Can reach the summit of Mount Emei.</p>
+                    <h3 class="font-bold mt-4 text-blue-600">Significance</h3>
+                    <p>This poem is considered one of Li Bai's most technically brilliant works, showcasing his mastery of language and imagery. The exclamatory style and hyperbolic descriptions create a sense of awe and danger.</p>
+                    <p class="mt-4">"The Hard Road to Shu" represents the pinnacle of Chinese landscape poetry, combining geographical reality with mythological imagination. Its famous opening line "Harder than climbing to heaven" has become proverbial in Chinese culture.</p>
+                    <p>The poem's rhythmic intensity and dramatic contrasts reflect the Tang Dynasty's romantic poetic style at its most powerful.</p>
+                `
+            },
+            'spring-view': {
+                category: "DU FU POEM",
+                title: "春望 Spring View",
+                author: "By Du Fu • Translated by Burton Watson",
+                content: `
+                    <div class="card-image mb-4" style="background-image: url('https://images.unsplash.com/photo-1490750967868-88aa4486c946?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'); height: 200px;"></div>
+                    <p>"Spring View" reflects Du Fu's sorrow amid the devastation of war, juxtaposing nature's renewal with human suffering.</p>
+                    <h3 class="font-bold mt-4 text-emerald-600">Poem</h3>
+                    <p class="italic">The nation shattered, mountains and rivers remain,<br>Spring in the city, grass and trees grow deep.<br>Moved by the times, flowers shed tears,<br>Hating separation, birds alarm the heart.</p>
+                    <h3 class="font-bold mt-4 text-emerald-600">Significance</h3>
+                    <p>Written during the An Lushan Rebellion, the poem captures Du Fu's anguish over societal collapse. Its layered imagery conveys both hope and despair.</p>
+                    <p class="mt-4">The poem is a masterpiece of emotional depth, showcasing Du Fu's empathy.</p>
+                `
+            },
+            'mid-autumn': {
+                category: "SU SHI POEM",
+                title: "水调歌头 Mid-Autumn Moon",
+                author: "By Su Shi • Translated by Burton Watson",
+                content: `
+                    <div class="card-image mb-4" style="background-image: url('https://images.unsplash.com/photo-1508193638397-1c4234db14d8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'); height: 200px;"></div>
+                    <p>Su Shi's "Mid-Autumn Moon" is a celebrated ci poem expressing longing for family during the Mid-Autumn Festival.</p>
+                    <h3 class="font-bold mt-4 text-amber-600">Poem</h3>
+                    <p class="italic">The sunset clouds disperse, the sky turns clear,<br>A jade wheel rolls across the heavens' sphere.<br>This night, I drink with kin beneath the moon,<br>My heart flies to where my brother dwells alone.</p>
+                    <h3 class="font-bold mt-4 text-amber-600">Significance</h3>
+                    <p>Written during Su Shi's exile, the poem blends personal emotion with cosmic imagery. Its musical structure enhances its lyrical quality.</p>
+                    <p class="mt-4">The poem remains a cultural touchstone for the Mid-Autumn Festival.</p>
+                `
+            },
+            'deer-enclosure': {
+                category: "WANG WEI POEM",
+                title: "鹿柴 Deer Enclosure",
+                author: "By Wang Wei • Translated by Witter Bynner",
+                content: `
+                    <div class="card-image mb-4" style="background-image: url('https://images.unsplash.com/photo-1476231682828-37e571bc172f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'); height: 200px;"></div>
+                    <p>Wang Wei's "Deer Enclosure" is a masterpiece of minimalism that captures the essence of Zen and nature's silence.</p>
+                    <h3 class="font-bold mt-4 text-purple-600">Poem</h3>
+                    <p class="italic">Empty mountain, no man is seen,<br>Only heard are echoes of men's talk.<br>Reflected light enters the deep wood,<br>And shines again on blue-green moss.</p>
+                    <h3 class="font-bold mt-4 text-purple-600">Significance</h3>
+                    <p>This poem exemplifies Wang Wei's ability to convey profound stillness and Buddhist emptiness through simple natural imagery. The interplay of sound and silence creates a meditative atmosphere.</p>
+                    <p class="mt-4">"Deer Enclosure" is part of Wang Wei's collection "Wang River Collection," which inspired generations of poets and painters.</p>
+                `
+            },
+            'like-a-dream': {
+                category: "LI QINGZHAO POEM",
+                title: "如梦令 Like a Dream",
+                author: "By Li Qingzhao • Translated by Kenneth Rexroth",
+                content: `
+                    <div class="card-image mb-4" style="background-image: url('https://images.unsplash.com/photo-1518199266791-5375a83190b7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'); height: 200px;"></div>
+                    <p>Li Qingzhao's "Like a Dream" is a delicate lyric poem that captures a moment of intoxication and the beauty of nature's twilight.</p>
+                    <h3 class="font-bold mt-4 text-pink-600">Poem</h3>
+                    <p class="italic">Last evening, rain fell, wind blew,<br>Deep sleep did not dispel the wine's effect.<br>I ask the one rolling up the curtain,<br>She says, "The crabapple's still the same."<br>But don't you know?<br>Don't you know?<br>It should be green leaves, red flowers getting thin.</p>
+                    <h3 class="font-bold mt-4 text-pink-600">Significance</h3>
+                    <p>This early work showcases Li Qingzhao's talent for capturing fleeting emotions and natural beauty. The poem's conversational tone and repetition create an intimate, dreamlike quality.</p>
+                    <p class="mt-4">"Like a Dream" exemplifies the ci form's musicality and emotional expressiveness.</p>
+                `
+            },
+            'everlasting-sorrow': {
+                category: "BAI JUYI POEM",
+                title: "长恨歌 Song of Everlasting Sorrow",
+                author: "By Bai Juyi • Translated by Witter Bynner",
+                content: `
+                    <div class="card-image mb-4" style="background-image: url('https://images.unsplash.com/photo-1516483638261-f4dbaf036963?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'); height: 200px;"></div>
+                    <p>Bai Juyi's "Song of Everlasting Sorrow" is an epic narrative poem that tells the tragic love story of Emperor Xuanzong and Lady Yang.</p>
+                    <h3 class="font-bold mt-4 text-red-600">Excerpt</h3>
+                    <p class="italic">The emperor, unable to save his love,<br>Could only cover his face when she died.<br>He turned to look back—tears and blood<br>Flowed together on the ground.</p>
+                    <h3 class="font-bold mt-4 text-red-600">Significance</h3>
+                    <p>This masterpiece blends historical narrative with lyrical beauty, exploring themes of love, power, and loss. At 120 lines, it's one of the longest and most famous narrative poems in Chinese literature.</p>
+                    <p class="mt-4">The poem has inspired countless adaptations in opera, painting, and film throughout Chinese history.</p>
+                `
+            },
+            'cover': {
+                category: "COVER STORY",
+                title: "The Timeless Art of Chinese Poetry",
+                author: "By Poetry Scholars • Illustrations by Mei Ling",
+                content: `
+                    <div class="card-image mb-4" style="background-image: url('https://images.unsplash.com/photo-1532012197267-da84d127e765?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'); height: 200px;"></div>
+                    <p>Chinese poetry, spanning over two millennia, is a profound expression of culture, philosophy, and human experience.</p>
+                    <h3 class="font-bold mt-4 text-blue-600">Historical Evolution</h3>
+                    <p>From the Book of Songs to Tang Dynasty classics, poetry evolved through dynasties, reflecting societal changes. The Tang era, with poets like Li Bai and Du Fu, marked a golden age.</p>
+                    <h3 class="font-bold mt-4 text-blue-600">Cultural Impact</h3>
+                    <p>Poetry shaped Chinese aesthetics and values, influencing art, music, and governance. Today, it remains relevant in education and cultural identity.</p>
+                    <ul class="list-disc pl-5 space-y-1 mt-2">
+                        <li>Tang poetry's influence on global literature</li>
+                        <li>Modern adaptations in film and music</li>
+                        <li>Preservation through digital archives</li>
+                    </ul>
+                    <p class="mt-4">Chinese poetry's enduring legacy lies in its ability to connect past and present.</p>
+                `
+            }
+        };
+
+        // Modal history stack
+        let modalHistory = [];
+
+        // Modal functions
+        function openModal(item) {
+            modalHistory.push(item); // Add to history
+            updateModal(item, 'CLOSE', () => closeModal());
+        }
+
+        function openPoemModal(poemId, poetId) {
+            modalHistory.push(poemId); // Add poem to history
+            updateModal(poemId, 'BACK', () => backModal(poetId));
+        }
+
+        function updateModal(item, actionText, actionCallback) {
+            const modal = document.getElementById('modal');
+            const content = modalContents[item];
+            
+            document.getElementById('modal-category').textContent = content.category;
+            document.getElementById('modal-title').textContent = content.title;
+            document.getElementById('modal-author').textContent = content.author;
+            document.getElementById('modal-content').innerHTML = content.content;
+            
+            const actionBtn = document.getElementById('modal-action-btn');
+            actionBtn.textContent = actionText;
+            actionBtn.onclick = actionCallback;
+            
+            modal.classList.remove('opacity-0', 'invisible');
+            modal.classList.add('opacity-100', 'visible');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function backModal(poetId) {
+            modalHistory.pop(); // Remove current poem from history
+            if (modalHistory.length > 0) {
+                updateModal(modalHistory[modalHistory.length - 1], 'CLOSE', () => closeModal());
+            } else {
+                closeModal();
+            }
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('modal');
+            modal.classList.remove('opacity-100', 'visible');
+            modal.classList.add('opacity-0', 'invisible');
+            document.body.style.overflow = 'auto';
+            modalHistory = []; // Clear history
+        }
+
+        // Close modal when clicking outside content
+        document.getElementById('modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeModal();
+        });
+
+        // Carousel functionality
+        const slides = document.querySelectorAll('.carousel-slide');
+        let currentSlide = 0;
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
+            });
+        }
+
+        document.getElementById('next-btn').addEventListener('click', () => {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        });
+
+        document.getElementById('prev-btn').addEventListener('click', () => {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+        });
+
+        // Initialize carousel
+        showSlide(currentSlide);
+    </script>
+</body>
+</html>
+
+{% endblock %}
