@@ -1,5 +1,895 @@
 {% extends 'partials/base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap">
+<style>
+    body {
+        font-family: 'Roboto', sans-serif;
+    }
+    /* Custom Tailwind colors */
+    :root {
+        --custom-dark: #1C2526;
+        --custom-section: #2C3535;
+        --custom-card: #3A4647;
+        --custom-text-light: #D9D9D9;
+        --custom-highlight: #00BFFF;
+        --custom-mastered: #34D399; /* Green color for mastered words */
+        --custom-read: #FFD700; /* Gold color for read words */
+        --bg-color: #4E708D;
+    }
+    /* Hover effect for word cards */
+    .word-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+        cursor: pointer;
+    }
+    .word-card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+    .word-card.mastered {
+        background-color: var(--custom-mastered) !important;
+    }
+    .word-card.read {
+        background-color: var(--custom-read) !important;
+    }
+    /* Banner styling */
+    .banner {
+        background: linear-gradient(135deg, #00BFFF, #1E90FF);
+        color: white;
+        padding: 1.5rem;
+        border-radius: 10px;
+        text-align: center;
+        font-size: 1.2rem;
+        font-weight: 500;
+        margin-bottom: 1.5rem;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+    /* Progress section styling */
+    .progress-card {
+        background: linear-gradient(145deg, #f3f4f6, #e5e7eb);
+        border-radius: 15px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+    }
+    .progress-card:hover {
+        transform: translateY(-5px);
+    }
+    .streak-number {
+        font-size: 2.5rem;
+        background: linear-gradient(45deg, #00BFFF, #1E90FF);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    .streak-label {
+        font-size: 0.9rem;
+        color: #4b5563;
+    }
+    .quiz-record {
+        transition: background 0.3s ease;
+    }
+    .quiz-record:hover {
+        background: #e5e7eb;
+    }
+</style>
+{% endblock %}
 
 {% block content %}
-    <h1>im from language</h1>
-{% endblock %}                                                                                                            
+<div class="min-h-screen bg-white text-black p-5">
+    <div class="dashboard-container max-w-5xl my-[100px] mx-auto grid gap-5">
+        <!-- Banner -->
+        <div class="relative text-center mb-16 animate-fadeIn bg-cover bg-center rounded-lg py-38" style="background-image: url('{% static 'asset/image/learn_mandar/language_banner.png' %}'); background-size: cover; background-position: center;">
+            <div class="absolute inset-0 bg-[rgba(0,0,0,0.3)] bg-opacity-50 rounded-lg"></div>
+            <div class="relative z-1 px-20">
+                <h1 class="text-2xl text-amber-50 font-bold"> 每天学习一点中文，开启你的语言之旅！(Learn a bit of Mandarin every day, embark on your language journey!)</h1>
+            </div>
+        </div>
+        <h1 class="dashboard-title text-3xl font-bold text-center mb-5 text-[#3E5A73]">学习中文 - Learning Mandarin</h1>
+        
+        <!-- Daily Words Section -->
+        <section class="daily-words-section bg-white p-8 rounded-lg shadow-lg">
+            <h2 class="text-2xl font-bold text-[#4E708D] text-center  mb-4">今日词汇 - Today's 20 Words</h2>
+            <div class="daily-controls flex gap-3 mb-4">
+                <select id="hsk-level" title="Select HSK Level" class="bg-gray-100 text-black border-none p-2 rounded-md text-lg cursor-pointer hover:bg-gray-200 transition-colors">
+                    <option value="1">HSK 1</option>
+                    <option value="2">HSK 2</option>
+                    <option value="3">HSK 3</option>
+                    <option value="4">HSK 4</option>
+                    <option value="5">HSK 5</option>
+                    <option value="6">HSK 6</option>
+                </select>
+                <button id="refresh-daily" class="bg-[#4E708D] text-white border-none p-2 rounded-md text-lg cursor-pointer hover:bg-[#3E5A73]transition-colors">Refresh Words</button>
+            </div>
+            <div class="daily-progress mb-4">
+                <div class="progress-bar bg-gray-200 rounded-md h-5 overflow-hidden">
+                    <div class="progress bg-blue-500 h-full text-center text-xs leading-5 transition-all" id="daily-progress-bar" style="width: 0%;">0/20</div>
+                </div>
+            </div>
+            <div class="vocabulary-container grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3" id="daily-words">
+                <!-- Daily words will be added here dynamically -->
+            </div>
+        </section>
+
+        <!-- Quiz Section -->
+        <section class="quiz-section bg-white font-bold p-5 rounded-lg shadow-lg">
+            <h2 class="text-2xl font-bold text-[#4E708D] text-center  mb-4">快速测验 - Quick Quiz</h2>
+            <div class="quiz-container">
+                <div class="quiz-header flex justify-between items-center mb-4">
+                    <div class="quiz-timer text-2xl font-bold text-blue-500" id="quiz-timer">60</div>
+                    <div class="quiz-score text-lg font-medium">得分: <span id="quiz-score">0</span></div>
+                </div>
+                <div class="quiz-question bg-gray-100 p-4 rounded-lg mb-4">
+                    <div class="question-text text-lg font-medium mb-2" id="question-text"></div>
+                    <div class="question-options grid gap-2" id="question-options"></div>
+                </div>
+                <div class="quiz-controls flex justify-center gap-3">
+                    <button id="start-quiz" class="bg-[#4E708D] text-white border-none px-5 py-2 rounded-md text-sm cursor-pointer hover:bg-[#3E5A73] transition-colors">
+                        <i class="fas fa-play mr-2"></i>开始测验 Start
+                    </button>
+                    <button id="next-question" class="bg-gray-500 text-white border-none px-5 py-2 rounded-md text-sm cursor-pointer hover:bg-gray-600 transition-colors hidden">
+                        <i class="fas fa-forward mr-2"></i>下一题
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Complete Word List Section -->
+        <section class="word-list-section bg-white p-8 rounded-lg shadow-lg">
+            <h2 class="text-2xl font-bold text-[#4E708D] text-center  mb-4">词汇列表 - Complete Word List</h2>
+            <div class="word-list-controls flex flex-col sm:flex-row justify-between mb-4 gap-3">
+                <div class="search-box flex gap-3">
+                    <input type="text" id="word-search" placeholder="Search words..." title="Search words" class="bg-gray-100 text-black border-none p-2 rounded-md text-sm">
+                    <select id="list-hsk-level" title="Filter by HSK Level" class="bg-gray-100 text-black border-none p-2 rounded-md text-sm">
+                        <option value="0">All Levels</option>
+                        <option value="1">HSK 1</option>
+                        <option value="2">HSK 2</option>
+                        <option value="3">HSK 3</option>
+                        <option value="4">HSK 4</option>
+                        <option value="5">HSK 5</option>
+                        <option value="6">HSK 6</option>
+                    </select>
+                </div>
+                <div class="view-controls flex gap-3">
+                    <button id="grid-view" class="view-btn bg-gray-100 text-black border-none p-2 rounded-md text-sm cursor-pointer hover:bg-gray-200 transition-colors active:bg-blue-500 active:text-white">Grid View</button>
+                    <button id="list-view" class="view-btn bg-gray-100 text-black border-none p-2 rounded-md text-sm cursor-pointer hover:bg-gray-200 transition-colors">List View</button>
+                </div>
+            </div>
+            <div class="word-list-container grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3" id="complete-word-list">
+                <!-- Complete word list will be added here dynamically -->
+            </div>
+            <div class="pagination flex justify-center gap-3 mt-4">
+                <button id="prev-page" class="bg-gray-100 text-black border-none p-2 rounded-md text-sm cursor-pointer hover:bg-gray-200 transition-colors disabled:opacity-50">Previous</button>
+                <span id="page-info" class="text-sm leading-8">Page 1 of 1</span>
+                <button id="next-page" class="bg-gray-100 text-black border-none p-2 rounded-md text-sm cursor-pointer hover:bg-gray-200 transition-colors disabled:opacity-50">Next</button>
+            </div>
+        </section>
+
+        <!-- Progress Section -->
+        <section class="progress-section bg-white p-5 rounded-lg shadow-lg">
+            <h2 class="text-2xl font-bold text-[#4E708D] text-center  mb-4">学习进度 - Learning Progress</h2>
+            <div class="progress-grid flex flex-col sm:flex-row justify-center gap-5">
+                <div class="progress-card bg-[#4E708D] rounded-2xl p-4 text-center w-60 mx-auto sm:mx-0">
+                    <h3 class="text-lg font-bold text-amber-50 mb-2">Words Mastered</h3>
+                    <div class="streak-counter flex flex-col items-center">
+                        <span class="streak-number text-amber-50" id="mastered-count">0</span>
+                        <span class="streak-label text-amber-50">words</span>
+                    </div>
+                </div>
+                <div class="progress-card bg-[#4E708D] rounded-2xl p-4 text-center w-60 mx-auto sm:mx-0">
+                    <h3 class="text-lg font-bold text-amber-50 mb-2">Daily Streak</h3>
+                    <div class="streak-counter flex flex-col items-center">
+                        <span class="streak-number text-amber-50" id="day-streak">0</span>
+                        <span class="streak-label text-amber-50">days</span>
+                    </div>
+                </div>
+                <div class="progress-card bg-[#4E708D] rounded-2xl p-4 text-center w-60 mx-auto sm:mx-0">
+                    <h3 class="text-base font-bold text-amber-50 mb-2">Best Score</h3>
+                    <div class="streak-counter flex flex-col items-center">
+                        <span class="streak-number text-amber-50" id="best-quiz-score">0%</span>
+                        <span class="streak-label text-amber-50">quiz score</span>
+                    </div>
+                </div>
+            </div>
+            <div class="quiz-history mt-20">
+                <h3 class="text-2xl font-bold text-[#4E708D] text-center  mb-4">最近测验 - Recent Quizzes</h3>
+                <div class="history-list bg-gray-50 p-4 rounded-md" id="quiz-history">
+                    <!-- Quiz history will be displayed here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Study Assistant Section -->
+        <section class="assistant-section bg-white p-5 rounded-lg shadow-lg">
+            <h2 class="text-2xl font-bold text-[#4E708D] text-center  mb-4">学习助手 - Study Assistant</h2>
+            <div class="assistant-container">
+                <div class="assistant-input mb-4">
+                    <textarea id="assistant-query" 
+                              class="w-full p-3 rounded-md border border-gray-300 focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+                              rows="3"
+                              placeholder="Ask me anything about Chinese language learning..."></textarea>
+                </div>
+                <div class="assistant-controls flex justify-end mb-4">
+                    <button id="ask-assistant" 
+                            class="bg-[#4E708D] text-white px-4 py-2 rounded-md hover:bg-[#3E5A73] transition-colors">
+                        <i class="fas fa-robot mr-2"></i>Ask Assistant
+                    </button>
+                </div>
+                <div class="assistant-response bg-gray-50 p-4 rounded-md min-h-[100px]" id="assistant-response">
+                    <!-- Assistant response will appear here -->
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+{% block scripts %}
+<script>
+    class VocabularyManager {
+        constructor() {
+            this.words = [];
+            this.dailyWords = [];
+            this.currentLevel = 1;
+            this.currentPage = 1;
+            this.wordsPerPage = 20;
+            this.viewMode = 'grid';
+            
+            // Quiz properties
+            this.quizWords = [];
+            this.currentQuestion = 0;
+            this.quizScore = 0;
+            this.quizTimer = null;
+            this.quizTimeLeft = 60;
+            
+            // Quiz history
+            this.quizHistory = [];
+            this.bestScore = 0;
+            
+            // Initialize
+            this.initializeElements();
+            this.setupEventListeners();
+            this.loadAllWords();
+            this.loadDailyWords();
+            this.loadQuizHistory();
+        }
+        
+        initializeElements() {
+            // Daily words elements
+            this.hskLevelSelect = document.getElementById('hsk-level');
+            this.refreshButton = document.getElementById('refresh-daily');
+            this.dailyWordsContainer = document.getElementById('daily-words');
+            this.progressBar = document.getElementById('daily-progress-bar');
+            
+            // Word list elements
+            this.searchInput = document.getElementById('word-search');
+            this.listLevelSelect = document.getElementById('list-hsk-level');
+            this.wordListContainer = document.getElementById('complete-word-list');
+            this.gridViewBtn = document.getElementById('grid-view');
+            this.listViewBtn = document.getElementById('list-view');
+            this.prevPageBtn = document.getElementById('prev-page');
+            this.nextPageBtn = document.getElementById('next-page');
+            this.pageInfo = document.getElementById('page-info');
+            
+            // Progress elements
+            this.masteredCount = document.getElementById('mastered-count');
+            this.dayStreak = document.getElementById('day-streak');
+            this.quizHistoryContainer = document.getElementById('quiz-history');
+            this.bestQuizScore = document.getElementById('best-quiz-score');
+            
+            // Assistant elements
+            this.assistantQuery = document.getElementById('assistant-query');
+            this.assistantResponse = document.getElementById('assistant-response');
+            this.askAssistantBtn = document.getElementById('ask-assistant');
+        }
+        
+        setupEventListeners() {
+            this.hskLevelSelect.addEventListener('change', () => this.loadDailyWords());
+            this.refreshButton.addEventListener('click', () => this.loadDailyWords());
+            this.searchInput.addEventListener('input', () => this.filterWords());
+            this.listLevelSelect.addEventListener('change', () => this.filterWords());
+            this.gridViewBtn.addEventListener('click', () => this.changeView('grid'));
+            this.listViewBtn.addEventListener('click', () => this.changeView('list'));
+            this.prevPageBtn.addEventListener('click', () => this.changePage(-1));
+            this.nextPageBtn.addEventListener('click', () => this.changePage(1));
+            
+            // Quiz event listeners
+            document.getElementById('start-quiz').addEventListener('click', () => this.startQuiz());
+            document.getElementById('next-question').addEventListener('click', () => this.nextQuestion());
+            
+            // Assistant event listeners
+            this.askAssistantBtn.addEventListener('click', () => this.askAssistant());
+            
+            // Add click listener for daily words
+            this.dailyWordsContainer.addEventListener('click', (e) => {
+                const wordCard = e.target.closest('.word-card');
+                if (wordCard) {
+                    const chinese = wordCard.dataset.word;
+                    this.toggleRead(chinese);
+                    this.toggleMastered(chinese);
+                }
+            });
+        }
+        
+        async loadDailyWords() {
+            try {
+                const level = this.hskLevelSelect.value;
+                const response = await fetch(`/static/asset/csv/hsk${level}.csv`);
+                if (!response.ok) throw new Error('Failed to load CSV file');
+                const data = await response.text();
+                const words = this.parseCSV(data);
+                this.dailyWords = this.getRandomWords(words, 20);
+                this.displayDailyWords();
+            } catch (error) {
+                console.error('Error loading daily words:', error);
+                this.dailyWordsContainer.innerHTML = `
+                    <div class="error-message text-center p-4">
+                        <p class="text-red-500">加载词汇时出错，请重试 (Error loading words, please try again)</p>
+                        <button class="mt-2 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-colors" onclick="vocabulary.loadDailyWords()">
+                            重试 - Retry
+                        </button>
+                    </div>
+                `;
+            }
+        }
+        
+        async loadAllWords() {
+            try {
+                this.words = [];
+                for (let level = 1; level <= 6; level++) {
+                    const response = await fetch(`/static/asset/csv/hsk${level}.csv`);
+                    if (!response.ok) continue;
+                    const data = await response.text();
+                    const levelWords = this.parseCSV(data);
+                    levelWords.forEach(word => word.level = level);
+                    this.words = [...this.words, ...levelWords];
+                }
+                this.loadProgress();
+                this.filterWords();
+            } catch (error) {
+                console.error('Error loading all words:', error);
+            }
+        }
+        
+        parseCSV(csv) {
+            try {
+                const lines = csv.split('\n').filter(line => line.trim());
+                return lines.map(line => {
+                    const [chinese, pinyin, english] = line.split(',').map(item => item.trim());
+                    if (!chinese || !pinyin || !english) return null;
+                    return { chinese, pinyin, english, mastered: false, read: false };
+                }).filter(word => word !== null);
+            } catch (error) {
+                console.error('Error parsing CSV:', error);
+                return [];
+            }
+        }
+        
+        getRandomWords(words, count) {
+            const shuffled = [...words].sort(() => 0.5 - Math.random());
+            return shuffled.slice(0, count);
+        }
+        
+        displayDailyWords() {
+            this.dailyWordsContainer.innerHTML = this.dailyWords.map(word => `
+                <div class="word-card bg-[var(--custom-card)] py-5 rounded-md text-center text-sm ${word.read ? 'read' : ''} ${word.mastered ? 'bg-blue-300' : 'bg-gray-300'}" data-word="${word.chinese}">
+                    <div class="character text-2xl text-gray-800 font-extrabold font-medium mb-1">${word.chinese}</div>
+                    <div class="pinyin text-lg text-gray-800 font-medium text-[var(--custom-text-light)]">${word.pinyin}</div>
+                    <div class="meaning text-lg text-gray-800 font-bold text-[var(--custom-text-light)]">${word.english}</div>
+                    <div class="word-controls flex justify-center gap-2 mt-2">
+                        <span class="bg-[var(--custom-highlight)] text-white border-none p-1 cursor-pointer rounded-md text-lg">🔊</span>
+                        <span class="master-btn text-black bg-[var(--custom-card)] text-white font-extrabold w-10 h-10 border-none ${word.mastered ? 'bg-green-500' : 'bg-red-500'} p-1 rounded-full text-lg">
+                            ${word.mastered ? '✓' : '○'}
+                        </span>
+                    </div>
+                </div>
+            `).join('');
+            
+            this.updateProgress();
+        }
+        
+        filterWords() {
+            const searchTerm = this.searchInput.value.toLowerCase();
+            const level = parseInt(this.listLevelSelect.value);
+            
+            let filtered = [...this.words];
+            
+            if (searchTerm) {
+                filtered = filtered.filter(word => 
+                    word.chinese.includes(searchTerm) ||
+                    word.pinyin.toLowerCase().includes(searchTerm) ||
+                    word.english.toLowerCase().includes(searchTerm)
+                );
+            }
+            
+            if (level > 0) {
+                filtered = filtered.filter(word => word.level === level);
+            }
+            
+            this.displayWordList(filtered);
+        }
+        
+        displayWordList(words) {
+            const start = (this.currentPage - 1) * this.wordsPerPage;
+            const end = start + this.wordsPerPage;
+            const pageWords = words.slice(start, end);
+            
+            this.wordListContainer.className = `word-list-container ${this.viewMode === 'grid' ? 'grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3' : 'block'}`;
+            this.wordListContainer.innerHTML = pageWords.map(word => `
+                <div class="word-card bg-[var(--custom-card)] bg-amber-50 p-3 rounded-md text-sm ${this.viewMode === 'grid' ? 'text-center' : 'flex justify-between items-center mb-3'} ${word.read ? 'read' : ''} ${word.mastered ? 'mastered' : ''}" data-word="${word.chinese}">
+                    <div class="character text-2xl text-gray-800 font-extrabold font-medium mb-1">${word.chinese}</div>
+                    <div class="pinyin text-lg text-gray-800 font-medium text-[var(--custom-text-light)]">${word.pinyin}</div>
+                    <div class="meaning text-lg text-gray-800 font-bold text-[var(--custom-text-light)]">${word.english}</div>
+                    <div class="word-controls flex justify-center gap-2 mt-2">
+                        <span class="bg-[var(--custom-highlight)] text-white border-none p-1 cursor-pointer rounded-md text-lg">🔊</span>
+                        <span class="master-btn text-black bg-[var(--custom-card)] text-white flex justify-center  font-extrabold w-10 h-10 border-none ${word.mastered ? 'bg-green-500' : 'bg-red-500'} p-1 rounded-full text-lg">
+                            ${word.mastered ? '✓' : '○'}
+                        </span>
+                    </div>
+                </div>
+            `).join('');
+            
+            const totalPages = Math.ceil(words.length / this.wordsPerPage);
+            this.pageInfo.textContent = `Page ${this.currentPage} of ${totalPages}`;
+            this.prevPageBtn.disabled = this.currentPage === 1;
+            this.nextPageBtn.disabled = this.currentPage === totalPages;
+        }
+        
+        changeView(mode) {
+            this.viewMode = mode;
+            this.gridViewBtn.classList.toggle('active:bg-[var(--custom-highlight)]', mode === 'grid');
+            this.listViewBtn.classList.toggle('active:bg-[var(--custom-highlight)]', mode === 'list');
+            this.filterWords();
+        }
+        
+        changePage(delta) {
+            this.currentPage += delta;
+            this.filterWords();
+        }
+        
+        toggleMastered(chinese) {
+            this.dailyWords = this.dailyWords.map(word => {
+                if (word.chinese === chinese) {
+                    word.mastered = !word.mastered;
+                }
+                return word;
+            });
+            
+            this.words = this.words.map(word => {
+                if (word.chinese === chinese) {
+                    word.mastered = !word.mastered;
+                }
+                return word;
+            });
+            
+            this.displayDailyWords();
+            this.filterWords();
+            this.updateProgress();
+            this.saveProgress();
+        }
+        
+        toggleRead(chinese) {
+            this.dailyWords = this.dailyWords.map(word => {
+                if (word.chinese === chinese) {
+                    word.read = !word.read;
+                }
+                return word;
+            });
+            
+            this.words = this.words.map(word => {
+                if (word.chinese === chinese) {
+                    word.read = !word.read;
+                }
+                return word;
+            });
+            
+            this.displayDailyWords();
+            this.filterWords();
+            this.saveProgress();
+        }
+        
+        updateProgress() {
+            const masteredCount = this.dailyWords.filter(word => word.mastered).length;
+            const totalDailyWords = this.dailyWords.length || 20; // Fallback to 20 if dailyWords is empty
+            const progressPercentage = (masteredCount / totalDailyWords) * 100;
+            this.progressBar.style.width = `${progressPercentage}%`;
+            
+            let progressMessage = `${masteredCount}/${totalDailyWords}`;
+            if (progressPercentage === 100) {
+                progressMessage += ' - 太棒了！ (Excellent!)';
+                this.progressBar.classList.remove('bg-blue-500', 'bg-blue-400', 'bg-blue-300');
+                this.progressBar.classList.add('bg-green-500');
+            } else if (progressPercentage >= 75) {
+                progressMessage += ' - 很好！ (Great!)';
+                this.progressBar.classList.remove('bg-green-500', 'bg-blue-400', 'bg-blue-300');
+                this.progressBar.classList.add('bg-blue-500');
+            } else if (progressPercentage >= 50) {
+                progressMessage += ' - 继续加油！ (Keep going!)';
+                this.progressBar.classList.remove('bg-green-500', 'bg-blue-500', 'bg-blue-300');
+                this.progressBar.classList.add('bg-blue-400');
+            } else {
+                progressMessage += ' - 加油！ (You can do it!)';
+                this.progressBar.classList.remove('bg-green-500', 'bg-blue-500', 'bg-blue-400');
+                this.progressBar.classList.add('bg-blue-300');
+            }
+            this.progressBar.textContent = progressMessage;
+            
+            const totalMastered = this.words.filter(word => word.mastered).length;
+            const totalWords = this.words.length;
+            const totalProgress = totalWords ? (totalMastered / totalWords) * 100 : 0;
+            
+            let masteryMessage = `${totalMastered} words`;
+            if (totalProgress === 100) {
+                masteryMessage += ' - 大师级！ (Master Level!)';
+            } else if (totalProgress >= 75) {
+                masteryMessage += ' - 高级！ (Advanced!)';
+            } else if (totalProgress >= 50) {
+                masteryMessage += ' - 中级！ (Intermediate!)';
+            } else if (totalProgress >= 25) {
+                masteryMessage += ' - 初级！ (Beginner!)';
+            } else {
+                masteryMessage += ' - 开始学习！ (Getting Started!)';
+            }
+            this.masteredCount.textContent = masteryMessage;
+        }
+        
+        saveProgress() {
+            const progress = {
+                masteredWords: this.words.filter(word => word.mastered).map(word => word.chinese),
+                readWords: this.words.filter(word => word.read).map(word => word.chinese),
+                lastDate: new Date().toDateString(),
+                streak: parseInt(this.dayStreak.textContent) || 0,
+                quizHistory: this.quizHistory,
+                bestScore: this.bestScore
+            };
+            localStorage.setItem('vocabularyProgress', JSON.stringify(progress));
+        }
+        
+        loadProgress() {
+            try {
+                const progress = JSON.parse(localStorage.getItem('vocabularyProgress'));
+                if (progress) {
+                    const masteredWords = new Set(progress.masteredWords || []);
+                    const readWords = new Set(progress.readWords || []);
+                    
+                    this.words = this.words.map(word => ({
+                        ...word,
+                        mastered: masteredWords.has(word.chinese),
+                        read: readWords.has(word.chinese)
+                    }));
+                    
+                    this.dailyWords = this.dailyWords.map(word => ({
+                        ...word,
+                        mastered: masteredWords.has(word.chinese),
+                        read: readWords.has(word.chinese)
+                    }));
+                    
+                    const lastDate = new Date(progress.lastDate);
+                    const today = new Date();
+                    if (today.toDateString() === lastDate.toDateString()) {
+                        this.dayStreak.textContent = progress.streak;
+                    } else if ((today - lastDate) / (1000 * 60 * 60 * 24) <= 1) {
+                        this.dayStreak.textContent = progress.streak + 1;
+                    } else {
+                        this.dayStreak.textContent = 1;
+                    }
+                    
+                    if (progress.quizHistory) {
+                        this.quizHistory = progress.quizHistory;
+                        this.bestScore = progress.bestScore || 0;
+                        this.updateQuizHistory();
+                    }
+                    
+                    this.displayDailyWords();
+                    this.filterWords();
+                    this.updateProgress();
+                }
+            } catch (error) {
+                console.error('Error loading progress:', error);
+            }
+        }
+        
+        updateQuizHistory() {
+            this.bestQuizScore.textContent = `${this.bestScore.toFixed(1)}%`;
+            
+            const recentQuizzes = this.quizHistory.slice(-5).reverse();
+            this.quizHistoryContainer.innerHTML = recentQuizzes.length ? recentQuizzes.map((score, index) => `
+                <div class="quiz-record flex justify-between items-center py-2 ${index !== recentQuizzes.length - 1 ? 'border-b border-gray-200' : ''}">
+                    <div class="quiz-date text-sm text-gray-600">${new Date().toLocaleDateString()}</div>
+                    <div class="quiz-score flex items-center">
+                        <span class="text-sm font-medium ${score >= 80 ? 'text-green-500' : score >= 60 ? 'text-yellow-500' : 'text-red-500'}">
+                            ${score.toFixed(1)}%
+                        </span>
+                        ${score === this.bestScore ? '<span class="ml-2 text-xs text-blue-500">(Best)</span>' : ''}
+                    </div>
+                </div>
+            `).join('') : `
+                <div class="text-center text-gray-500 py-4">
+                    还没有测验记录 - No quiz records yet
+                </div>
+            `;
+        }
+        
+        speak(text) {
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'zh-CN';
+            window.speechSynthesis.speak(utterance);
+        }
+        
+        startQuiz() {
+            this.quizScore = 0;
+            this.currentQuestion = 0;
+            this.quizTimeLeft = 60;
+            this.quizWords = this.getRandomWords(this.words, 10);
+            
+            document.getElementById('start-quiz').classList.add('hidden');
+            document.getElementById('next-question').classList.remove('hidden');
+            document.getElementById('quiz-score').textContent = '0';
+            
+            this.startQuizTimer();
+            this.displayQuestion();
+        }
+        
+        startQuizTimer() {
+            if (this.quizTimer) {
+                clearInterval(this.quizTimer);
+            }
+            
+            this.quizTimer = setInterval(() => {
+                this.quizTimeLeft--;
+                document.getElementById('quiz-timer').textContent = this.quizTimeLeft;
+                
+                if (this.quizTimeLeft <= 0) {
+                    this.endQuiz();
+                }
+            }, 1000);
+        }
+        
+        displayQuestion() {
+            if (this.currentQuestion >= this.quizWords.length) {
+                this.endQuiz();
+                return;
+            }
+            
+            const currentWord = this.quizWords[this.currentQuestion];
+            const options = this.getQuizOptions(currentWord);
+            
+            document.getElementById('question-text').textContent = `What is the meaning of "${currentWord.chinese}"?`;
+            
+            const optionsContainer = document.getElementById('question-options');
+            optionsContainer.innerHTML = options.map((option, index) => `
+                <button class="option-btn bg-gray-100 text-black border-none p-2 rounded-md text-sm cursor-pointer hover:bg-gray-200 transition-colors w-full text-left" 
+                        data-correct="${option === currentWord.english}">
+                    ${index + 1}. ${option}
+                </button>
+            `).join('');
+            
+            optionsContainer.querySelectorAll('.option-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => this.checkAnswer(e));
+            });
+        }
+        
+        getQuizOptions(correctWord) {
+            const options = [correctWord.english];
+            const otherWords = this.words.filter(w => w.english !== correctWord.english);
+            const shuffled = [...otherWords].sort(() => 0.5 - Math.random()).slice(0, 3);
+            options.push(...shuffled.map(w => w.english));
+            return options.sort(() => 0.5 - Math.random());
+        }
+        
+        checkAnswer(event) {
+            const button = event.currentTarget;
+            const isCorrect = button.dataset.correct === 'true';
+            
+            if (isCorrect) {
+                this.quizScore++;
+                document.getElementById('quiz-score').textContent = this.quizScore;
+                button.classList.add('bg-green-500', 'text-white');
+            } else {
+                button.classList.add('bg-red-500', 'text-white');
+                document.querySelector('[data-correct="true"]').classList.add('bg-green-500', 'text-white');
+            }
+            
+            document.querySelectorAll('.option-btn').forEach(btn => {
+                btn.disabled = true;
+            });
+            
+            setTimeout(() => {
+                this.nextQuestion();
+            }, 1500);
+        }
+        
+        nextQuestion() {
+            this.currentQuestion++;
+            this.displayQuestion();
+        }
+        
+        endQuiz() {
+            clearInterval(this.quizTimer);
+            document.getElementById('quiz-timer').textContent = '0';
+            document.getElementById('start-quiz').classList.remove('hidden');
+            document.getElementById('next-question').classList.add('hidden');
+            
+            const finalScore = (this.quizScore / this.quizWords.length) * 100;
+            
+            this.quizHistory.push(finalScore);
+            if (this.quizHistory.length > 10) {
+                this.quizHistory.shift();
+            }
+            if (finalScore > this.bestScore) {
+                this.bestScore = finalScore;
+            }
+            this.updateQuizHistory();
+            this.saveProgress();
+            
+            let message = '';
+            if (finalScore === 100) {
+                message = `太棒了！\n\n得分: ${finalScore.toFixed(1)}%\n\n恭喜你！你完全掌握了这些词汇！\n(Excellent! You've mastered these words completely!)`;
+            } else if (finalScore >= 80) {
+                message = `很好！\n\n得分: ${finalScore.toFixed(1)}%\n\n你的表现非常出色！继续加油！\n(Great job! Keep up the good work!)`;
+            } else if (finalScore >= 60) {
+                message = `不错！\n\n得分: ${finalScore.toFixed(1)}%\n\n你做得不错，但还有进步空间！\n(Good effort! There's room for improvement!)`;
+            } else {
+                message = `加油！\n\n得分: ${finalScore.toFixed(1)}%\n\n不要气馁，再试一次！\n(Don't give up! Try again!)`;
+            }
+            
+            const alertDiv = document.createElement('div');
+            alertDiv.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50';
+            alertDiv.innerHTML = `
+                <div class="bg-white p-6 rounded-lg shadow-xl max-w-md w-full mx-4">
+                    <h3 class="text-xl font-bold mb-4 text-center">测验结果 - Quiz Results</h3>
+                    <p class="text-lg mb-4 whitespace-pre-line">${message}</p>
+                    <div class="flex justify-center">
+                        <button class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-colors" onclick="this.parentElement.parentElement.parentElement.remove()">
+                            确定 - OK
+                        </button>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(alertDiv);
+        }
+        
+        async askAssistant() {
+            const query = this.assistantQuery.value.trim();
+            if (!query) {
+                this.assistantResponse.innerHTML = `
+                    <div class="text-sm text-red-500">
+                        <p>请输入一个问题！(Please enter a question!)</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            this.showLoading('assistant');
+            
+            try {
+                console.log('Sending query to assistant:', query);
+                const response = await fetch('/mandarin/ask-assistant/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+                    },
+                    body: JSON.stringify({ query })
+                });
+
+                console.log('Received response:', response);
+                const data = await response.json();
+                console.log('Response data:', data);
+
+                if (!response.ok) {
+                    throw new Error(data.error || 'Failed to get response from assistant');
+                }
+
+                if (!data.choices || !data.choices[0] || !data.choices[0].message) {
+                    throw new Error('Invalid response format from server');
+                }
+
+                const answer = data.choices[0].message.content;
+
+                this.assistantResponse.innerHTML = `
+                    <div class="text-sm">
+                        <div class="mb-2 whitespace-pre-line">${answer}</div>
+                        <div class="text-xs text-gray-500 mt-2">
+                            <p>Note: This response is generated by AI and may not be perfect.</p>
+                            <p class="mt-1">提示：此回答由AI生成，可能不完全准确。</p>
+                        </div>
+                    </div>
+                `;
+            } catch (error) {
+                console.error('Error asking assistant:', error);
+                let errorMessage = '抱歉，发生错误。请稍后再试。(Sorry, an error occurred. Please try again later.)';
+                
+                if (error.message.includes('401')) {
+                    errorMessage = 'API密钥无效。请检查您的API密钥。(Invalid API key. Please check your API key.)';
+                } else if (error.message.includes('rate limit')) {
+                    errorMessage = 'API请求频率过高，请稍后再试。(Rate limit exceeded, please try again later.)';
+                } else if (error.message.includes('Failed to get response')) {
+                    errorMessage = '无法连接到AI助手，请检查网络连接。(Unable to connect to AI assistant, please check your network connection.)';
+                }
+
+                this.assistantResponse.innerHTML = `
+                    <div class="text-sm text-red-500">
+                        <p>${errorMessage}</p>
+                        <p class="mt-2 text-xs">错误详情 (Error details): ${error.message}</p>
+                        <button class="mt-2 bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-colors" onclick="vocabulary.askAssistant()">
+                            重试 - Retry
+                        </button>
+                    </div>
+                `;
+            } finally {
+                this.hideLoading('assistant');
+            }
+        }
+        
+        showLoading(type) {
+            if (type === 'assistant') {
+                this.assistantResponse.innerHTML = `
+                    <div class="flex items-center justify-center">
+                        <div class="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-500"></div>
+                        <p class="ml-2 text-sm text-gray-600">思考中... (Thinking...)</p>
+                    </div>
+                `;
+                this.askAssistantBtn.disabled = true;
+                this.askAssistantBtn.innerHTML = `<i class="fas fa-robot mr-2"></i>Processing...`;
+            }
+        }
+        
+        hideLoading(type) {
+            if (type === 'assistant') {
+                this.askAssistantBtn.disabled = false;
+                this.askAssistantBtn.innerHTML = `<i class="fas fa-robot mr-2"></i>Ask Assistant`;
+            }
+        }
+    }
+
+    let vocabulary;
+    document.addEventListener('DOMContentLoaded', () => {
+        try {
+            vocabulary = new VocabularyManager();
+            
+            const loadingIndicator = document.createElement('div');
+            loadingIndicator.id = 'loading-indicator';
+            loadingIndicator.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden';
+            loadingIndicator.innerHTML = `
+                <div class="bg-white p-4 rounded-lg shadow-lg">
+                    <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500 mx-auto"></div>
+                    <p class="mt-2 text-sm">加载中... (Loading...)</p>
+                </div>
+            `;
+            document.body.appendChild(loadingIndicator);
+
+            const loadingIndicatorEl = document.getElementById('loading-indicator');
+            loadingIndicatorEl.classList.remove('hidden');
+
+            Promise.all([
+                vocabulary.loadAllWords(),
+                vocabulary.loadDailyWords(),
+                vocabulary.loadQuizHistory()
+            ]).then(() => {
+                loadingIndicatorEl.classList.add('hidden');
+            }).catch(error => {
+                console.error('Error loading initial data:', error);
+                loadingIndicatorEl.classList.add('hidden');
+                alert('加载数据时出错，请刷新页面重试 (Error loading data, please refresh the page)');
+            });
+
+            window.addEventListener('error', (event) => {
+                console.error('Global error:', event.error);
+                loadingIndicatorEl.classList.add('hidden');
+                alert('发生错误，请刷新页面重试 (An error occurred, please refresh the page)');
+            });
+
+            window.addEventListener('unhandledrejection', (event) => {
+                console.error('Unhandled promise rejection:', event.reason);
+                loadingIndicatorEl.classList.add('hidden');
+                alert('发生错误，请刷新页面重试 (An error occurred, please refresh the page)');
+            });
+
+        } catch (error) {
+            console.error('Error initializing vocabulary manager:', error);
+            alert('初始化失败，请刷新页面重试 (Initialization failed, please refresh the page)');
+        }
+    });
+</script>
+{% endblock %}
+{% endblock %}

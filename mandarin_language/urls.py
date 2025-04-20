@@ -1,8 +1,9 @@
 from django.urls import path
-from mandarin_language.views import mandarin_language
+from . import views
 
 app_name = "mandarin_language"
 
 urlpatterns = [
-    path("", mandarin_language)
+    path("", views.index, name="index"),
+    path("ask-assistant/", views.ask_assistant, name="ask_assistant"),
 ]

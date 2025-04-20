@@ -10,7 +10,7 @@
 
     <div class="container mx-auto px-4 max-w-7xl">
         <!-- Magazine Header with Background Image -->
-        <div class="relative text-center mb-16 animate-fadeIn bg-cover bg-center rounded-lg py-38" style="background-image: url('{% static 'images/forbidden_city.png' %}'); background-size: cover; background-position: center;">
+        <div class="relative text-center mb-16 animate-fadeIn bg-cover bg-center rounded-lg py-38" style="background-image: url('{% static 'asset/image/ART & ARCHITECTURE/ART_ARCHITECTURE.png' %}'); background-size: cover; background-position: center;">
             <div class="absolute inset-0 bg-[rgba(0,0,0,0.3)] bg-opacity-50 rounded-lg"></div>
             <div class="relative z-1">
                 <h1 class="text-6xl font-bold mb-4 tracking-tight text-[#4E708D] drop-shadow-lg">CHINESE ART & ARCHITECTURE</h1>
@@ -36,7 +36,7 @@
             <div class="lg:w-3/4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Traditional Painting -->
                 <div id="painting" class="magazine-article relative overflow-hidden rounded-lg">
-                    <div class="article-image h-40 relative" style="background-image: url('{% static 'images/painting.png' %}'); background-size: cover; background-position: center;">
+                    <div class="article-image h-40 relative" style="background-image: url('{% static 'asset/image/ART & ARCHITECTURE/Painting.png' %}'); background-size: cover; background-position: center;">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                     </div>
                     <div class="p-6">
@@ -56,7 +56,7 @@
 
                 <!-- Calligraphy -->
                 <div id="calligraphy" class="magazine-article relative overflow-hidden rounded-lg">
-                    <div class="article-image h-40 relative" style="background-image: url('{% static 'images/calligraphy.png' %}'); background-size: cover; background-position: center;">
+                    <div class="article-image h-40 relative" style="background-image: url('{% static 'asset/image/ART & ARCHITECTURE/Calligraphy.png' %}'); background-size: cover; background-position: center;">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                     </div>
                     <div class="p-6">
@@ -76,7 +76,7 @@
 
                 <!-- Forbidden City -->
                 <div id="forbidden-city" class="magazine-article relative overflow-hidden rounded-lg">
-                    <div class="article-image h-40 relative" style="background-image: url('{% static 'images/forbidden_city.png' %}'); background-size: cover; background-position: center;">
+                    <div class="article-image h-40 relative" style="background-image: url('{% static 'asset/image/ART & ARCHITECTURE/Forbidden City.png' %}'); background-size: cover; background-position: center;">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                     </div>
                     <div class="p-6">
@@ -96,7 +96,7 @@
 
                 <!-- Great Wall -->
                 <div id="great-wall" class="magazine-article relative overflow-hidden rounded-lg">
-                    <div class="article-image h-40 relative" style="background-image: url('{% static 'images/great_wall.png' %}'); background-size: cover; background-position: center;">
+                    <div class="article-image h-40 relative" style="background-image: url('{% static 'asset/image/ART & ARCHITECTURE/Great Wall.png' %}'); background-size: cover; background-position: center;">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                     </div>
                     <div class="p-6">
@@ -116,7 +116,7 @@
 
                 <!-- Classical Gardens -->
                 <div id="gardens" class="magazine-article relative overflow-hidden rounded-lg">
-                    <div class="article-image h-40 relative" style="background-image: url('{% static 'images/gardens.png' %}'); background-size: cover; background-position: center;">
+                    <div class="article-image h-40 relative" style="background-image: url('{% static 'asset/image/ART & ARCHITECTURE/Gardens.png' %}'); background-size: cover; background-position: center;">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                     </div>
                     <div class="p-6">
@@ -169,45 +169,6 @@
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="bg-stone-900 text-white mt-20 py-12">
-        <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div>
-                    <h3 class="text-lg font-bold mb-4 chinese-font">文化遗产</h3>
-                    <p class="text-sm text-stone-400">
-                        Celebrating the timeless beauty of Chinese art and architecture through insightful stories.
-                    </p>
-                </div>
-                <div>
-                    <h3 class="text-sm font-semibold mb-3 tracking-wider">ISSUES</h3>
-                    <ul class="space-y-2 text-sm text-stone-400">
-                        <li>Spring 2024</li>
-                        <li>Summer 2024</li>
-                        <li>Autumn 2024</li>
-                        <li>Winter 2024</li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="text-sm font-semibold mb-3 tracking-wider">FOLLOW</h3>
-                    <div class="flex space-x-4 text-stone-400">
-                        <i class="fab fa-weixin hover:text-green-500 cursor-pointer"></i>
-                        <i class="fab fa-weibo hover:text-red-500 cursor-pointer"></i>
-                        <i class="fab fa-instagram hover:text-pink-500 cursor-pointer"></i>
-                    </div>
-                </div>
-                <div>
-                    <h3 class="text-sm font-semibold mb-3 tracking-wider">SUBSCRIBE</h3>
-                    <button class="bg-[#4E708D] hover:bg-[#3E5A73] text-white px-4 py-2 text-xs font-semibold tracking-wider transition duration-300">
-                        JOIN NOW
-                    </button>
-                </div>
-            </div>
-            <div class="border-t border-stone-700 mt-8 pt-8 text-center text-sm text-stone-500">
-                <p>© 2025 Heritage Chronicles Magazine. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
 
     <!-- Modal -->
     <div id="modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[rgba(0,0,0,0.47)] bg-opacity-50 modal opacity-0 translate-y-10 invisible transition-all duration-300">
@@ -246,7 +207,7 @@
             title: "传统绘画 Traditional Painting",
             author: "By Dr. Li Mei • April 2025",
             content: `
-                <div class="article-image mb-4" style="background-image: url('{% static 'images/painting.png' %}'); height: 200px; background-size: cover; background-position: center;"></div>
+                <div class="article-image mb-4" style="background-image: url('{% static 'asset/image/ART & ARCHITECTURE/Painting.png' %}'); height: 200px; background-size: cover; background-position: center;"></div>
                 <p>Chinese painting dates back to the Neolithic period, with early examples on pottery. It flourished during the Tang (618–907) and Song (960–1279) Dynasties, focusing on landscapes, flowers, and birds.</p>
                 <h3 class="font-bold mt-4 text-[#4E708D]">Techniques</h3>
                 <p>Artists use ink and water on rice paper or silk, employing the <em>gongbi</em> (meticulous) or <em>xieyi</em> (freehand) styles. Landscape painting often symbolizes the harmony between humans and nature, influenced by Daoist philosophy.</p>
@@ -261,7 +222,7 @@
             title: "书法 Calligraphy",
             author: "By Dr. Li Mei • April 2025",
             content: `
-                <div class="article-image mb-4" style="background-image: url('{% static 'images/calligraphy.png' %}'); height: 200px; background-size: cover; background-position: center;"></div>
+                <div class="article-image mb-4" style="background-image: url('{% static 'asset/image/ART & ARCHITECTURE/Calligraphy.png' %}'); height: 200px; background-size: cover; background-position: center;"></div>
                 <p>Calligraphy, known as <em>shufa</em>, emerged over 2,000 years ago with the development of Chinese writing. It reached its peak during the Tang Dynasty with masters like Wang Xizhi.</p>
                 <h3 class="font-bold mt-4 text-[#4E708D]">Styles</h3>
                 <p>Key styles include seal script, clerical script, regular script, running script, and cursive script. Each stroke reflects the artist’s personality, requiring years of disciplined practice.</p>
@@ -276,7 +237,7 @@
             title: "紫禁城 Forbidden City",
             author: "By Dr. Li Mei • April 2025",
             content: `
-                <div class="article-image mb-4" style="background-image: url('{% static 'images/forbidden_city.png' %}'); height: 200px; background-size: cover; background-position: center;"></div>
+                <div class="article-image mb-4" style="background-image: url('{% static 'asset/image/ART & ARCHITECTURE/Forbidden City.png' %}'); height: 200px; background-size: cover; background-position: center;"></div>
                 <p>The Forbidden City, built from 1406 to 1420 during the Ming Dynasty, served as the imperial palace for the Ming and Qing Dynasties until 1912. Located in Beijing, it spans 180 acres.</p>
                 <h3 class="font-bold mt-4 text-[#4E708D]">Design</h3>
                 <p>The complex features 980 buildings, with yellow-tiled roofs symbolizing imperial power and red walls for good fortune. Its layout reflects cosmological principles, aligning with the north-south axis.</p>
@@ -291,7 +252,7 @@
             title: "长城 Great Wall",
             author: "By Dr. Li Mei • April 2025",
             content: `
-                <div class="article-image mb-4" style="background-image: url('{% static 'images/great_wall.png' %}'); height: 200px; background-size: cover; background-position: center;"></div>
+                <div class="article-image mb-4" style="background-image: url('{% static 'asset/image/ART & ARCHITECTURE/Great Wall.png' %}'); height: 200px; background-size: cover; background-position: center;"></div>
                 <p>The Great Wall began in the 3rd century BCE under Qin Shi Huang, with major expansions during the Ming Dynasty (1368–1644). It stretches over 13,000 miles across northern China.</p>
                 <h3 class="font-bold mt-4 text-[#4E708D]">Construction</h3>
                 <p>Built with stone, brick, and earth, it includes watchtowers, fortresses, and beacon towers. Ming-era walls are up to 26 feet high, designed to deter invaders like the Mongols.</p>
@@ -306,7 +267,7 @@
             title: "古典园林 Classical Gardens",
             author: "By Dr. Li Mei • April 2025",
             content: `
-                <div class="article-image mb-4" style="background-image: url('{% static 'images/gardens.png' %}'); height: 200px; background-size: cover; background-position: center;"></div>
+                <div class="article-image mb-4" style="background-image: url('{% static 'asset/image/ART & ARCHITECTURE/Gardens.png' %}'); height: 200px; background-size: cover; background-position: center;"></div>
                 <p>Classical Chinese gardens, particularly in Suzhou, date back to the 11th century. Designed by scholars, they embody Daoist ideals of harmony between humans and nature.</p>
                 <h3 class="font-bold mt-4 text-[#4E708D]">Design</h3>
                 <p>Gardens feature pavilions, rockeries, ponds, and winding paths, creating an illusion of vastness in small spaces. Elements like the Humble Administrator’s Garden in Suzhou reflect poetic beauty.</p>

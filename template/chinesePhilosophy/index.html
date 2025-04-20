@@ -10,7 +10,7 @@
 
     <div class="container mx-auto px-4 max-w-7xl">
         <!-- Magazine Header with Background Image -->
-        <div class="relative text-center mb-16 animate-fadeIn bg-cover bg-center rounded-lg py-38" style="background-image: url('{% static 'images/confucianism.png' %}'); background-size: cover; background-position: center;">
+        <div class="relative text-center mb-16 animate-fadeIn bg-cover bg-center rounded-lg py-38" style="background-image: url('{% static 'asset/image/Philosophy/CHINESE PHILOSOPHY.png' %}'); background-size: cover; background-position: center;">
             <div class="absolute inset-0 bg-[rgba(0,0,0,0.3)] bg-opacity-50 rounded-lg"></div>
             <div class="relative z-1">
                 <h1 class="text-6xl font-bold mb-4 tracking-tight text-[#4E708D] drop-shadow-lg">CHINESE PHILOSOPHY</h1>
@@ -36,7 +36,7 @@
             <div class="lg:w-3/4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Confucianism -->
                 <div id="confucianism" class="magazine-article relative overflow-hidden rounded-lg">
-                    <div class="article-image h-40 relative" style="background-image: url('{% static 'images/confucianism.png' %}'); background-size: cover; background-position: center;">
+                    <div class="article-image h-40 relative" style="background-image: url('{% static 'asset/image/Philosophy/Confucianism.png' %}'); background-size: cover; background-position: center;">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                     </div>
                     <div class="p-6">
@@ -56,7 +56,7 @@
 
                 <!-- Daoism -->
                 <div id="daoism" class="magazine-article relative overflow-hidden rounded-lg">
-                    <div class="article-image h-40 relative" style="background-image: url('{% static 'images/daoism.png' %}'); background-size: cover; background-position: center;">
+                    <div class="article-image h-40 relative" style="background-image: url('{% static 'asset/image/Philosophy/Daoism.png' %}'); background-size: cover; background-position: center;">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                     </div>
                     <div class="p-6">
@@ -76,7 +76,7 @@
 
                 <!-- Legalism -->
                 <div id="legalism" class="magazine-article relative overflow-hidden rounded-lg">
-                    <div class="article-image h-40 relative" style="background-image: url('{% static 'images/legalism.png' %}'); background-size: cover; background-position: center;">
+                    <div class="article-image h-40 relative" style="background-image: url('{% static 'asset/image/Philosophy/Legalism.png' %}'); background-size: cover; background-position: center;">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                     </div>
                     <div class="p-6">
@@ -96,7 +96,7 @@
 
                 <!-- Mohism -->
                 <div id="mohism" class="magazine-article relative overflow-hidden rounded-lg">
-                    <div class="article-image h-40 relative" style="background-image: url('{% static 'images/mohism.png' %}'); background-size: cover; background-position: center;">
+                    <div class="article-image h-40 relative" style="background-image: url('{% static 'asset/image/Philosophy/Mohism.png' %}'); background-size: cover; background-position: center;">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                     </div>
                     <div class="p-6">
@@ -116,7 +116,7 @@
 
                 <!-- Hundred Schools of Thought -->
                 <div id="hundred-schools" class="magazine-article relative overflow-hidden rounded-lg">
-                    <div class="article-image h-40 relative" style="background-image: url('{% static 'images/hundred_schools.png' %}'); background-size: cover; background-position: center;">
+                    <div class="article-image h-40 relative" style="background-image: url('{% static 'asset/image/Philosophy/Hundred Schools.png' %}'); background-size: cover; background-position: center;">
                         <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                     </div>
                     <div class="p-6">
@@ -137,7 +137,7 @@
         </div>
 
         <!-- Cover Story -->
-        <div class="magazine-article mt-12 cover-story text-white rounded-lg" style="background-image: url('https://images.unsplash.com/photo-1519817650390-64a93db51149?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'); background-size: cover; background-position: center;">
+        <div class="magazine-article mt-12 cover-story text-white rounded-lg" style="background-image: url('{% static 'asset/image/Philosophy/The Legacy of Chinese Philosophy.png' %}'); background-size: cover; background-position: center;">
             <div class="p-8 bg-[rgba(0,0,0,0.51)] bg-opacity-40">
                 <div class="mb-6 max-w-2xl">
                     <span class="text-xs font-semibold tracking-wider text-white text-opacity-80">COVER STORY</span>
@@ -169,45 +169,6 @@
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="bg-stone-900 text-white mt-20 py-12">
-        <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div>
-                    <h3 class="text-lg font-bold mb-4 chinese-font">文化遗产</h3>
-                    <p class="text-sm text-stone-400">
-                        Exploring the profound ideas of Chinese philosophy through insightful stories.
-                    </p>
-                </div>
-                <div>
-                    <h3 class="text-sm font-semibold mb-3 tracking-wider">ISSUES</h3>
-                    <ul class="space-y-2 text-sm text-stone-400">
-                        < peri>Spring 2024</li>
-                        <li>Summer 2024</li>
-                        <li>Autumn 2024</li>
-                        <li>Winter 2024</li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="text-sm font-semibold mb-3 tracking-wider">FOLLOW</h3>
-                    <div class="flex space-x-4 text-stone-400">
-                        <i class="fab fa-weixin hover:text-green-500 cursor-pointer"></i>
-                        <i class="fab fa-weibo hover:text-red-500 cursor-pointer"></i>
-                        <i class="fab fa-instagram hover:text-pink-500 cursor-pointer"></i>
-                    </div>
-                </div>
-                <div>
-                    <h3 class="text-sm font-semibold mb-3 tracking-wider">SUBSCRIBE</h3>
-                    <button class="bg-[#4E708D] hover:bg-[#3E5A73] text-white px-4 py-2 text-xs font-semibold tracking-wider transition duration-300">
-                        JOIN NOW
-                    </button>
-                </div>
-            </div>
-            <div class="border-t border-stone-700 mt-8 pt-8 text-center text-sm text-stone-500">
-                <p>© 2025 Heritage Chronicles Magazine. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
 
     <!-- Modal -->
     <div id="modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[rgba(0,0,0,0.47)] bg-opacity-50 modal opacity-0 translate-y-10 invisible transition-all duration-300">
@@ -246,7 +207,7 @@
             title: "儒家 Confucianism",
             author: "By Dr. Li Mei • April 2025",
             content: `
-                <div class="article-image mb-4" style="background-image: url('{% static 'images/confucianism.png' %}'); height: 200px; background-size: cover; background-position: center;"></div>
+                <div class="article-image mb-4" style="background-image: url('{% static 'asset/image/Philosophy/Confucianism.png' %}'); height: 200px; background-size: cover; background-position: center;"></div>
                 <p>Confucianism, founded by Confucius (551–479 BCE), emerged during the Spring and Autumn period. Confucius, born in the state of Lu, sought to restore social order through ethical principles.</p>
                 <h3 class="font-bold mt-4 text-[#4E708D]">Core Ideas</h3>
                 <p>Confucianism emphasizes <em>ren</em> (benevolence), <em>li</em> (ritual propriety), and <em>xiao</em> (filial piety). It advocates for hierarchical relationships—ruler to subject, parent to child—rooted in mutual respect and duty.</p>
@@ -261,7 +222,7 @@
             title: "道家 Daoism",
             author: "By Dr. Li Mei • April 2025",
             content: `
-                <div class="article-image mb-4" style="background-image: url('{% static 'images/daoism.png' %}'); height: 200px; background-size: cover; background-position: center;"></div>
+                <div class="article-image mb-4" style="background-image: url('{% static 'asset/image/Philosophy/Daoism.png' %}'); height: 200px; background-size: cover; background-position: center;"></div>
                 <p>Daoism, attributed to Laozi (6th century BCE), is rooted in the <em>Daodejing</em>, a text emphasizing the Dao ("The Way") as the source of all things. Laozi’s origins are debated, with some viewing him as a mythical figure.</p>
                 <h3 class="font-bold mt-4 text-[#4E708D]">Core Ideas</h3>
                 <p>Daoism advocates living in harmony with the Dao through <em>wu wei</em> (non-action), simplicity, and naturalness. It contrasts with Confucianism’s structured hierarchies, favoring spontaneity and balance.</p>
@@ -276,7 +237,7 @@
             title: "法家 Legalism",
             author: "By Dr. Li Mei • April 2025",
             content: `
-                <div class="article-image mb-4" style="background-image: url('{% static 'images/legalism.png' %}'); height: 200px; background-size: cover; background-position: center;"></div>
+                <div class="article-image mb-4" style="background-image: url('{% static 'asset/image/Philosophy/Legalism.png' %}'); height: 200px; background-size: cover; background-position: center;"></div>
                 <p>Legalism, developed during the Warring States period (475–221 BCE), was championed by thinkers like Han Feizi. It arose in a time of chaos, aiming to create order through strict governance.</p>
                 <h3 class="font-bold mt-4 text-[#4E708D]">Core Ideas</h3>
                 <p>Legalism assumes humans are inherently selfish, requiring strict laws (<em>fa</em>), centralized power (<em>shi</em>), and political strategy (<em>shu</em>). Rewards and harsh punishments enforce compliance.</p>
@@ -291,7 +252,7 @@
             title: "墨家 Mohism",
             author: "By Dr. Li Mei • April 2025",
             content: `
-                <div class="article-image mb-4" style="background-image: url('{% static 'images/mohism.png' %}'); height: 200px; background-size: cover; background-position: center;"></div>
+                <div class="article-image mb-4" style="background-image: url('{% static 'asset/image/Philosophy/Mohism.png' %}'); height: 200px; background-size: cover; background-position: center;"></div>
                 <p>Mohism, founded by Mozi (c. 470–391 BCE), emerged as a rival to Confucianism during the Warring States period. Mozi, a former Confucian student, criticized its focus on rituals.</p>
                 <h3 class="font-bold mt-4 text-[#4E708D]">Core Ideas</h3>
                 <p>Mohism promotes <em>jian ai</em> (universal love), advocating equal care for all, regardless of social ties. It also emphasizes meritocracy, anti-war stances, and practical problem-solving.</p>
@@ -306,7 +267,7 @@
             title: "百家争鸣 Hundred Schools of Thought",
             author: "By Dr. Li Mei • April 2025",
             content: `
-                <div class="article-image mb-4" style="background-image: url('{% static 'images/hundred_schools.png' %}'); height: 200px; background-size: cover; background-position: center;"></div>
+                <div class="article-image mb-4" style="background-image: url('{% static 'asset/image/Philosophy/Hundred Schools.png' %}'); height: 200px; background-size: cover; background-position: center;"></div>
                 <p>The Hundred Schools of Thought refers to a period (c. 770–221 BCE) during the Spring and Autumn and Warring States periods, where intellectual diversity flourished amidst political turmoil.</p>
                 <h3 class="font-bold mt-4 text-[#4E708D]">Key Schools</h3>
                 <p>Besides Confucianism, Daoism, Legalism, and Mohism, other schools included the Logicians, who focused on language and debate, and the School of Yin-Yang, which explored cosmology.</p>

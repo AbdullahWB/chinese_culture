@@ -1,0 +1,26 @@
+python manage.py startapp poem
+python manage.py startapp artAndArchitecture
+python manage.py startapp festivalsAndTraditions
+python manage.py startapp chinesePhilosophy
+python manage.py startapp Tourism
+python manage.py startapp famousFigures
+python manage.py startapp modernChina
+python manage.py startapp mandarin_language
+python manage.py startapp login
+
+
+mkdir poem
+mkdir artAndArchitecture
+mkdir festivalsAndTraditions
+mkdir chinesePhilosophy
+mkdir Tourism
+mkdir famousFigures
+mkdir modernChina
+mkdir mandarin_language
+
+
+python manage.py tailwind start
+python manage.py runserver
+python manage.py migrate
+python manage.py makemigrations
+python manage.py createsuperuser
